@@ -1,0 +1,33 @@
+import Image from "next/image"
+
+const ResultadosTorneoSection = () => {
+    return(
+        <section className="size-section flex gap-8 md:gap-14 lg:gap-20 my-20 lg:my-32 items-center h-[200px] lg:h-auto">
+            <div className="relative w-1/2 h-full">
+                <Image 
+                    src='/imgs/torneos1.jpg' 
+                    width={1000} 
+                    height={1000} 
+                    alt="" 
+                    className="w-full h-full object-cover"
+                />
+                <Image 
+                    width={500} 
+                    height={500} 
+                    className="absolute w-3/4 md:w-[45%] h-1/2 -bottom-4 -right-4 p-2 bg-white object-cover" 
+                    src='/imgs/torneos2.jpg' 
+                    alt="" 
+                />
+            </div>
+            <div className="flex flex-col gap-4 items-start justify-evenly w-1/2 h-full">
+                <h3 className="font-title md:!leading-relaxed font-semibold text-title w-full md:w-60 lg:w-80 text-xl lg:text-3xl">
+                    Resultados de Torneos y Calendario
+                </h3>
+
+                <button className="btn-primary">Consultar Torneos</button>
+            </div>
+        </section>
+    )
+}
+
+export default ResultadosTorneoSection
