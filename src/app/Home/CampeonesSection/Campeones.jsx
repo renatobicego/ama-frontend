@@ -2,7 +2,7 @@
 import { sliceIntoChunks} from "@/app/utils/utils"
 import { Carousel, Typography} from "../../utils/materialTailwind"
 import ContainerCards from "./ContainerCards"
-import useWindowSize from "@/app/utils/useWindowSize"
+import useWindowSize from "@/app/utils/hooks/useWindowSize"
 
 const mockedCampeones = [
     {

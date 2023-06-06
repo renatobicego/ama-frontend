@@ -1,4 +1,5 @@
 
+import Link from 'next/link';
 import HamburgerMenu from './HamburgerMenu/HamburgerMenu'
 import './Header.css'
 import NavBarHeader from './NavBar/NavBarHeader'
@@ -19,14 +20,43 @@ const socialMedia = [
     }
 ]
 
+const menuItems = [
+    {
+        href: '',
+        text: 'Inicio',
+    },    
+    {
+        href: '',
+        text: 'Torneos',
+    },
+    {
+        href: '',
+        text: 'Inscripciones',
+    },
+    {
+        href: '/noticias',
+        text: 'Noticias',
+    },
+    {
+        href: '',
+        text: 'Clubes',
+    },
+    {
+        href: '',
+        text: 'Mi Perfil',
+    }
+]
+
 const Header = () => {
     return(
         <header className="font-text font-medium text-white fixed z-50 w-full lg:text-sm xl:text-base">
             <section className='w-full bg-primary2 flex justify-between lg:justify-evenly py-4 pl-8 pr-6 items-center'>
-                <img 
-                    className='max-h-[7vh] md:max-h-[8vh] lg:max-h-[5vw] lg:pr-80 xl:pr-96 2xl:pr-80' 
-                    src='/icons/logo.png'
-                    alt=""/>
+                <Link href="/">
+                    <img 
+                        className='max-h-[7vh] md:max-h-[8vh] lg:max-h-[5vw] lg:pr-80 xl:pr-96 2xl:pr-80' 
+                        src='/icons/logo.png'
+                        alt=""/>
+                </Link>
                 <div className='hidden lg:flex items-center gap-4'>
                     <img className='max-h-[3vw]' src='/icons/mail.svg' alt="" />
                     <div className='font-normal '>
@@ -34,9 +64,9 @@ const Header = () => {
                         <h4>mail@gmail.com</h4>
                     </div>
                 </div>
-                <HamburgerMenu socialMedia={socialMedia} />
+                <HamburgerMenu socialMedia={socialMedia} menuItems={menuItems}/>
             </section>
-            <NavBarHeader socialMedia={socialMedia} />
+            <NavBarHeader socialMedia={socialMedia} menuItems={menuItems}/>
             
         </header>
     )

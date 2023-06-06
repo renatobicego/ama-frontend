@@ -1,18 +1,28 @@
 /* eslint-disable react/prop-types */
-
+"use client"
+import useScrollDirection from "@/app/utils/hooks/useScrollDirection"
 import Image from "next/image"
+import Link from "next/link"
 
-const NavBarHeader = ({socialMedia}) => {
+
+const NavBarHeader = ({socialMedia, menuItems}) => {
+    const scrollDirection = useScrollDirection()
+
+    const navBarItems = menuItems.filter(item => item.text !== 'Inscripciones')
+    const inscripcionesItem = menuItems.find(item => item.text === 'Inscripciones')
+
     return(
-        <section className='hidden lg:block bg-tag-bg list-none w-full'>
+        <section className={`hidden lg:block bg-tag-bg list-none w-full relative -z-10 ${ scrollDirection === "down" ? "-top-24" : "top-0"} transition-all duration-500`}>
             <div className='size-section flex justify-between items-center'>
                 <nav id='nav-header-site' >
                     <ul className='flex justify-evenly'>
-                        <li>Inicio</li>
-                        <li>Torneos</li>
-                        <li>Noticias</li>
-                        <li>Clubes</li>
-                        <li>Mi Perfil</li>
+                        {navBarItems.map((item, i ) => {
+                            return(
+                                <li key={i}>
+                                    <Link href={item.href}>{item.text}</Link>
+                                </li>
+                            )
+                        })}
                     </ul>
                 </nav>
                 <nav>
@@ -27,10 +37,12 @@ const NavBarHeader = ({socialMedia}) => {
                             })}
                         </div>
                         <li className="parent-btn">
-                            <button 
-                                className='btn-secondary'>
-                                    Inscripciones
-                            </button>
+                            <Link href={inscripcionesItem.href}>
+                                <button 
+                                    className='btn-secondary'>
+                                        {inscripcionesItem.text}
+                                </button>
+                            </Link>
                         </li>
                     </ul>
                 </nav>

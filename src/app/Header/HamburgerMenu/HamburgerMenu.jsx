@@ -3,36 +3,10 @@
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import { Drawer, IconButton, List, ListItem } from '../../utils/materialTailwind';
 import { useState } from "react";
-
-const hamburguerMenuItems = [
-    {
-        href: '',
-        text: 'Inicio',
-    },    
-    {
-        href: '',
-        text: 'Torneos',
-    },
-    {
-        href: '',
-        text: 'Inscripciones',
-    },
-    {
-        href: '',
-        text: 'Noticias',
-    },
-    {
-        href: '',
-        text: 'Clubes',
-    },
-    {
-        href: '',
-        text: 'Mi Perfil',
-    }
-]
+import Link from 'next/link';
 
 
-const HamburgerMenu = ({socialMedia}) => {
+const HamburgerMenu = ({socialMedia, menuItems}) => {
     const [open, setOpen] = useState(false);
     const openDrawer = () => setOpen(true);
     const closeDrawer = () => setOpen(false);
@@ -48,6 +22,7 @@ const HamburgerMenu = ({socialMedia}) => {
                 className="lg:hidden bg-hamburguer-menu-bg !text-white" 
                 open={open} 
                 onClose={closeDrawer}
+                overlay={false}
                 >
                 <div className="mb-2 flex items-center justify-end p-4">
                     <IconButton size="lg" variant="text" color="blue-gray" onClick={closeDrawer}>
@@ -55,21 +30,21 @@ const HamburgerMenu = ({socialMedia}) => {
                     </IconButton>
                 </div>
                 <List className="ml-6">
-                    {hamburguerMenuItems.map((item, i) => {
+                    {menuItems.map((item, i) => {
                         return (
-                            <a href={item.href} key={i} className="text-white font-title">
+                            <Link href={item.href} key={i} className="text-white font-title">
                                 <ListItem className="md:text-2xl">
                                     {item.text}
                                 </ListItem>
-                            </a>
+                            </Link>
                         )
                     })}
                     <div className="flex gap-6 items-center ml-[10px] mt-3">
                         {socialMedia.map((item, i) => {
                             return(
-                                <a href={item.href} key={i}>
+                                <Link href={item.href} key={i}>
                                     <img className="md:w-8" src={item.logo} alt="" />
-                                </a>
+                                </Link>
                             )
                         })} 
                     </div>

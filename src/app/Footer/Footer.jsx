@@ -44,11 +44,11 @@ const socialMedia = [
 const Footer = () => {
     return (
         <footer className='w-full bg-primary2 text-white border-t border-title py-14'>
-            <div className='size-section flex gap-8 justify-start flex-wrap'>
+            <div className='size-section flex gap-8 justify-between flex-wrap'>
                 <section className='flex w-full lg:w-1/2 items-center justify-between flex-wrap gap-8'>
-                    <div className='flex w-full justify-between'>
+                    <div className='flex w-full gap-[8vw] lg:w-auto'>
                         <Image src="/icons/logoSinTitulo.png" alt="" width={70} height={70} className='max-w-[15vw] lg:max-w-[5vw]'/>
-                        <div className='flex items-center gap-4'>
+                        <div className='flex items-center gap-4 lg:hidden'>
                             <Image width={50} height={50} className='max-h-[12vw] lg:max-h-[3vw]' src='/icons/mail.svg' alt="" />
                             <div className='font-normal'>
                                 <h4 className='text-sm md:text-base'>Email</h4>
@@ -56,7 +56,7 @@ const Footer = () => {
                             </div>
                         </div>  
                     </div>
-                    <nav className='w-full'>
+                    <nav className='w-full lg:w-1/2'>
                         <ul className='flex flex-col justify-between items-start gap-3 font-normal'>
                             {
                                 navFooterItems.map((item, i) => {
