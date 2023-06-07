@@ -1,0 +1,13 @@
+<svg width="53" height="58" viewBox="0 0 53 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="10.7432" y="28" width="6" height="6" stroke="#1C0000" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="10.7432" y="41" width="6" height="6" stroke="#1C0000" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="23.7432" y="28" width="6" height="6" stroke="#1C0000" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="23.7432" y="41" width="6" height="6" stroke="#1C0000" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="35.7432" y="28" width="6" height="6" fill="#6C2F2F" stroke="#1C0000" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="35.7432" y="41" width="6" height="6" stroke="#1C0000" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M51.7432 20H0.743164V9C0.743164 7.34315 2.08631 6 3.74316 6H48.7432C50.4 6 51.7432 7.34315 51.7432 9V20Z" fill="#6C2F2F"/>
+<path d="M49.7432 5.66699H3.0765C1.78783 5.66699 0.743164 6.71166 0.743164 8.00033V54.667C0.743164 55.9557 1.78783 57.0003 3.0765 57.0003H49.7432C51.0318 57.0003 52.0765 55.9557 52.0765 54.667V8.00033C52.0765 6.71166 51.0318 5.66699 49.7432 5.66699Z" stroke="#1C0000" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M40.4102 1V10.3333" stroke="#1C0000" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.4102 1V10.3333" stroke="#1C0000" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0.743164 19.667H52.0765" stroke="#1C0000" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

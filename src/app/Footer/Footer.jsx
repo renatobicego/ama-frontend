@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import NewsletterForm from './NewsletterForm'
+import Link from 'next/link'
 
 const navFooterItems = [
     {
@@ -52,7 +53,9 @@ const Footer = () => {
                             <Image width={50} height={50} className='max-h-[12vw] lg:max-h-[3vw]' src='/icons/mail.svg' alt="" />
                             <div className='font-normal'>
                                 <h4 className='text-sm md:text-base'>Email</h4>
-                                <h4 className='text-sm md:text-base'>mail@gmail.com</h4>
+                                <address className='text-sm md:text-base'>
+                                    <Link href="mailto:mail@gmail.com">mail@gmail.com</Link>
+                                </address>
                             </div>
                         </div>  
                     </div>

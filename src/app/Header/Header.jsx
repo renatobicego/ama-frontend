@@ -61,7 +61,9 @@ const Header = () => {
                     <img className='max-h-[3vw]' src='/icons/mail.svg' alt="" />
                     <div className='font-normal '>
                         <h4>Email</h4>
-                        <h4>mail@gmail.com</h4>
+                        <address >
+                            <Link href="mailto:mail@gmail.com" target='_blank'>mail@gmail.com</Link>
+                        </address>
                     </div>
                 </div>
                 <HamburgerMenu socialMedia={socialMedia} menuItems={menuItems}/>
