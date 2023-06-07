@@ -14,7 +14,7 @@ const ClubCard = ({club}) => {
                     <Image 
                         width={700} height={700} 
                         src={club.imgHref} 
-                        alt={club.name} 
+                        alt={`Logo de club ${club.name}`} 
                         className="h-44 md:h-52 lg:h-64 object-contain"
                     />
                 </CardHeader>

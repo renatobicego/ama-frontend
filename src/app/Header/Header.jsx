@@ -3,7 +3,6 @@ import Link from 'next/link';
 import HamburgerMenu from './HamburgerMenu/HamburgerMenu'
 import './Header.css'
 import NavBarHeader from './NavBar/NavBarHeader'
-import Image from "next/image";
 
 const socialMedia = [
     {
@@ -58,7 +57,7 @@ const Header = () => {
                         alt=""/>
                 </Link>
                 <div className='hidden lg:flex items-center gap-4'>
-                    <img className='max-h-[3vw]' src='/icons/mail.svg' alt="" />
+                    <img className='max-h-[3vw] w-auto' src='/icons/mail.svg' alt="" />
                     <div className='font-normal '>
                         <h4>Email</h4>
                         <address >

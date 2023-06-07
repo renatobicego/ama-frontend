@@ -10,7 +10,7 @@ const News = ({news}) => {
                     src={news.imgHref}
                     width={1500}
                     height={1500}
-                    alt=''
+                    alt={`Imagen de noticia con título ${news.title}`}
                     className="h-full w-full object-cover"
                     priority={true}
                 />

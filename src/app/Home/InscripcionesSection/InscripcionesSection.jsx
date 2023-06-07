@@ -26,12 +26,16 @@ const InscripcionesSection = () => {
                         return(
                             <li key={i}>
                                 <a className="flex items-center w-full gap-4 md:gap-4" href={navItem.href}>
-                                    <Image width={100} height={100} src={navItem.logo} alt="" />
+                                    <Image width={100} height={100} src={navItem.logo} alt="Icono de inscripciones" />
                                     <h4 className="font-title font-normal text-title w-32 text-lg lg:text-xl">
                                         {navItem.title}
                                     </h4>
                                     <button className='cursor-pointer'>
-                                        <Image width={50} height={50} src='/icons/arrowRight.svg' alt="" />
+                                        <Image 
+                                            width={50} 
+                                            height={50} 
+                                            src='/icons/arrowRight.svg' 
+                                            alt="Icono para ir a sección de inscripciones" />
                                     </button>
                                 </a>
                             </li>

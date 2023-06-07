@@ -8,7 +8,7 @@ const ResultadosTorneoSection = () => {
                     src='/imgs/torneos1.jpg' 
                     width={1000} 
                     height={1000} 
-                    alt="" 
+                    alt="Imagen decorativa de torneos" 
                     className="w-full h-full object-cover"
                 />
                 <Image 
@@ -16,7 +16,7 @@ const ResultadosTorneoSection = () => {
                     height={500} 
                     className="absolute w-3/4 md:w-[45%] h-1/2 -bottom-4 -right-4 p-2 bg-white object-cover" 
                     src='/imgs/torneos2.jpg' 
-                    alt="" 
+                    alt="Imagen decorativa de torneos" 
                 />
             </div>
             <div className="flex flex-col gap-4 items-start justify-evenly w-1/2 h-full">

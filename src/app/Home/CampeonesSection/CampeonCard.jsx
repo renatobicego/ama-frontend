@@ -12,7 +12,7 @@ const CampeonCard = ({campeon}) => {
                 <Image 
                     width={700} height={700} 
                     src={campeon.imgHref} 
-                    alt={campeon.name} 
+                    alt={`Foto de ${campeon.name}`} 
                     className="h-44 md:h-52 lg:h-64 object-cover"
                 />
             </CardHeader>
