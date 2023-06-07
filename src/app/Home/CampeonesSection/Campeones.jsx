@@ -7,22 +7,22 @@ import useWindowSize from "@/app/utils/hooks/useWindowSize"
 const mockedCampeones = [
     {
         name: 'Renzo Cremaschi',
-        imgHref: 'https://drive.google.com/uc?export=view&id=1YOdatDa6js9FBrHEI2OzayEnNrpKlKNd',
+        imgHref: '/imgs/renzo.jpg',
         pruebas: ['110 C/V', '200m']
     },
     {
         name: 'Renata Zanata',
-        imgHref: 'https://drive.google.com/uc?export=view&id=15u5o7UWZZVvhZlo1WK9EwO79LvMvH7JJ',
+        imgHref: '/imgs/renata.jpeg',
         pruebas: ['5000m Marcha']
     },
     {
         name: 'Ignacio Erario',
-        imgHref: 'https://drive.google.com/uc?export=view&id=1htqEd8nLLnnrUY-5Ig08lh9eF-eeYjPf',
+        imgHref: '/imgs/erario.jpeg',
         pruebas: ['5000m', '10000m']
     },
     {
         name: 'Alma Marcha',
-        imgHref: 'https://drive.google.com/uc?export=view&id=1cRC83Ka3zIXNKTxcr1_cXXWBtEYzMdUa',
+        imgHref: '/imgs/almaMarcha.jpeg',
         pruebas: ['5000m Marcha']
     },
 ]

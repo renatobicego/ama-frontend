@@ -9,7 +9,7 @@ const news = [
         tag: 'Últimas Noticias',
         title: 'Borem ipsum dolor sit amet, consectetur adipiscing elit.',
         subtitle: 'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class ',
-        imgHref: 'https://drive.google.com/uc?export=view&id=1bvxBklaWSlZZUv6_4HCrogGeHPHd5GdA',
+        imgHref: '/imgs/carrousel.jpg',
         href: '',
         category: 'Torneos'
     },
@@ -17,7 +17,7 @@ const news = [
         tag: 'Últimas Noticias',
         title: 'Borem ipsum dolor sit amet, consectetur adipiscing elit.',
         subtitle: 'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class ',
-        imgHref: 'https://drive.google.com/uc?export=view&id=1bvxBklaWSlZZUv6_4HCrogGeHPHd5GdA',
+        imgHref: '/imgs/carrousel.jpg',
         href: '',
         category: 'Torneos'
     },

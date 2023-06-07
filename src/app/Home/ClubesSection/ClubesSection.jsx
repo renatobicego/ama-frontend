@@ -4,22 +4,22 @@ import ClubCard from "./ClubCard"
 const mockedClubes = [
     {
         name: "Universidad Nacional de Cuyo",
-        imgHref: "https://drive.google.com/uc?export=view&id=1elzJ2SeexE2t_sIbYKg-1x2rItLnIG8E",
+        imgHref: "/clubes/uncuyo.jpg",
         href: ""
     },
     {
         name: "CAVEM",
-        imgHref: "https://drive.google.com/uc?export=view&id=1ZjEILi88a000P08tC42Z-8LAbQq48bJy",
+        imgHref: "/clubes/CAVEM.jpg",
         href: ""
     },
     {
         name: "ALMA",
-        imgHref: "https://drive.google.com/uc?export=view&id=1J9L6ysScDLzn-uLKlcrxiFR3_i8gde9H",
+        imgHref: "/clubes/alma.jpg",
         href: ""
     },
     {
         name: "Murialdo",
-        imgHref: "https://drive.google.com/uc?export=view&id=1e8vHysAKeqQ1zrS1QAlzsNac1lGWvkQe",
+        imgHref: "/clubes/murialdo.jpg",
         href: ""
     },
 ]
