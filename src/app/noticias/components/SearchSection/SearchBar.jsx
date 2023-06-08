@@ -14,7 +14,7 @@ const SearchBar = ({searchTerm, setSearchTerm}) => {
                 onChange={onChangeSearchInput}
                 size="lg"
                 color="gray"
-                className="indent-10 pr-[40vw]  text-text"
+                className=" text-text"
                 />  
             <button className="!absolute right-0 top-4 rounded">
                 <MagnifyingGlassIcon strokeWidth={2} className="h-5 w-5 md:h-7 md:w-7 text-primary2"/>

@@ -9,7 +9,7 @@ const SearchSection = () => {
     const [searchTerm, setSearchTerm] = useState('')
 
     return(
-        <div className="flex justify-between gap-4 items-end !font-text flex-wrap">
+        <div className="flex w-full gap-4 items-end !font-text flex-wrap">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
             <CategorySelect category={category} setCategory={setCategory}/>
         </div>

@@ -64,9 +64,9 @@ const Footer = () => {
                             {
                                 navFooterItems.map((item, i) => {
                                     return(
-                                        <a href={item.href} key={i}>
+                                        <Link href={item.href} key={i} smooth="true">
                                             <li>{item.text}</li>
-                                        </a>
+                                        </Link>
                                 )
                             })
                             }

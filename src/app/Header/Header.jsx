@@ -50,7 +50,7 @@ const Header = () => {
     return(
         <header className="font-text font-medium text-white fixed z-50 w-full lg:text-sm xl:text-base">
             <section className='w-full bg-primary2 flex justify-between lg:justify-evenly py-4 pl-8 pr-6 items-center'>
-                <Link href="/">
+                <Link href="/" smooth="true">
                     <img 
                         className='max-h-[7vh] md:max-h-[8vh] lg:max-h-[5vw] lg:pr-80 xl:pr-96 2xl:pr-80' 
                         src='/icons/logo.png'

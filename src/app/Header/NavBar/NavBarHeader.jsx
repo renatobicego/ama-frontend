@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 "use client"
 import useScrollDirection from "@/app/utils/hooks/useScrollDirection"
-import Image from "next/image"
 import Link from "next/link"
 
 
@@ -19,7 +18,7 @@ const NavBarHeader = ({socialMedia, menuItems}) => {
                         {navBarItems.map((item, i ) => {
                             return(
                                 <li key={i}>
-                                    <Link href={item.href}>{item.text}</Link>
+                                    <Link href={item.href} smooth="true">{item.text}</Link>
                                 </li>
                             )
                         })}
@@ -30,9 +29,9 @@ const NavBarHeader = ({socialMedia, menuItems}) => {
                         <div className='hidden xl:flex gap-4 items-center mr-4'>
                             {socialMedia.map((item, i) => {
                                 return(
-                                    <a href={item.href} key={i}>
+                                    <Link href={item.href} key={i}>
                                         <li><img src={item.logo} alt="" /></li>
-                                    </a>
+                                    </Link>
                                 )
                             })}
                         </div>
