@@ -25,11 +25,11 @@ const menuItems = [
         text: 'Inicio',
     },    
     {
-        href: '',
+        href: '/torneos',
         text: 'Torneos',
     },
     {
-        href: '',
+        href: '/inscripciones',
         text: 'Inscripciones',
     },
     {
@@ -37,11 +37,11 @@ const menuItems = [
         text: 'Noticias',
     },
     {
-        href: '',
+        href: '/clubes',
         text: 'Clubes',
     },
     {
-        href: '',
+        href: '/perfil',
         text: 'Mi Perfil',
     }
 ]

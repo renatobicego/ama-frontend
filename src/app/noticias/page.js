@@ -35,8 +35,6 @@ const news = [
     },
 ]
 
-const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic']
-
 export default function Noticias(){
     return(
         <>
@@ -44,7 +42,7 @@ export default function Noticias(){
                 <section className="size-section flex flex-col justify-between items-start gap-6 lg:gap-8 xl:mt-6">
                     <h2 className="text-title title-section">Últimas Noticias</h2>
                     <SearchSection />
-                    {news.map((n, i) => <NewsCard key={i} news={n} months={months}/>)}
+                    {news.map((n, i) => <NewsCard key={i} news={n}/>)}
                     
                 </section>
             </main>

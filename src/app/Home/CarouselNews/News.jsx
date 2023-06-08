@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import Image from "next/image";
+import Link from "next/link";
 
 const News = ({news}) => {
     return(
-        <a href={news.href}>
+        <Link href={news.href}>
             <div className="relative h-full w-full">
                 
                 <Image
@@ -28,7 +29,7 @@ const News = ({news}) => {
                     </div>
                 </div>
             </div>
-        </a>
+        </Link>
     )
 }
 

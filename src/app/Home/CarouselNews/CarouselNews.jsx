@@ -10,15 +10,15 @@ const news = [
         title: 'Borem ipsum dolor sit amet, consectetur adipiscing elit.',
         subtitle: 'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class ',
         imgHref: '/imgs/carrousel.jpg',
-        href: '',
+        href: '/noticias/titulo/id',
         category: 'Torneos'
     },
     {
         tag: 'Últimas Noticias',
         title: 'Borem ipsum dolor sit amet, consectetur adipiscing elit.',
         subtitle: 'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class ',
-        imgHref: '/imgs/carrousel.jpg',
-        href: '',
+        imgHref: '/imgs/renzo.jpg',
+        href: '/noticias/titulo/id',
         category: 'Torneos'
     },
 ]

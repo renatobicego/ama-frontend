@@ -2,11 +2,15 @@
 "use client"
 import useScrollDirection from "@/app/utils/hooks/useScrollDirection"
 import Link from "next/link"
+import { usePathname } from 'next/navigation'
 
 
 const NavBarHeader = ({socialMedia, menuItems}) => {
     const scrollDirection = useScrollDirection()
-
+    let pathname = usePathname()
+    if(pathname === "/"){
+        pathname = ""
+    }
     const navBarItems = menuItems.filter(item => item.text !== 'Inscripciones')
     const inscripcionesItem = menuItems.find(item => item.text === 'Inscripciones')
 
@@ -18,7 +22,12 @@ const NavBarHeader = ({socialMedia, menuItems}) => {
                         {navBarItems.map((item, i ) => {
                             return(
                                 <li key={i}>
-                                    <Link href={item.href} smooth="true">{item.text}</Link>
+                                    <Link 
+                                        href={item.href} 
+                                        smooth="true" 
+                                        className={` ${item.href === pathname && "border-b"} pb-1`}>
+                                            {item.text}
+                                    </Link>
                                 </li>
                             )
                         })}

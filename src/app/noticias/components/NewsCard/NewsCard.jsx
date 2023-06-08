@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-
-const NewsCard = ({news, months}) => {
+const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic']
+const NewsCard = ({news}) => {
     return (
         <Link href={news.href}>
             <div className="flex justify-between items-center w-full xl:w-4/5 font-title text-title gap-2 md:gap-5 lg:gap-8 py-3 xl:py-6 border-y-2">
