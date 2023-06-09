@@ -1,31 +1,9 @@
 import { Select, Option} from "@/app/utils/materialTailwind.js";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-const categories = [
-    {
-        index: 0,
-        value: 'uno',
-        text: 'Categoria Uno'
-    },
-    {
-        index: 1,
-        value: 'dos',
-        text: 'Categoria Dos'
-    },
-    {
-        index: 2,
-        value: 'tres',
-        text: 'Categoria Tres'
-    },
-    {
-        index: 3,
-        value: 'cuatro',
-        text: 'Categoria Cuatro'
-    },
 
-]
 
-const CategorySelect = ({category, setCategory}) => {
+const CategorySelect = ({category, setCategory, categories}) => {
     const onChangeCategory = (e) => {
         setCategory(e)
     }

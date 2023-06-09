@@ -9,7 +9,7 @@ const SearchBar = ({searchTerm, setSearchTerm}) => {
         <div className="flex relative w-full max-w-[24rem]">
             <Input 
                 variant="standard" 
-                label="Buscar Noticias" 
+                label="Buscar" 
                 value={searchTerm}
                 onChange={onChangeSearchInput}
                 size="lg"

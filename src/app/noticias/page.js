@@ -1,6 +1,6 @@
 
-import NewsCard from "./components/NewsCard/NewsCard";
-import SearchSection from "./components/SearchSection/SearchSection";
+import NewsCard from "./components/NewsCard";
+import SearchSection from "./components/SearchSection";
 
 const news = [
     {

@@ -1,5 +1,5 @@
 import Image from "next/image"
-import NewsCard from "../components/NewsCard/NewsCard"
+import NewsCard from "../components/NewsCard"
 
 const newsRecommended = [
     {
