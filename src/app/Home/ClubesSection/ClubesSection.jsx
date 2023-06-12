@@ -1,26 +1,27 @@
 
+import Link from "next/link"
 import ClubCard from "./ClubCard"
 
 const mockedClubes = [
     {
         name: "Universidad Nacional de Cuyo",
         imgHref: "/clubes/uncuyo.jpg",
-        href: ""
+        href: "/clubes/nombre_club/id"
     },
     {
         name: "CAVEM",
         imgHref: "/clubes/CAVEM.jpg",
-        href: ""
+        href: "/clubes/nombre_club/id"
     },
     {
         name: "ALMA",
         imgHref: "/clubes/alma.jpg",
-        href: ""
+        href: "/clubes/nombre_club/id"
     },
     {
         name: "Murialdo",
         imgHref: "/clubes/murialdo.jpg",
-        href: ""
+        href: "/clubes/nombre_club/id"
     },
 ]
 
@@ -33,11 +34,13 @@ const ClubesSection = () => {
                     Clubes de Mendoza
                 </h3>
 
-                <div className="w-full flex justify-between py-10 flex-wrap">
+                <div className="md:w-4/5 lg:w-full py-10 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
                     {mockedClubes.map((club, i) => <ClubCard club={club} key={i}/>)}
                 </div>
 
-                <button className="btn-secondary">Conocer Más</button>
+                <Link href={"/clubes"}>
+                    <button className="btn-secondary">Conocer Más</button>
+                </Link>
             </div>
 
         </section>

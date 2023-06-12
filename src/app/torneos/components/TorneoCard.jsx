@@ -1,31 +1,44 @@
 import Image from "next/image"
+import Link from "next/link"
 
-
-const TorneoCard = () => {
+const TorneoCard = ({torneo, months}) => {
     return(
-        <div className="flex items-center w-full h-20 gap-8">
-            <div className="flex items-center gap-6 h-full w-1/2">
-                <Image src={"/icons/Calendar.svg"} width={50} height={50}/>
-                <div className="flex flex-col pr-6 h-full border-r-2 items-center ">
-                    <h5>
-                        08
-                    </h5>
-                    <h6>
-                        Mayo
-                    </h6>
-                    <h6>
-                        2023
-                    </h6>
+        <div className="flex items-center w-full h-20 gap-5 md:gap-8">
+            <div className="flex items-center gap-3 md:gap-6 h-full w-2/3 md:w-1/2">
+                <div className="flex flex-col items-center h-full pr-3 md:pr-6 border-r-2 md:flex-row md:gap-6">
+                    <Image 
+                        src={"/icons/Calendar.svg"} 
+                        width={50} 
+                        height={50}
+                        alt={`Calendario icono`} 
+                        className="w-6 md:w-8 lg:w-12 xl:w-auto"/>
+                    <div className="flex flex-col items-center justify-evenly">
+                        <h5 className="font-semibold text-base md:text-xl lg:text-3xl">
+                            {torneo.date.getDate()}
+                        </h5>
+                        <h6 className="font-medium text-xs md:text-base">
+                            {months[torneo.date.getMonth()]}
+                        </h6>
+                        <h6 className="font-medium text-xs md:text-base">
+                            {torneo.date.getFullYear()}
+                        </h6>
+                    </div>
                 </div>
-                <h4 className="text-left pl-6 w-full font-medium text-lg">
-                    Nacional de Clubes U20
+                <h4 className="text-left font-medium text-sm md:text-lg">
+                    {torneo.title}
                 </h4>
             </div>
-            <div className="border-l-2 pl-6">
-                <button className="btn-primary">
+            <Link 
+                className="border-l-2 pl-3 md:pl-6 h-full flex justify-center items-center"
+                href={torneo.fileHref}
+            >
+                <button className="btn-primary hidden md:block">
                     Descargar Resultados
+                </button>
+                <button className="block md:hidden">
+                    <img src="/icons/download.svg" alt="" />
                 </button>   
-            </div>
+            </Link>
             
             
         </div>

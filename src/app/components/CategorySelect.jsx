@@ -3,7 +3,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 
 
 
-const CategorySelect = ({category, setCategory, categories}) => {
+const CategorySelect = ({category, setCategory, categories, placeholder}) => {
     const onChangeCategory = (e) => {
         setCategory(e)
     }
@@ -15,7 +15,7 @@ const CategorySelect = ({category, setCategory, categories}) => {
     return(
         <div className="flex relative">
                 <Select
-                    label="Categorías"
+                    label={`${placeholder}`}
                     color="amber"
                     value={category}
                     onChange={onChangeCategory}

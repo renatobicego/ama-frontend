@@ -33,8 +33,15 @@ const SearchSectionResultados = () => {
 
     return(
         <div className="flex w-full gap-4 items-end !font-text flex-wrap">
-            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-            <CategorySelect category={category} setCategory={setCategory} categories={categories}/>
+            <SearchBar 
+                searchTerm={searchTerm} 
+                setSearchTerm={setSearchTerm} 
+                placeholder={'Resultados de Torneos'}/>
+            <CategorySelect 
+                category={category} 
+                setCategory={setCategory} 
+                categories={categories} 
+                placeholder={'Año'}/>
         </div>
     )
 }

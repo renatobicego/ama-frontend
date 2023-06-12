@@ -1,10 +1,11 @@
 import Image from 'next/image'
-import {Card, CardBody, CardHeader, Typography} from '../../utils/materialTailwind'
+import {Card, CardBody, CardHeader, Typography} from '@/app/utils/materialTailwind'
+import Link from 'next/link'
 
 
 const ClubCard = ({club}) => {
     return(
-        <a href={club.href} className="mt-6 w-[48%] lg:w-[30%] xl:w-[24%] ">
+        <Link href={club.href} className="mt-6">
             <Card className="overflow-hidden h-full ">
                 <CardHeader 
                     className="relative w-full m-0 rounded-none"
@@ -24,7 +25,7 @@ const ClubCard = ({club}) => {
                     </Typography>
                 </CardBody>
             </Card> 
-        </a>
+        </Link>
     )
 }
 

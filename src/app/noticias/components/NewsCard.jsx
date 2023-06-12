@@ -1,7 +1,7 @@
+import { monthsAbbreviated } from "@/app/utils/months";
 import Image from "next/image";
 import Link from "next/link";
 
-const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic']
 const NewsCard = ({news}) => {
     return (
         <Link href={news.href}>
@@ -12,7 +12,7 @@ const NewsCard = ({news}) => {
                 <div className="flex flex-col items-center justify-center h-[10vh] lg:h-32 xl:h-40 border-r-2 pr-2 md:pr-5 lg:pr-8">
                     <Image src={"/icons/Calendar.svg"} alt={`Calendario icono`} width={50} height={50} className="w-6 md:w-8 lg:w-12 xl:w-auto"/>
                     <h5 className="font-semibold text-base md:text-xl lg:text-3xl">{news.date.getDate()}</h5>
-                    <h6 className="font-medium text-xs md:text-base">{months[news.date.getMonth()]}</h6>
+                    <h6 className="font-medium text-xs md:text-base">{monthsAbbreviated[news.date.getMonth()]}</h6>
                 </div>
                 <h4 className="font-semibold text-xs md:text-sm lg:text-lg xl:text-xl">
                     {news.title}

@@ -1,7 +1,7 @@
 import { Input} from "@/app/utils/materialTailwind.js";
 import { MagnifyingGlassIcon} from "@heroicons/react/24/outline";
 
-const SearchBar = ({searchTerm, setSearchTerm}) => {
+const SearchBar = ({searchTerm, setSearchTerm, placeholder}) => {
     const onChangeSearchInput = (e) => {
         setSearchTerm(e.target.value)
     }
@@ -9,7 +9,7 @@ const SearchBar = ({searchTerm, setSearchTerm}) => {
         <div className="flex relative w-full max-w-[24rem]">
             <Input 
                 variant="standard" 
-                label="Buscar" 
+                label={`Buscar ${placeholder}`} 
                 value={searchTerm}
                 onChange={onChangeSearchInput}
                 size="lg"

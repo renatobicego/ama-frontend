@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 const ResultadosTorneoSection = () => {
     return(
@@ -24,7 +25,9 @@ const ResultadosTorneoSection = () => {
                     Resultados de Torneos y Calendario
                 </h3>
 
-                <button className="btn-primary">Consultar Torneos</button>
+                <Link href={"/torneos"}>
+                    <button className="btn-primary">Consultar Torneos</button>
+                </Link>
             </div>
         </section>
     )

@@ -1,6 +1,6 @@
 "use client"
 import { sliceIntoChunks} from "@/app/utils/utils"
-import { Carousel, Typography} from "../../utils/materialTailwind"
+import { Carousel, Typography} from "@/app/utils/materialTailwind"
 import ContainerCards from "./ContainerCards"
 import useWindowSize from "@/app/utils/hooks/useWindowSize"
 

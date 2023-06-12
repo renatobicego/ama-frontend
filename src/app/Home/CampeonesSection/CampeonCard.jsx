@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Typography, Card, CardBody, CardHeader} from "../../utils/materialTailwind"
+import { Typography, Card, CardBody, CardHeader} from "@/app/utils/materialTailwind"
 
 const CampeonCard = ({campeon}) => {
     return(

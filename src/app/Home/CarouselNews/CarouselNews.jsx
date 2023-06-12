@@ -1,7 +1,7 @@
 "use client"
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline"
 import News from "./News";
-import { Carousel, IconButton } from "../../utils/materialTailwind";
+import { Carousel, IconButton } from "@/app/utils/materialTailwind";
 
 
 const news = [

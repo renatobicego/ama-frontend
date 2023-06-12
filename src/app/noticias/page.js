@@ -1,39 +1,8 @@
 
-import NewsCard from "./components/NewsCard";
+import NewsSection from "./components/NewsSection";
 import SearchSection from "./components/SearchSection";
 
-const news = [
-    {
-        href: '/noticias/titulo_de_noticia/id',
-        imgHref: '/imgs/renzo.jpg',
-        date: new Date(2023, 4, 5),
-        title: 'Reynaga cerró la temporada universitaria con 13:48.56 en 5.000'
-    },
-    {
-        href: '/noticias/titulo_de_noticia/id',
-        imgHref: '/imgs/news.png',
-        date: new Date(2023, 10, 5),
-        title: 'Reynaga cerró la temporada universitaria con 13:48.56 en 5.000'
-    },
-    {
-        href: '/noticias/titulo_de_noticia/id',
-        imgHref: '/imgs/erario.jpeg',
-        date: new Date(2023, 9, 5),
-        title: 'Reynaga cerró la temporada universitaria con 13:48.56 en 5.000'
-    },
-    {
-        href: '/noticias/titulo_de_noticia/id',
-        imgHref: '/imgs/torneos1.jpg',
-        date: new Date(2023, 8, 5),
-        title: 'Reynaga cerró la temporada universitaria con 13:48.56 en 5.000'
-    },
-    {
-        href: '/noticias/titulo_de_noticia/id',
-        imgHref: '/imgs/news.png',
-        date: new Date(2023, 7, 5),
-        title: 'Reynaga cerró la temporada universitaria con 13:48.56 en 5.000'
-    },
-]
+
 
 export default function Noticias(){
     return(
@@ -42,7 +11,7 @@ export default function Noticias(){
                 <section className="size-section flex flex-col justify-between items-start gap-6 lg:gap-8 xl:mt-6">
                     <h2 className="text-title title-section">Últimas Noticias</h2>
                     <SearchSection />
-                    {news.map((n, i) => <NewsCard key={i} news={n}/>)}
+                    <NewsSection />
                     
                 </section>
             </main>
