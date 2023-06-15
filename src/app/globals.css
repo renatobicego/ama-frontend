@@ -35,6 +35,8 @@ body{
     @apply py-[14px] px-[15px] lg:py-[20px] lg:px-[40px] text-sm md:text-base text-title font-semibold relative w-fit active:bg-secondary1;
   }
 
+  
+
   .btn-primary {
     @apply btn-design bg-primary1;
   }
