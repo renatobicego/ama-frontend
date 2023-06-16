@@ -93,7 +93,7 @@ const Federacion = ({data, handleChange}) => {
                 </Select>
 
                 <Input 
-                    onChange={(value) => handleChange('pais', value)}  
+                    onChange={(e) => handleChange('pais', e.target.value)}  
                     defaultValue={data.pais} 
                     color="gray" 
                     label="Pais*" />

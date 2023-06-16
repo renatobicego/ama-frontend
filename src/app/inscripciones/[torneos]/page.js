@@ -2,6 +2,7 @@
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import FormLogicTorneo from "./components/FormLogic";
 import { useState } from "react";
+import { v4 } from "uuid";
 
 initMercadoPago(process.env.NEXT_PUBLIC_MP_PUBLIC_KEY)
 
@@ -21,7 +22,13 @@ export default function InscripcionesTorneos(){
         federacion: '',
         asociacion: '',
         pais: '',
-        pruebas: [],
+        pruebas: [
+            {
+                id: v4(),
+                value: '100',
+                marca: '12s'
+            }
+        ],
         idpago: ''
 
     })

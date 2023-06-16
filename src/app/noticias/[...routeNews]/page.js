@@ -61,7 +61,7 @@ export default function News ({params}){
 
             <section className="flex flex-col w-full lg:w-4/5 gap-8 mt-8">
 
-                {newsMocked.body.map((paragraph, i) => <NewsBody paragraph={paragraph} />)}
+                {newsMocked.body.map((paragraph, i) => <NewsBody key={i} paragraph={paragraph} />)}
 
                 <div className="flex gap-4 items-center">
                     <Image 
