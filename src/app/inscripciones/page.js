@@ -8,7 +8,7 @@ export default function Inscripciones(){
             <section className="size-section xl:mt-6">
                 <h2 className="text-title title-section text-left">Inscripciones</h2>
                 <div className="items-center w-full md:w-[90%] flex justify-center gap-6 md:justify-between flex-wrap mt-10">
-                    <Link className="bg-tag-bg/50 relative w-4/5 md:w-[45%]" href={"/inscripciones/federacion"}>
+                    <Link className="bg-tag-bg/50 relative w-4/5 md:w-[45%]" href={"/inscripciones/federaciones"}>
                         <Image 
                             src={'/imgs/inscripciones1.png'}
                             height={400}
