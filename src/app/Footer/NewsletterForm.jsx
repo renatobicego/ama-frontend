@@ -1,10 +1,11 @@
+import { Input } from "@/app/utils/materialTailwind"
 
 
 const NewsletterForm = ({socialMedia}) => {
     return(
-        <form action="" className='flex flex-col justify-between h-full w-full lg:w-1/3 parent-btn'>
+        <form action="" className='flex flex-col justify-between gap-5 h-full w-full lg:w-1/3 parent-btn'>
             <h3 className='text-base md:text-xl font-semibold'>Suscribirse al Newsletter</h3>
-            <input className="input text-white" type="text" placeholder='Ingrese su Mail*'/>
+            <Input size="lg" className="text-white" color="gray" placeholder='Ingrese su Mail*'/>
             <div className='flex gap-8 justify-between items-center'>
                 <button className='btn-primary'>Suscribirse</button>
                 <nav>

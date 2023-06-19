@@ -32,10 +32,8 @@ body{
   }
 
   .btn-design {
-    @apply py-[14px] px-[15px] lg:py-[20px] lg:px-[40px] text-sm md:text-base text-title font-semibold relative w-fit active:bg-secondary1;
+    @apply py-[14px] px-[15px] lg:py-[20px] lg:px-[40px] text-sm md:text-base text-title rounded-md font-semibold relative w-fit active:bg-secondary1;
   }
-
-  
 
   .btn-primary {
     @apply btn-design bg-primary1;
@@ -45,10 +43,6 @@ body{
     @apply btn-design bg-white;
   }
 
-  .input {
-    @apply py-3 pl-6 md:py-5 md:px-8 bg-transparent border my-4 max-w-full;
-  }
-
   .parent-btn {
     @apply relative z-10;
   }
@@ -56,6 +50,7 @@ body{
   .btn-primary::after, .btn-secondary::after {
     content: '';
     position: absolute;
+    border-radius: 6px;
     width: 0px;
     height: 0px;
     background-color: gainsboro;

@@ -42,14 +42,16 @@ const asociaciones = [
     },
 ]
 
-const Federacion = ({data, handleChange}) => {
+const Federacion = ({data, handleChange, errorInput}) => {
 
     return (
         <>
-            <div className="flex w-full justify-between gap-6">
+            <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-6">
                 <Select 
+                    tabIndex={7}
                     onChange={(value) => handleChange('club', value)} 
                     defaultValue={data.club} 
+                    error={errorInput === 'club' ? true : false}
                     color="gray" 
                     label="Club*">
 
@@ -62,8 +64,10 @@ const Federacion = ({data, handleChange}) => {
                 </Select>
 
                 <Select 
+                    tabIndex={8}
                     onChange={(value) => handleChange('federacion', value)} 
                     defaultValue={data.federacion} 
+                    error={errorInput === 'federacion' ? true : false}
                     color="gray" 
                     label="Federación*">
 
@@ -76,11 +80,13 @@ const Federacion = ({data, handleChange}) => {
 
             </div>
 
-            <div className="flex w-full justify-between gap-6">
+            <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-6">
 
                 <Select 
+                    tabIndex={9}
                     onChange={(value) => handleChange('asociacion', value)} 
                     defaultValue={data.asociacion} 
+                    error={errorInput === 'asociacion' ? true : false}
                     color="gray" 
                     label="Asociación*">
 
@@ -93,8 +99,10 @@ const Federacion = ({data, handleChange}) => {
                 </Select>
 
                 <Input 
+                    tabIndex={10}
                     onChange={(e) => handleChange('pais', e.target.value)}  
                     defaultValue={data.pais} 
+                    error={errorInput === 'pais' ? true : false}
                     color="gray" 
                     label="Pais*" />
             </div>

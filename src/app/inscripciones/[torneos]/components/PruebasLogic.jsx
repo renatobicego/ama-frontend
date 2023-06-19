@@ -1,6 +1,5 @@
-import { Button } from "@/app/utils/materialTailwind"
-import { PlusIcon } from "@heroicons/react/24/outline"
-import { useEffect, useState } from "react"
+import { Button, Typography } from "@/app/utils/materialTailwind"
+import { InformationCircleIcon, PlusIcon } from "@heroicons/react/24/outline"
 import PruebaInput from "./PruebaInput"
 import { v4 as uuidv4 } from 'uuid'
 
@@ -20,7 +19,7 @@ const pruebas = [
 
 ]
 
-const PruebasLogic = ({pruebasSelected, setPruebasSelected}) => {
+const PruebasLogic = ({pruebasSelected, setPruebasSelected, errorInput}) => {
 
     const handleAdd = () => {
         setPruebasSelected(prevState => [...prevState, {
@@ -40,14 +39,23 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected}) => {
                     pruebaAgregada={pruebaAgregada}
                     setPruebasSelected={setPruebasSelected}
                     />)}
-            <Button
-                className="flex items-center gap-3 text-primary2 bg-secondary1 rounded-3xl"
-                color="white"
-                onClick={handleAdd}
-                >
-                    <PlusIcon strokeWidth={2} className="h-5 w-5" />
-                    Agregar Prueba
-            </Button>
+            <div>
+                <Button
+                    className="flex items-center gap-3 text-primary2 bg-secondary1 rounded-3xl"
+                    color="white"
+                    onClick={handleAdd}
+                    >
+                        <PlusIcon strokeWidth={2} className="h-5 w-5" />
+                        Agregar Prueba
+                </Button>
+                
+                {errorInput === 'pruebas' &&
+                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                        Por favor, seleccione las pruebas en las que quiere competir
+                    </Typography>
+                }
+            </div>
         </>
     )
 }

@@ -15,26 +15,17 @@ export default function InscripcionesTorneos(){
         categoria: '',
         nombre_apellido: '',
         dni: '',
-        edad: 18,
         sexo: '',
-        fecha_nacimiento: new Date(),
+        fecha_nacimiento: '',
         club: '',
         federacion: '',
         asociacion: '',
         pais: '',
-        pruebas: [
-            {
-                id: v4(),
-                value: '100',
-                marca: '12s'
-            }
-        ],
-        idpago: ''
-
+        pruebas: [],
+        idpago: 'IDPAGO'
     })
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
+    const handleSubmit = () => {
         console.log(data)
     }
 

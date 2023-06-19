@@ -38,8 +38,8 @@ export default function Club(){
                 <ArrowLeftIcon strokeWidth={2} className="w-5"/>
                 Volver
             </Button>
-            <section className="w-4/5 2xl:w-3/4 mx-auto flex flex-wrap lg:flex-nowrap items-center mt-6 bg-hamburguer-menu-bg">
-                <Image src={"/clubes/alma.jpg"} width={300} height={300} className=""/>
+            <section className="w-4/5 2xl:w-3/4 mx-auto flex flex-wrap lg:flex-nowrap items-center mt-6 bg-hamburguer-menu-bg rounded-2xl">
+                <Image src={"/clubes/alma.jpg"} width={300} height={300} />
                 <div className="flex flex-col items-start justify-around ml-4 md:ml-10 xl:ml-16 my-6 lg:my-auto">
                     <h4 className="text-white font-title text-left mb-1">{club.place}</h4>
                     <h2 className="text-white title-section text-left mb-3">{club.name}</h2>

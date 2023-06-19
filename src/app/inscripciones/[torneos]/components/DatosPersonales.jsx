@@ -1,22 +1,26 @@
-import { Input, Option, Select, Typography } from "@/app/utils/materialTailwind";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { Input, Option, Select } from "@/app/utils/materialTailwind";
 
-const DatosPersonales = ({data, handleChange, fechaNacimiento, setFechaNacimiento}) => {
+const DatosPersonales = ({data, handleChange, errorInput}) => {
     
     return(
         <>
-            <div className="flex w-full justify-between gap-6">
+            <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
 
                 <Input 
+                    tabIndex={3}
                     color="gray" 
                     label="Nombre y Apellido*" 
+                    error={errorInput === 'nombre_apellido' ? true : false}
+                    
                     value={data.nombre_apellido}
                     onChange={(e => handleChange('nombre_apellido', e.target.value))}
                     />
 
                 <Select 
+                    tabIndex={4}
                     value={data.sexo} 
                     color="gray" 
+                    error={errorInput === 'sexo' ? true : false}
                     label="Sexo*"
                     onChange={(value) => handleChange('sexo', value)} 
                     >
@@ -25,26 +29,27 @@ const DatosPersonales = ({data, handleChange, fechaNacimiento, setFechaNacimient
                 </Select>
 
             </div>
-            <div className="flex w-full justify-between gap-6">
+            <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
 
                 <Input 
+                    tabIndex={5}
                     color="gray" 
                     label="DNI*"
+                    error={errorInput === 'dni' ? true : false}
                     value={data.dni} 
                     onChange={(e) => handleChange('dni', e.target.value)} 
                     />
 
                 <div className="w-full">
                     <Input 
+                        tabIndex={6}
+                        type="date"
                         color="gray" 
                         label="Fecha de Nacimiento*" 
-                        value={fechaNacimiento} 
-                        onChange={(e) => setFechaNacimiento(e.target.value)}
+                        error={errorInput === 'fecha_nacimiento' ? true : false}
+                        value={data.fecha_nacimiento} 
+                        onChange={(e) => handleChange('fecha_nacimiento', e.target.value)}
                         />
-                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                        Formato: dd-MM-AAAA. Por ejemplo: 03-06-2001
-                    </Typography>
                 </div>
             </div>
 
