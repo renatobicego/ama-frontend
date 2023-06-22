@@ -54,7 +54,7 @@ const Header = () => {
                     <img 
                         className='max-h-[7vh] md:max-h-[8vh] lg:max-h-[5vw] lg:pr-80 xl:pr-96 2xl:pr-80' 
                         src='/icons/logo.png'
-                        alt=""/>
+                        alt="Logo AMA"/>
                 </Link>
                 <div className='hidden lg:flex items-center gap-4'>
                     <img className='max-h-[3vw] w-auto' src='/icons/mail.svg' alt="" />
