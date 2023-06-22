@@ -5,23 +5,23 @@ import Link from 'next/link'
 const navFooterItems = [
     {
         text: 'Inscripción a Torneos',
-        href: ''
+        href: '/inscripciones/torneos'
     },
     {
         text: 'Federación AMA',
-        href: ''
+        href: '/inscripciones/federaciones'
     },
     {
         text: 'Resultados de Torneos',
-        href: ''
+        href: '/torneos'
     },
     {
         text: 'Noticias',
-        href: ''
+        href: '/noticias'
     },
     {
         text: 'Mi Perfil',
-        href: ''
+        href: '/perfil'
     },
 
 ]

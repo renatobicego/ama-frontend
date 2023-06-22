@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-const TorneoCard = ({torneo, months}) => {
+const TorneoCard = ({torneo, months, placeholderBtn}) => {
     return(
         <div className="flex items-center w-full h-20 gap-5 md:gap-8">
             <div className="flex items-center gap-3 md:gap-6 h-full w-2/3 md:w-1/2">
@@ -33,7 +33,7 @@ const TorneoCard = ({torneo, months}) => {
                 href={torneo.fileHref}
             >
                 <button className="btn-primary hidden md:block">
-                    Descargar Resultados
+                    {placeholderBtn}
                 </button>
                 <button className="block md:hidden">
                     <img src="/icons/download.svg" alt="" />

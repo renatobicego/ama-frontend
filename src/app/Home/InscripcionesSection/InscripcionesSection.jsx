@@ -1,13 +1,14 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const inscripcionesNav = [
     {
-        href: '',
+        href: '/inscripciones/torneos',
         logo: '/icons/medal.png',
         title: 'Inscripciones a Torneos'
     },
     {
-        href: '',
+        href: '/inscripciones/federaciones',
         logo: '/icons/track.png',
         title: 'Federación Anual AMA'
     }
@@ -25,7 +26,7 @@ const InscripcionesSection = () => {
                     {inscripcionesNav.map((navItem, i) => {
                         return(
                             <li className="w-full sm:w-1/2 lg:w-full" key={i}>
-                                <a className="flex justify-between items-center gap-4" href={navItem.href}>
+                                <Link className="flex justify-between items-center gap-4" href={navItem.href}>
                                     <Image 
                                         width={200} 
                                         height={200} 
@@ -43,7 +44,7 @@ const InscripcionesSection = () => {
                                             src='/icons/arrowRight.svg' 
                                             alt="Icono para ir a sección de inscripciones" />
                                     </button>
-                                </a>
+                                </Link>
                             </li>
                         )
                     })}

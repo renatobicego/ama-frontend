@@ -26,7 +26,13 @@ const proximosTorneosMocked = [
 ]
 
 const CalendarioSection = () => {
-    return proximosTorneosMocked.map((torneo, i) => <TorneoCard key={i} torneo={torneo} months={monthsAbbreviated}/>)
+    return proximosTorneosMocked.map((torneo, i) => 
+        <TorneoCard 
+            placeholderBtn={'Descargar Programa Horario'} 
+            key={i} 
+            torneo={torneo} 
+            months={monthsAbbreviated}
+            />)
 }
 
 export default CalendarioSection

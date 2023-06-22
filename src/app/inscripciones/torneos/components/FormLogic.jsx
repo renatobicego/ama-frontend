@@ -24,7 +24,14 @@ const FormLogicTorneo = ({data, setData, handleSubmit, errorInput, errorMsg}) =>
         return () => {
             setPruebasSelected([])
         }
-    }, [])
+    }, [])    
+
+    useEffect(() => {
+        if (shouldSubmit) {
+            handleSubmit()
+            setShouldSubmit(false);
+        }
+      }, [shouldSubmit]);
 
     const handleChange = (property, value) => {
         setData({...data, [property]: value})
@@ -41,15 +48,6 @@ const FormLogicTorneo = ({data, setData, handleSubmit, errorInput, errorMsg}) =>
         setShouldSubmit(true)
     }
 
-    useEffect(() => {
-        if (shouldSubmit) {
-            handleSubmit()
-            setShouldSubmit(false);
-        }
-      }, [shouldSubmit]);
-    
-
-    //TODO validation
     return(
         <form className="w-full lg:w-2/3 mt-10 flex flex-col items-start gap-6" onSubmit={saveDataOnSubmit}>
             <CategoriaTorneo 

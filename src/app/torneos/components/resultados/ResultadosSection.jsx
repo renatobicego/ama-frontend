@@ -26,7 +26,13 @@ const resultadosTorneosMocked = [
 ]
 
 const ResultadosSection = () => {
-    return resultadosTorneosMocked.map((torneo, i) => <TorneoCard key={i} torneo={torneo} months={monthsAbbreviated}/>)
+    return resultadosTorneosMocked.map((torneo, i) => 
+        <TorneoCard 
+            key={i} 
+            torneo={torneo}
+            months={monthsAbbreviated}
+            placeholderBtn={'Descargar Resultados'} 
+            />)
 }
 
 export default ResultadosSection

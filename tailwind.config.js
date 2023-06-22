@@ -30,8 +30,8 @@ export default withMT({
       'hamburguer-menu-bg': '#8F4242'
     },
     fontFamily: {
-      'title': ['Rubik', 'sans-serif'],
-      'text': ['Krub', 'sans-serif']
+      'title': ['var(--font-rubik)'],
+      'text': ['var(--font-krub)']
     }
   },
   plugins: [],
