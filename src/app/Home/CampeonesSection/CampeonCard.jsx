@@ -22,7 +22,7 @@ const CampeonCard = ({campeon}) => {
                 </Typography>
                 <Typography className="text-title font-title">
                     {campeon.pruebas.map((prueba, i) => {
-                        return prueba + '.  '
+                        return prueba + ' / '
                     })}
                 </Typography>
             </CardBody>

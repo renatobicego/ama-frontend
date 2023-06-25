@@ -48,7 +48,7 @@ const Footer = () => {
             <div className='size-section flex gap-8 justify-between flex-wrap'>
                 <section className='flex w-full lg:w-1/2 items-center justify-between flex-wrap gap-8'>
                     <div className='flex w-full gap-[8vw] lg:w-auto'>
-                        <Image src="/icons/logoSinTitulo.png" alt="" width={70} height={70} className='max-w-[15vw] lg:max-w-[5vw]'/>
+                        <Image src="/icons/logoSinTitulo.png" alt="Logo AMA" width={70} height={70} className='max-w-[15vw] lg:max-w-[5vw]'/>
                         <div className='flex items-center gap-4 lg:hidden'>
                             <Image width={50} height={50} className='max-h-[12vw] lg:max-h-[3vw] w-auto' src='/icons/mail.svg' alt="" />
                             <div className='font-normal'>

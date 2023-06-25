@@ -1,6 +1,332 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Header /> matches snapshot 1`] = `
+exports[`<Header /> renders content 1`] = `
+<div>
+  <header
+    class="font-text font-medium text-white fixed z-50 w-full lg:text-sm xl:text-base"
+  >
+    <section
+      class="w-full bg-primary2 flex justify-between lg:justify-evenly py-4 pl-8 pr-6 items-center"
+    >
+      <a
+        href="/"
+        smooth="true"
+      >
+        <img
+          alt="Logo AMA"
+          class="max-h-[7vh] md:max-h-[8vh] lg:max-h-[5vw] lg:pr-80 xl:pr-96 2xl:pr-80"
+          src="/icons/logo.png"
+        />
+      </a>
+      <div
+        class="hidden lg:flex items-center gap-4"
+      >
+        <img
+          alt=""
+          class="max-h-[3vw] w-auto"
+          src="/icons/mail.svg"
+        />
+        <div
+          class="font-normal "
+        >
+          <h4>
+            Email
+          </h4>
+          <address>
+            <a
+              href="mailto:mail@gmail.com"
+              target="_blank"
+            >
+              mail@gmail.com
+            </a>
+          </address>
+        </div>
+      </div>
+      <button
+        class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-12 max-w-[48px] h-12 max-h-[48px] rounded-lg text-sm text-blue-500 hover:bg-blue-500/10 active:bg-blue-500/30 lg:hidden"
+        type="button"
+      >
+        <span
+          class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
+        >
+          <svg
+            aria-hidden="true"
+            class="h-7 w-7 md:h-10 md:w-10 text-white"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="fixed z-[9999] pointer-events-auto box-border w-full shadow-2xl shadow-blue-gray-900/10 top-0 right-0 lg:hidden bg-hamburguer-menu-bg !text-white"
+        style="max-width: 100vw; max-height: 100%; height: 100vh; transform: translateX(100vw) translateY(0px) translateZ(0);"
+        tabindex="-1"
+      >
+        <div
+          class="mb-2 flex items-center justify-end p-4"
+        >
+          <button
+            class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-12 max-w-[48px] h-12 max-h-[48px] rounded-lg text-sm text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
+            type="button"
+          >
+            <span
+              class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
+            >
+              <svg
+                aria-hidden="true"
+                class="h-7 w-7 md:h-10 md:w-10 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 18L18 6M6 6l12 12"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+        <nav
+          class="flex flex-col gap-1 min-w-[240px] p-2 font-sans text-base font-normal text-blue-gray-700 ml-6"
+        >
+          <a
+            class="text-white font-title"
+            href=""
+          >
+            <div
+              class="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80 hover:text-blue-gray-900 focus:text-blue-gray-900 active:text-blue-gray-900 outline-none md:text-2xl"
+              role="button"
+              tabindex="0"
+            >
+              Inicio
+            </div>
+          </a>
+          <a
+            class="text-white font-title"
+            href="/torneos"
+          >
+            <div
+              class="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80 hover:text-blue-gray-900 focus:text-blue-gray-900 active:text-blue-gray-900 outline-none md:text-2xl"
+              role="button"
+              tabindex="0"
+            >
+              Torneos
+            </div>
+          </a>
+          <a
+            class="text-white font-title"
+            href="/inscripciones"
+          >
+            <div
+              class="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80 hover:text-blue-gray-900 focus:text-blue-gray-900 active:text-blue-gray-900 outline-none md:text-2xl"
+              role="button"
+              tabindex="0"
+            >
+              Inscripciones
+            </div>
+          </a>
+          <a
+            class="text-white font-title"
+            href="/noticias"
+          >
+            <div
+              class="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80 hover:text-blue-gray-900 focus:text-blue-gray-900 active:text-blue-gray-900 outline-none md:text-2xl"
+              role="button"
+              tabindex="0"
+            >
+              Noticias
+            </div>
+          </a>
+          <a
+            class="text-white font-title"
+            href="/clubes"
+          >
+            <div
+              class="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80 hover:text-blue-gray-900 focus:text-blue-gray-900 active:text-blue-gray-900 outline-none md:text-2xl"
+              role="button"
+              tabindex="0"
+            >
+              Clubes
+            </div>
+          </a>
+          <a
+            class="text-white font-title"
+            href="/perfil"
+          >
+            <div
+              class="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80 hover:text-blue-gray-900 focus:text-blue-gray-900 active:text-blue-gray-900 outline-none md:text-2xl"
+              role="button"
+              tabindex="0"
+            >
+              Mi Perfil
+            </div>
+          </a>
+          <div
+            class="flex gap-6 items-center ml-[10px] mt-3"
+          >
+            <a
+              href=""
+            >
+              <img
+                alt=""
+                class="md:w-8"
+                src="/icons/Facebook.png"
+              />
+            </a>
+            <a
+              href=""
+            >
+              <img
+                alt=""
+                class="md:w-8"
+                src="/icons/Twitter.png"
+              />
+            </a>
+            <a
+              href=""
+            >
+              <img
+                alt=""
+                class="md:w-8"
+                src="/icons/Instagram.png"
+              />
+            </a>
+          </div>
+        </nav>
+      </div>
+    </section>
+    <section
+      class="hidden lg:block bg-tag-bg list-none w-full relative -z-10 top-0 transition-all duration-500"
+    >
+      <div
+        class="size-section flex justify-between items-center"
+      >
+        <nav
+          id="nav-header-site"
+        >
+          <ul
+            class="flex justify-evenly"
+          >
+            <li>
+              <a
+                class=" false pb-1"
+                href=""
+                smooth="true"
+              >
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a
+                class=" false pb-1"
+                href="/torneos"
+                smooth="true"
+              >
+                Torneos
+              </a>
+            </li>
+            <li>
+              <a
+                class=" false pb-1"
+                href="/noticias"
+                smooth="true"
+              >
+                Noticias
+              </a>
+            </li>
+            <li>
+              <a
+                class=" false pb-1"
+                href="/clubes"
+                smooth="true"
+              >
+                Clubes
+              </a>
+            </li>
+            <li>
+              <a
+                class=" false pb-1"
+                href="/perfil"
+                smooth="true"
+              >
+                Mi Perfil
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <nav>
+          <ul
+            class="flex gap-4"
+          >
+            <div
+              class="hidden xl:flex gap-4 items-center mr-4"
+            >
+              <a
+                href=""
+              >
+                <li>
+                  <img
+                    alt=""
+                    src="/icons/Facebook.png"
+                  />
+                </li>
+              </a>
+              <a
+                href=""
+              >
+                <li>
+                  <img
+                    alt=""
+                    src="/icons/Twitter.png"
+                  />
+                </li>
+              </a>
+              <a
+                href=""
+              >
+                <li>
+                  <img
+                    alt=""
+                    src="/icons/Instagram.png"
+                  />
+                </li>
+              </a>
+            </div>
+            <li
+              class="parent-btn"
+            >
+              <a
+                href="/inscripciones"
+              >
+                <button
+                  class="btn-secondary"
+                >
+                  Inscripciones
+                </button>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </header>
+</div>
+`;
+
+exports[`<Header /> renders content 2`] = `
 <div>
   <header
     class="font-text font-medium text-white fixed z-50 w-full lg:text-sm xl:text-base"

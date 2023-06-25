@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Campeones /> renders content 1`] = `
+<div>
+  <section
+    class="w-full bg-hamburguer-menu-bg py-14"
+  >
+    <div
+      class="size-section flex justify-between flex-col items-center"
+    >
+      <p
+        class="block antialiased font-title font-semibold text-white text-2xl lg:text-3xl text-center"
+      >
+        Nuestros Campeones Nacionales
+      </p>
+      <div
+        class="relative w-full h-full overflow-x-hidden flex md:mt-2 lg:mt-4"
+      >
+        <div
+          class="w-full h-full inline-block flex-none"
+          style="left: 0%; right: 0%; transform: none;"
+        >
+          <div
+            class="w-full flex justify-evenly py-6 px-16"
+          >
+            <div
+              class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-6 w-95% md:w-[45%] lg:w-[30%] overflow-hidden"
+            >
+              <div
+                class="bg-clip-border overflow-hidden bg-white text-gray-700 relative w-full m-0 rounded-none"
+              >
+                <img
+                  alt="Foto de Renzo Cremaschi"
+                  class="h-44 md:h-52 lg:h-64 object-cover"
+                  data-nimg="1"
+                  decoding="async"
+                  height="700"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimgs%2Frenzo.jpg&w=1920&q=75"
+                  srcset="/_next/image?url=%2Fimgs%2Frenzo.jpg&w=750&q=75 1x, /_next/image?url=%2Fimgs%2Frenzo.jpg&w=1920&q=75 2x"
+                  style="color: transparent;"
+                  width="700"
+                />
+              </div>
+              <div
+                class="p-6"
+              >
+                <h5
+                  class="block antialiased tracking-normal text-xl font-semibold leading-snug mb-2 text-title font-title"
+                >
+                  Renzo Cremaschi
+                </h5>
+                <p
+                  class="block antialiased text-base font-light leading-relaxed text-title font-title"
+                >
+                  110 C/V / 
+                  200m / 
+                </p>
+              </div>
+            </div>
+            <div
+              class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-6 w-95% md:w-[45%] lg:w-[30%] overflow-hidden"
+            >
+              <div
+                class="bg-clip-border overflow-hidden bg-white text-gray-700 relative w-full m-0 rounded-none"
+              >
+                <img
+                  alt="Foto de Renata Zanata"
+                  class="h-44 md:h-52 lg:h-64 object-cover"
+                  data-nimg="1"
+                  decoding="async"
+                  height="700"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimgs%2Frenata.jpeg&w=1920&q=75"
+                  srcset="/_next/image?url=%2Fimgs%2Frenata.jpeg&w=750&q=75 1x, /_next/image?url=%2Fimgs%2Frenata.jpeg&w=1920&q=75 2x"
+                  style="color: transparent;"
+                  width="700"
+                />
+              </div>
+              <div
+                class="p-6"
+              >
+                <h5
+                  class="block antialiased tracking-normal text-xl font-semibold leading-snug mb-2 text-title font-title"
+                >
+                  Renata Zanata
+                </h5>
+                <p
+                  class="block antialiased text-base font-light leading-relaxed text-title font-title"
+                >
+                  5000m Marcha / 
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="w-full h-full inline-block flex-none"
+          style="left: 100%; right: 100%; transform: none;"
+        >
+          <div
+            class="w-full flex justify-evenly py-6 px-16"
+          >
+            <div
+              class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-6 w-95% md:w-[45%] lg:w-[30%] overflow-hidden"
+            >
+              <div
+                class="bg-clip-border overflow-hidden bg-white text-gray-700 relative w-full m-0 rounded-none"
+              >
+                <img
+                  alt="Foto de Ignacio Erario"
+                  class="h-44 md:h-52 lg:h-64 object-cover"
+                  data-nimg="1"
+                  decoding="async"
+                  height="700"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimgs%2Ferario.jpeg&w=1920&q=75"
+                  srcset="/_next/image?url=%2Fimgs%2Ferario.jpeg&w=750&q=75 1x, /_next/image?url=%2Fimgs%2Ferario.jpeg&w=1920&q=75 2x"
+                  style="color: transparent;"
+                  width="700"
+                />
+              </div>
+              <div
+                class="p-6"
+              >
+                <h5
+                  class="block antialiased tracking-normal text-xl font-semibold leading-snug mb-2 text-title font-title"
+                >
+                  Ignacio Erario
+                </h5>
+                <p
+                  class="block antialiased text-base font-light leading-relaxed text-title font-title"
+                >
+                  5000m / 
+                  10000m / 
+                </p>
+              </div>
+            </div>
+            <div
+              class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-6 w-95% md:w-[45%] lg:w-[30%] overflow-hidden"
+            >
+              <div
+                class="bg-clip-border overflow-hidden bg-white text-gray-700 relative w-full m-0 rounded-none"
+              >
+                <img
+                  alt="Foto de Alma Marcha"
+                  class="h-44 md:h-52 lg:h-64 object-cover"
+                  data-nimg="1"
+                  decoding="async"
+                  height="700"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimgs%2FalmaMarcha.jpeg&w=1920&q=75"
+                  srcset="/_next/image?url=%2Fimgs%2FalmaMarcha.jpeg&w=750&q=75 1x, /_next/image?url=%2Fimgs%2FalmaMarcha.jpeg&w=1920&q=75 2x"
+                  style="color: transparent;"
+                  width="700"
+                />
+              </div>
+              <div
+                class="p-6"
+              >
+                <h5
+                  class="block antialiased tracking-normal text-xl font-semibold leading-snug mb-2 text-title font-title"
+                >
+                  Alma Marcha
+                </h5>
+                <p
+                  class="block antialiased text-base font-light leading-relaxed text-title font-title"
+                >
+                  5000m Marcha / 
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="!absolute top-2/4 left-4 -translate-y-2/4 rounded-full select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-12 max-w-[48px] h-12 max-h-[48px] text-white hover:bg-white/10 active:bg-white/30 grid place-items-center"
+        >
+          <svg
+            aria-hidden="true"
+            class="-ml-1 h-7 w-7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <button
+          class="!absolute top-2/4 right-4 -translate-y-2/4 rounded-full select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-12 max-w-[48px] h-12 max-h-[48px] text-white hover:bg-white/10 active:bg-white/30 grid place-items-center"
+        >
+          <svg
+            aria-hidden="true"
+            class="ml-1 h-7 w-7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div
+          class="absolute bottom-0 left-2/4 z-10 flex -translate-x-2/4 gap-2"
+        >
+          <span
+            class="block h-1 cursor-pointer rounded-2xl transition-all content-[''] w-12 lg:w-16 bg-white "
+          />
+          <span
+            class="block h-1 cursor-pointer rounded-2xl transition-all content-[''] w-12 lg:w-16 bg-white/50 "
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;
