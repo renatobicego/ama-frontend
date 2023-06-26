@@ -1,5 +1,4 @@
 "use client"
-import { initMercadoPago } from "@mercadopago/sdk-react";
 import FormLogicTorneo from "./components/FormLogic";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -7,7 +6,6 @@ import { Button } from "@/app/utils/materialTailwind";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import inscripcionValidate from "../inscripcionValidation";
 
-initMercadoPago(process.env.NEXT_PUBLIC_MP_PUBLIC_KEY)
 
 export default function InscripcionesTorneos(){
     

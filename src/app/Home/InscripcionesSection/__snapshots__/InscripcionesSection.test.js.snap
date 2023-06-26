@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InscripcionesSection /> renders content 1`] = `
+<div>
+  <section
+    class="size-section flex flex-wrap md:justify-between gap-6 lg:gap-[3vw] items-center my-16"
+  >
+    <h3
+      class="font-title font-semibold text-title w-52 text-2xl lg:text-3xl"
+    >
+      Inscripciones Online
+    </h3>
+    <nav>
+      <ul
+        class="flex gap-10 2xl:gap-[3vw] flex-wrap lg:flex-nowrap"
+      >
+        <li
+          class="w-full sm:w-1/2 lg:w-full"
+        >
+          <a
+            class="flex justify-between items-center gap-4"
+            href="/inscripciones/torneos"
+          >
+            <img
+              alt="Icono de inscripciones"
+              class="max-w-[50px] h-[55px] md:max-w-[70px] md:h-[75px] object-contain border-r-2 pr-4"
+              data-nimg="1"
+              decoding="async"
+              height="200"
+              loading="lazy"
+              src="/_next/image?url=%2Ficons%2Fmedal.png&w=640&q=75"
+              srcset="/_next/image?url=%2Ficons%2Fmedal.png&w=256&q=75 1x, /_next/image?url=%2Ficons%2Fmedal.png&w=640&q=75 2x"
+              style="color: transparent;"
+              width="200"
+            />
+            <h4
+              class="font-title font-normal text-title text-lg lg:text-xl"
+            >
+              Inscripciones a Torneos
+            </h4>
+            <button
+              class="cursor-pointer w-1/5"
+            >
+              <img
+                alt="Icono para ir a sección de inscripciones"
+                data-nimg="1"
+                decoding="async"
+                height="50"
+                loading="lazy"
+                src="/icons/arrowRight.svg"
+                style="color: transparent;"
+                width="50"
+              />
+            </button>
+          </a>
+        </li>
+        <li
+          class="w-full sm:w-1/2 lg:w-full"
+        >
+          <a
+            class="flex justify-between items-center gap-4"
+            href="/inscripciones/federaciones"
+          >
+            <img
+              alt="Icono de inscripciones"
+              class="max-w-[50px] h-[55px] md:max-w-[70px] md:h-[75px] object-contain border-r-2 pr-4"
+              data-nimg="1"
+              decoding="async"
+              height="200"
+              loading="lazy"
+              src="/_next/image?url=%2Ficons%2Ftrack.png&w=640&q=75"
+              srcset="/_next/image?url=%2Ficons%2Ftrack.png&w=256&q=75 1x, /_next/image?url=%2Ficons%2Ftrack.png&w=640&q=75 2x"
+              style="color: transparent;"
+              width="200"
+            />
+            <h4
+              class="font-title font-normal text-title text-lg lg:text-xl"
+            >
+              Federación Anual AMA
+            </h4>
+            <button
+              class="cursor-pointer w-1/5"
+            >
+              <img
+                alt="Icono para ir a sección de inscripciones"
+                data-nimg="1"
+                decoding="async"
+                height="50"
+                loading="lazy"
+                src="/icons/arrowRight.svg"
+                style="color: transparent;"
+                width="50"
+              />
+            </button>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+</div>
+`;

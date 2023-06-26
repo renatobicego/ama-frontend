@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ClubesSection /> renders content 1`] = `
+<div>
+  <section
+    class="bg-gradient-to-t from-primary2 via-30% xl:via-50% via-primary2 to-30% xl:to-50% w-full"
+  >
+    <div
+      class="size-section flex flex-col justify-between items-center py-16 parent-btn"
+    >
+      <h3
+        class="font-title font-semibold text-title text-2xl lg:text-3xl"
+      >
+        Clubes de Mendoza
+      </h3>
+      <div
+        class="md:w-4/5 lg:w-full py-10 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6"
+      >
+        <a
+          class="mt-6"
+          href="/clubes/nombre_club/id"
+          role="link"
+        >
+          <div
+            class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden h-full"
+          >
+            <div
+              class="bg-clip-border overflow-hidden bg-white text-gray-700 relative w-full m-0 rounded-none"
+            >
+              <img
+                alt="Logo de club Universidad Nacional de Cuyo"
+                class="h-44 md:h-52 lg:h-64 object-contain"
+                data-nimg="1"
+                decoding="async"
+                height="700"
+                loading="lazy"
+                src="/_next/image?url=%2Fclubes%2Funcuyo.jpg&w=1920&q=75"
+                srcset="/_next/image?url=%2Fclubes%2Funcuyo.jpg&w=750&q=75 1x, /_next/image?url=%2Fclubes%2Funcuyo.jpg&w=1920&q=75 2x"
+                style="color: transparent;"
+                width="700"
+              />
+            </div>
+            <div
+              class="bg-hamburguer-menu-bg flex-1 p-3 md:p-6"
+            >
+              <p
+                class="block antialiased mb-2 text-white font-title text-base md:text-lg lg:text-xl font-medium"
+              >
+                Universidad Nacional de Cuyo
+              </p>
+            </div>
+          </div>
+        </a>
+        <a
+          class="mt-6"
+          href="/clubes/nombre_club/id"
+          role="link"
+        >
+          <div
+            class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden h-full"
+          >
+            <div
+              class="bg-clip-border overflow-hidden bg-white text-gray-700 relative w-full m-0 rounded-none"
+            >
+              <img
+                alt="Logo de club CAVEM"
+                class="h-44 md:h-52 lg:h-64 object-contain"
+                data-nimg="1"
+                decoding="async"
+                height="700"
+                loading="lazy"
+                src="/_next/image?url=%2Fclubes%2FCAVEM.jpg&w=1920&q=75"
+                srcset="/_next/image?url=%2Fclubes%2FCAVEM.jpg&w=750&q=75 1x, /_next/image?url=%2Fclubes%2FCAVEM.jpg&w=1920&q=75 2x"
+                style="color: transparent;"
+                width="700"
+              />
+            </div>
+            <div
+              class="bg-hamburguer-menu-bg flex-1 p-3 md:p-6"
+            >
+              <p
+                class="block antialiased mb-2 text-white font-title text-base md:text-lg lg:text-xl font-medium"
+              >
+                CAVEM
+              </p>
+            </div>
+          </div>
+        </a>
+        <a
+          class="mt-6"
+          href="/clubes/nombre_club/id"
+          role="link"
+        >
+          <div
+            class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden h-full"
+          >
+            <div
+              class="bg-clip-border overflow-hidden bg-white text-gray-700 relative w-full m-0 rounded-none"
+            >
+              <img
+                alt="Logo de club ALMA"
+                class="h-44 md:h-52 lg:h-64 object-contain"
+                data-nimg="1"
+                decoding="async"
+                height="700"
+                loading="lazy"
+                src="/_next/image?url=%2Fclubes%2Falma.jpg&w=1920&q=75"
+                srcset="/_next/image?url=%2Fclubes%2Falma.jpg&w=750&q=75 1x, /_next/image?url=%2Fclubes%2Falma.jpg&w=1920&q=75 2x"
+                style="color: transparent;"
+                width="700"
+              />
+            </div>
+            <div
+              class="bg-hamburguer-menu-bg flex-1 p-3 md:p-6"
+            >
+              <p
+                class="block antialiased mb-2 text-white font-title text-base md:text-lg lg:text-xl font-medium"
+              >
+                ALMA
+              </p>
+            </div>
+          </div>
+        </a>
+        <a
+          class="mt-6"
+          href="/clubes/nombre_club/id"
+          role="link"
+        >
+          <div
+            class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden h-full"
+          >
+            <div
+              class="bg-clip-border overflow-hidden bg-white text-gray-700 relative w-full m-0 rounded-none"
+            >
+              <img
+                alt="Logo de club Murialdo"
+                class="h-44 md:h-52 lg:h-64 object-contain"
+                data-nimg="1"
+                decoding="async"
+                height="700"
+                loading="lazy"
+                src="/_next/image?url=%2Fclubes%2Fmurialdo.jpg&w=1920&q=75"
+                srcset="/_next/image?url=%2Fclubes%2Fmurialdo.jpg&w=750&q=75 1x, /_next/image?url=%2Fclubes%2Fmurialdo.jpg&w=1920&q=75 2x"
+                style="color: transparent;"
+                width="700"
+              />
+            </div>
+            <div
+              class="bg-hamburguer-menu-bg flex-1 p-3 md:p-6"
+            >
+              <p
+                class="block antialiased mb-2 text-white font-title text-base md:text-lg lg:text-xl font-medium"
+              >
+                Murialdo
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <a
+        href="/clubes"
+      >
+        <button
+          class="btn-secondary"
+        >
+          Conocer Más
+        </button>
+      </a>
+    </div>
+  </section>
+</div>
+`;

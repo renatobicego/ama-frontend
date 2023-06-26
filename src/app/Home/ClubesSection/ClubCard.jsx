@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const ClubCard = ({club}) => {
     return(
-        <Link href={club.href} className="mt-6">
+        <Link href={club.href} className="mt-6" role='link'>
             <Card className="overflow-hidden h-full ">
                 <CardHeader 
                     className="relative w-full m-0 rounded-none"

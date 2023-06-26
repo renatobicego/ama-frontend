@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ResultadosTorneoSection /> renders content 1`] = `
+<div>
+  <section
+    class="size-section flex gap-8 md:gap-14 lg:gap-20 my-20 lg:my-32 items-center h-[200px] lg:h-auto"
+  >
+    <div
+      class="relative w-1/2 h-full"
+    >
+      <img
+        alt="Imagen decorativa de torneos"
+        class="w-full h-full object-cover"
+        data-nimg="1"
+        decoding="async"
+        height="1000"
+        loading="lazy"
+        src="/_next/image?url=%2Fimgs%2Ftorneos1.jpg&w=2048&q=75"
+        srcset="/_next/image?url=%2Fimgs%2Ftorneos1.jpg&w=1080&q=75 1x, /_next/image?url=%2Fimgs%2Ftorneos1.jpg&w=2048&q=75 2x"
+        style="color: transparent;"
+        width="1000"
+      />
+      <img
+        alt="Imagen decorativa de torneos"
+        class="absolute w-3/4 md:w-[45%] h-1/2 -bottom-4 -right-4 p-2 bg-white object-cover"
+        data-nimg="1"
+        decoding="async"
+        height="500"
+        loading="lazy"
+        src="/_next/image?url=%2Fimgs%2Ftorneos2.jpg&w=1080&q=75"
+        srcset="/_next/image?url=%2Fimgs%2Ftorneos2.jpg&w=640&q=75 1x, /_next/image?url=%2Fimgs%2Ftorneos2.jpg&w=1080&q=75 2x"
+        style="color: transparent;"
+        width="500"
+      />
+    </div>
+    <div
+      class="flex flex-col gap-4 items-start justify-evenly w-1/2 h-full"
+    >
+      <h3
+        class="font-title md:!leading-relaxed font-semibold text-title w-full md:w-60 lg:w-80 text-xl lg:text-3xl"
+      >
+        Resultados de Torneos y Calendario
+      </h3>
+      <a
+        href="/torneos"
+      >
+        <button
+          class="btn-primary"
+        >
+          Consultar Torneos
+        </button>
+      </a>
+    </div>
+  </section>
+</div>
+`;

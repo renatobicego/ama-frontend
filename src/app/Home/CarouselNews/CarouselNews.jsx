@@ -18,7 +18,7 @@ const news = [
         title: 'Borem ipsum dolor sit amet, consectetur adipiscing elit.',
         subtitle: 'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class ',
         imgHref: '/imgs/renzo.jpg',
-        href: '/noticias/titulo/id',
+        href: `/noticias/Borem ipsum dolor sit amet, consectetur adipiscing elit./id`,
         category: 'Torneos'
     },
 ]

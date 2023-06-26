@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const News = ({news}) => {
     return(
-        <Link href={news.href}>
+        <Link href={news.href} role="link">
             <div className="relative h-full w-full">
                 
                 <Image

@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders content 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <main
+        class="pt-[17vh] lg:pt-44 2xl:pt-52 pb-20"
+      >
+        <section
+          class="size-section xl:mt-6"
+        >
+          <h2
+            class="text-title title-section text-left"
+          >
+            Inscripciones
+          </h2>
+          <div
+            class="items-center w-full md:w-[90%] flex justify-center gap-6 md:justify-between flex-wrap mt-10"
+          >
+            <a
+              class="bg-tag-bg/50 relative w-4/5 md:w-[45%]"
+              href="/inscripciones/federaciones"
+              role="link"
+            >
+              <img
+                alt="Inscripciones"
+                class="object-cover object-center relative -z-10"
+                data-nimg="1"
+                decoding="async"
+                height="400"
+                loading="lazy"
+                src="/_next/image?url=%2Fimgs%2Finscripciones1.png&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimgs%2Finscripciones1.png&w=640&q=75 1x, /_next/image?url=%2Fimgs%2Finscripciones1.png&w=1080&q=75 2x"
+                style="color: transparent;"
+                width="500"
+              />
+              <h3
+                class="text-center font-title font-semibold text-base sm:text-lg md:text-xl lg:text-2xl w-52 md:w-96 text-white z-10 center-absolute"
+              >
+                Federación Anual AMA
+              </h3>
+            </a>
+            <a
+              class="bg-tag-bg/50 relative w-4/5 md:w-[45%]"
+              href="/inscripciones/torneos"
+              role="link"
+            >
+              <img
+                alt="Inscripciones"
+                class="object-cover object-center relative -z-10"
+                data-nimg="1"
+                decoding="async"
+                height="400"
+                loading="lazy"
+                src="/_next/image?url=%2Fimgs%2Finscripciones2.png&w=1080&q=75"
+                srcset="/_next/image?url=%2Fimgs%2Finscripciones2.png&w=640&q=75 1x, /_next/image?url=%2Fimgs%2Finscripciones2.png&w=1080&q=75 2x"
+                style="color: transparent;"
+                width="500"
+              />
+              <h3
+                class="text-center font-title font-semibold text-base sm:text-lg md:text-xl lg:text-2xl w-52 md:w-96 text-white z-10 center-absolute"
+              >
+                Inscripción a Torneos
+              </h3>
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>,
+  "container": <div>
+    <main
+      class="pt-[17vh] lg:pt-44 2xl:pt-52 pb-20"
+    >
+      <section
+        class="size-section xl:mt-6"
+      >
+        <h2
+          class="text-title title-section text-left"
+        >
+          Inscripciones
+        </h2>
+        <div
+          class="items-center w-full md:w-[90%] flex justify-center gap-6 md:justify-between flex-wrap mt-10"
+        >
+          <a
+            class="bg-tag-bg/50 relative w-4/5 md:w-[45%]"
+            href="/inscripciones/federaciones"
+            role="link"
+          >
+            <img
+              alt="Inscripciones"
+              class="object-cover object-center relative -z-10"
+              data-nimg="1"
+              decoding="async"
+              height="400"
+              loading="lazy"
+              src="/_next/image?url=%2Fimgs%2Finscripciones1.png&w=1080&q=75"
+              srcset="/_next/image?url=%2Fimgs%2Finscripciones1.png&w=640&q=75 1x, /_next/image?url=%2Fimgs%2Finscripciones1.png&w=1080&q=75 2x"
+              style="color: transparent;"
+              width="500"
+            />
+            <h3
+              class="text-center font-title font-semibold text-base sm:text-lg md:text-xl lg:text-2xl w-52 md:w-96 text-white z-10 center-absolute"
+            >
+              Federación Anual AMA
+            </h3>
+          </a>
+          <a
+            class="bg-tag-bg/50 relative w-4/5 md:w-[45%]"
+            href="/inscripciones/torneos"
+            role="link"
+          >
+            <img
+              alt="Inscripciones"
+              class="object-cover object-center relative -z-10"
+              data-nimg="1"
+              decoding="async"
+              height="400"
+              loading="lazy"
+              src="/_next/image?url=%2Fimgs%2Finscripciones2.png&w=1080&q=75"
+              srcset="/_next/image?url=%2Fimgs%2Finscripciones2.png&w=640&q=75 1x, /_next/image?url=%2Fimgs%2Finscripciones2.png&w=1080&q=75 2x"
+              style="color: transparent;"
+              width="500"
+            />
+            <h3
+              class="text-center font-title font-semibold text-base sm:text-lg md:text-xl lg:text-2xl w-52 md:w-96 text-white z-10 center-absolute"
+            >
+              Inscripción a Torneos
+            </h3>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

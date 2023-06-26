@@ -2,11 +2,13 @@
 import { Typography } from "@/app/utils/materialTailwind";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import PruebasLogic from "./PruebasLogic";
-import { Wallet } from "@mercadopago/sdk-react"
+import { Wallet, initMercadoPago } from "@mercadopago/sdk-react"
 import CategoriaTorneo from "./CategoriaTorneo";
 import DatosPersonales from "./DatosPersonales";
 import Federacion from "./Federacion";
 import { useEffect, useMemo, useState } from "react";
+
+initMercadoPago(process.env.NEXT_PUBLIC_MP_PUBLIC_KEY)
 
 const FormLogicTorneo = ({data, setData, handleSubmit, errorInput, errorMsg}) => {
 
