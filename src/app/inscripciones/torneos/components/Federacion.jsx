@@ -48,12 +48,15 @@ const Federacion = ({data, handleChange, errorInput}) => {
         <>
             <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-6">
                 <Select 
+                    aria-labelledby="club"
                     tabIndex={7}
                     onChange={(value) => handleChange('club', value)} 
                     defaultValue={data.club} 
                     error={errorInput === 'club' ? true : false}
                     color="gray" 
-                    label="Club*">
+                    label="Club*"
+                    labelProps={{id: 'club'}}
+                    >
 
                     {clubes.map((club, i) => 
                         <Option key={i} value={club.value}>
@@ -69,7 +72,10 @@ const Federacion = ({data, handleChange, errorInput}) => {
                     defaultValue={data.federacion} 
                     error={errorInput === 'federacion' ? true : false}
                     color="gray" 
-                    label="Federación*">
+                    label="Federación*"
+                    labelProps={{id: 'federacion'}}
+                    aria-labelledby="federacion"
+                    >
 
                     {federaciones.map((fed, i) => 
                         <Option key={i} value={fed.value}>
@@ -88,7 +94,10 @@ const Federacion = ({data, handleChange, errorInput}) => {
                     defaultValue={data.asociacion} 
                     error={errorInput === 'asociacion' ? true : false}
                     color="gray" 
-                    label="Asociación*">
+                    label="Asociación*"
+                    labelProps={{id: 'asociacion'}}
+                    aria-labelledby="asociacion"
+                    >
 
                     {asociaciones.map((asoc, i) => 
                         <Option key={i} value={asoc.value}>
@@ -104,7 +113,10 @@ const Federacion = ({data, handleChange, errorInput}) => {
                     defaultValue={data.pais} 
                     error={errorInput === 'pais' ? true : false}
                     color="gray" 
-                    label="Pais*" />
+                    label="Pais*" 
+                    labelProps={{id: 'pais'}}
+                    aria-labelledby="pais"
+                    />
             </div>
         </> 
     )

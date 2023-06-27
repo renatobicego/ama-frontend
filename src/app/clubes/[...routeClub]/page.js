@@ -10,17 +10,13 @@ const club = {
     place: 'Maipú',
     contacts: [
         {
-            name: 'Paola Abrego',
-            phoneNumber: 2615880900
-        },
-        {
             name: 'Manuel Aidar',
-            phoneNumber: 2615150379
+            phoneNumber: 2612486182
         },
         
     ],
     instagramHref: 'https://www.instagram.com/atletismo_alma_maipu/',
-    facebookHref: 'a',
+    facebookHref: 'https://www.facebook.com/profile.php?id=100071862310697&mibextid=ZbWKwL',
     twitterHref: ''
 }
 

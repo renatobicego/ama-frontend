@@ -58,9 +58,11 @@ const CategoriaTorneo = ({data, handleChange, errorInput}) => {
         <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
             <Select 
                 value={data.torneo}
+                aria-labelledby="torneo"
                 tabIndex={1}
                 color="gray" 
                 label="Torneo a Inscribirse*"
+                labelProps={{id: 'torneo'}}
                 error={errorInput === 'torneo' ? true : false}
                 onChange={(value) => handleChange('torneo', value)} 
                 >
@@ -71,8 +73,9 @@ const CategoriaTorneo = ({data, handleChange, errorInput}) => {
                             )}
             </Select>
             <Select 
-                name="categoria" 
                 tabIndex={2}
+                aria-labelledby="categoria"
+                labelProps={{id: 'categoria'}}
                 color="gray" 
                 label="Categoría*"
                 error={errorInput === 'categoria' ? true : false}
