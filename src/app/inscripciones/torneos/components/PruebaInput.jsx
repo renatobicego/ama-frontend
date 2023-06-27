@@ -40,15 +40,26 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
                 value={pruebaAgregada.value} 
                 onChange={handleSelect} 
                 color="gray" 
-                label="Seleccionar Prueba*">
+                label="Seleccionar Prueba*"
+                aria-labelledby="prueba"
+                labelProps={{id: 'prueba'}}
+                >
                     
                 {pruebas.map((p, i) => 
                     <Option key={i} value={p.value}>{p.name}</Option>
                 )}
             </Select>
-            <Input value={pruebaAgregada.marca} onChange={handleInputMarca} color="gray" label="Mejor Marca de Prueba*" />
+            <Input 
+                value={pruebaAgregada.marca} 
+                onChange={handleInputMarca} 
+                color="gray" 
+                label="Mejor Marca de Prueba*"
+                aria-labelledby="marca-prueba"
+                labelProps={{id: 'marca-prueba'}} 
+                />
 
             <button 
+                aria-label='delete prueba'
                 className={`absolute -right-6 top-[42%] md:-right-10 md:top-2 rounded cursor-pointer`}
                 onClick={deletePrueba}
             >

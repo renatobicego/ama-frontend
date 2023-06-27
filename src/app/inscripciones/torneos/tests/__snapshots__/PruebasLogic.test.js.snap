@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PruebasLocic /> renders content 1`] = `
+exports[`<PruebasLogic /> renders content 1`] = `
 <div>
   <div>
     <button

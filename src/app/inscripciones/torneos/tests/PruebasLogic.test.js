@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import PruebasLogic from '../components/PruebasLogic'
 
-describe('<PruebasLocic />', () => {
+describe('<PruebasLogic />', () => {
 
     let pruebasSelected
     let pruebasLogic
@@ -41,4 +41,6 @@ describe('<PruebasLocic />', () => {
         expect(setPruebasSelected).toHaveBeenCalledTimes(1)
 
     })
+
+    
 })
