@@ -42,6 +42,8 @@ const FormFederacionClub = () => {
                     tabIndex={1}
                     color="gray" 
                     label="Nombre de Club*" 
+                    aria-labelledby="club"
+                    labelProps={{id: 'club'}}
                     error={errorInput === 'nombre' ? true : false}
                     
                     value={data.nombre}
@@ -53,6 +55,8 @@ const FormFederacionClub = () => {
                         type="email"
                         color="gray" 
                         label="Email*" 
+                        aria-labelledby="email"
+                        labelProps={{id: 'email'}}
                         error={errorInput === 'email' ? true : false}
                         value={data.email} 
                         onChange={(e) => handleChange('email', e.target.value)}
