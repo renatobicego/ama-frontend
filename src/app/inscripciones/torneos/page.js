@@ -25,8 +25,11 @@ export default function InscripcionesTorneos(){
         pruebas: [],
         idpago: 'IDPAGO'
     })
+
+    // FOr come back button
     const router = useRouter()
 
+    // Which input returned error and the message
     const [errorInput, setErrorInput] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
 

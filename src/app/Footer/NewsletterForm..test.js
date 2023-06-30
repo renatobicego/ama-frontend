@@ -6,6 +6,7 @@ describe('<NewsletterForm />', () => {
 
     let form 
 
+    // Mocked socialMedia
     const socialMedia = [
         { href: '', logo: '/test/test.jpg'},
     ]

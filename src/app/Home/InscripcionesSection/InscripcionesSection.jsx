@@ -23,10 +23,12 @@ const InscripcionesSection = () => {
             <nav>
                 <ul className="flex gap-10 2xl:gap-[3vw] flex-wrap lg:flex-nowrap">
 
+                    {/* Render Federación and Inscripción a Torneos links */}
                     {inscripcionesNav.map((navItem, i) => {
                         return(
                             <li className="w-full sm:w-1/2 lg:w-full" key={i}>
                                 <Link className="flex justify-between items-center gap-4" href={navItem.href}>
+                                    {/* Icon left */}
                                     <Image 
                                         width={200} 
                                         height={200} 
@@ -37,6 +39,7 @@ const InscripcionesSection = () => {
                                     <h4 className="font-title font-normal text-title text-lg lg:text-xl">
                                         {navItem.title}
                                     </h4>
+                                    {/* Arrow icon */}
                                     <button className='cursor-pointer w-1/5'>
                                         <Image 
                                             width={50} 

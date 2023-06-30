@@ -31,8 +31,10 @@ const Campeones = () => {
 
     const windowSize = useWindowSize()
 
+    // Check for how many cards to render in div
     const isMobile = windowSize.width < 768 
     const isDesktop = windowSize.width > 1280
+
     
     return(
         <section className="w-full bg-hamburguer-menu-bg py-14">
@@ -60,8 +62,11 @@ const Campeones = () => {
                         </div>
                       )}
                 >
+                    {/* Render 1 card if mobile, 2 if tablet and 3 if desktop */}
                     {
-                        sliceIntoChunks(mockedCampeones, isMobile ? 1 : (isDesktop ? 3 : 2)).map((chunk, i) => <ContainerCards campeones={chunk} key={i}/>)
+                        sliceIntoChunks(mockedCampeones, 
+                            isMobile ? 1 : (isDesktop ? 3 : 2))
+                            .map((chunk, i) => <ContainerCards campeones={chunk} key={i}/>)
                     }
                     
                 </Carousel>

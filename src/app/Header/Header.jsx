@@ -65,8 +65,10 @@ const Header = () => {
                         </address>
                     </div>
                 </div>
+                {/* If user is on tablet or mobile, render hamburguer menu */}
                 <HamburgerMenu socialMedia={socialMedia} menuItems={menuItems}/>
             </section>
+            {/* If user is on desktop, render hamburguer menu */}
             <NavBarHeader socialMedia={socialMedia} menuItems={menuItems}/>
             
         </header>

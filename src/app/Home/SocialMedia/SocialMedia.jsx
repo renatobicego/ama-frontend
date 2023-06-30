@@ -9,6 +9,7 @@ import './socialMedia.css'
 const SocialMedia = () => {
     const windowSize = useWindowSize()
 
+    // To change size of embed 
     const isMobile = windowSize.width < 768
     return(
         <section className="size-section flex flex-col items-center justify-between py-14 gap-10">

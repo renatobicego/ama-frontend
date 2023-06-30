@@ -14,14 +14,14 @@ describe('<Header />', () => {
     test('renders content', () => {
         expect(header.container).toMatchSnapshot();
         
+        // Renders content and Navbar
         expect(header.container).toHaveTextContent('Email')
         expect(header.container).toHaveTextContent('Inicio')
         expect(header.container).toHaveTextContent('Inscripciones')
 
+        // Logo rendered
         const logo = screen.getByAltText('Logo AMA')
         expect(logo).toBeInTheDocument()
-
-        expect(header.container).toMatchSnapshot();
         
     })
     

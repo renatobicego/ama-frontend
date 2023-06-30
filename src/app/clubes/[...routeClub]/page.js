@@ -21,9 +21,11 @@ const club = {
 }
 
 export default function Club(){
+    // For coming back button
     const router = useRouter()
     return(
         <main className="pt-[17vh] lg:pt-44 2xl:pt-52 pb-20 size-section ">
+            {/* Come back button */}
             <Button 
                 variant="text" 
                 onClick={() => router.back()}
@@ -34,6 +36,7 @@ export default function Club(){
                 <ArrowLeftIcon strokeWidth={2} className="w-5"/>
                 Volver
             </Button>
+
             <section className="w-4/5 2xl:w-3/4 mx-auto flex flex-wrap lg:flex-nowrap items-center mt-6 bg-hamburguer-menu-bg rounded-2xl">
                 <Image src={"/clubes/alma.jpg"} width={300} height={300} />
                 <div className="flex flex-col items-start justify-around ml-4 md:ml-10 xl:ml-16 my-6 lg:my-auto">
@@ -51,6 +54,8 @@ export default function Club(){
                     </nav>
                     <nav className="mt-3">
                         <ul className="flex gap-3 items-center">
+                            {/* Render social media link if it's defined in database 
+                            (in case it doesn't have a social media account) */}
                             {
                                 club.instagramHref && 
                                 <Link href={club.instagramHref}>

@@ -21,6 +21,7 @@ const pruebas = [
 
 const PruebasLogic = ({pruebasSelected, setPruebasSelected, errorInput}) => {
 
+    // Create prueba added
     const handleAdd = () => {
         setPruebasSelected(prevState => [...prevState, {
             id: uuidv4(),
@@ -31,7 +32,7 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected, errorInput}) => {
 
     return(
         <>
-
+            {/* For each prueba added, render Prueba chosen and Marca input */}
             {pruebasSelected.map(pruebaAgregada =>
                 <PruebaInput
                     key={pruebaAgregada.id}
@@ -49,6 +50,7 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected, errorInput}) => {
                         Agregar Prueba
                 </Button>
                 
+                {/* If user doesn't add pruebas, show error */}
                 {errorInput === 'pruebas' &&
                     <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
                         <InformationCircleIcon className="w-4 h-4 -mt-px" />

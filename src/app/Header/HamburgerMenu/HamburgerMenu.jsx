@@ -16,6 +16,7 @@ const HamburgerMenu = ({socialMedia, menuItems}) => {
             <IconButton size="lg" className="lg:hidden" variant="text" onClick={openDrawer}>
                 <Bars3Icon strokeWidth={1} className="h-7 w-7 md:h-10 md:w-10 text-white" />
             </IconButton>
+            {/* Hamburguer menu opened */}
             <Drawer 
                 size={"100vw"} 
                 placement="right" 

@@ -6,6 +6,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
 
     const handleSelect = (value) => {
         setPruebasSelected(prevState => prevState.map(p => {
+            // Change only pruebaAgregada input
             if(p.id === pruebaAgregada.id){
                 return {
                     ...p,
@@ -19,6 +20,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
 
     const handleInputMarca = (event) => {
         setPruebasSelected(prevState => prevState.map(p => {
+            // Change only pruebaAgregada input
             if(p.id === pruebaAgregada.id){
                 return {
                     ...p,

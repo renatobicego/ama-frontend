@@ -1,5 +1,6 @@
 const validateEmptyInput = (input) => {
     
+    // Depending if input is string or array validate if is empty different
     if(typeof input === 'string'){
         if(input.trim().length < 1){
             return false
@@ -31,6 +32,7 @@ const inscripcionValidate = (form) => {
     let error = ''
 
     for(let key in form){
+        // If some input is wrong, stop validation and return error
         if(!validateEmptyInput(form[key]) && inscripcion){
             inscripcion = false
             errorKey = key
@@ -38,6 +40,7 @@ const inscripcionValidate = (form) => {
         }
     }
 
+    // If inscripcion is already false, don't validate and return error
     if(!validateNombreApellido(form['nombre_apellido']) && inscripcion){
         inscripcion = false
         errorKey = 'nombre_apellido'
