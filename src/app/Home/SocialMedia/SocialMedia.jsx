@@ -4,6 +4,7 @@ import useWindowSize from "@/app/utils/hooks/useWindowSize"
 import { InstagramEmbed } from "react-social-media-embed"
 import './socialMedia.css'
 
+//TODO edit post by admin
 
 const SocialMedia = () => {
     const windowSize = useWindowSize()

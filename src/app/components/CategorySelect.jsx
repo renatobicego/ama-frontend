@@ -2,7 +2,8 @@ import { Select, Option} from "@/app/utils/materialTailwind.js";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 
-
+// Ctaegory select input for news or torneos filter
+// Category is state variable that is selected. Categories are all the options available
 const CategorySelect = ({category, setCategory, categories, placeholder}) => {
     const onChangeCategory = (e) => {
         setCategory(e)
