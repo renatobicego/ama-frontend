@@ -2,7 +2,7 @@ import Footer from './Footer/Footer'
 import Header from './Header/Header'
 import './globals.css'
 import { Rubik, Krub } from 'next/font/google'
-
+import { Analytics } from '@vercel/analytics/react'
 
 const rubik = Rubik({
   weight: ['400', '500', '600'],
@@ -32,6 +32,7 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
