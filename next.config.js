@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: ['drive.google.com', '**.googleusercontent.com']
+  }
+}
 
 module.exports = {
-    ...nextConfig,
-    images: {
-        domains: ['drive.google.com', '**.googleusercontent.com'],
-      },
+    ...nextConfig
 }
