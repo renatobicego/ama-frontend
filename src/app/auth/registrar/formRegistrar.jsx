@@ -1,9 +1,15 @@
 "use client"
 import { useState } from "react";
-import { useRegistroList } from "@/app/utils/hooks/useRegistroList";
-import FormLogicRegistrar from "./formLogicRegistrar";
-import axios from "axios";
+import FormLogicRegistrar from "./FormLogicRegistrar";
+import axios, { AxiosError } from "axios";
+import { Typography } from "@material-tailwind/react";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
+//TODO
+// ERROR DNI EXISTE
+// MANEJAR MEJOR LAS PROPS
+// PRUEBAS FAVORITAS 
+// MEJORAR ERRORES INPUT Y MSG
 
 const FormRegistrar = () => {
 
@@ -15,21 +21,17 @@ const FormRegistrar = () => {
         password:'',
         club: '',
         telefono: '',
+        role: 'USER_ROLE',
         email: '',
         asociacion: '',
         federacion: '',
-        pruebasFavoritas: ''
+        pruebasFavoritas: [{
+            prueba: "64a42d0c0d4546fc086227b2",
+            marca: "100s"
+        }]
     })
 
-    // Get form input for select dropdowns
-    const { entityData, loading, error } = useRegistroList(['club', 'federaciones', 'asociaciones'])
-
-    if (loading) {
-        return <div className="mt-6">Cargando los datos del formulario...</div>;
-    }
-    if (error) {
-      return <div>Error al cargar el formulario</div>;
-    }
+    const [formErrors, setFormErrors] = useState([])
     
     const handleChange = (property, value) => {
         setData({...data, [property]: value})
@@ -39,18 +41,44 @@ const FormRegistrar = () => {
         // create user
         try {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/usuarios`, data)
+            console.log(res);
         } catch (error) {
-            
+            if(error instanceof AxiosError){
+                const axiosErrors = error.response.data.errors
+                setFormErrors(axiosErrors)
+            }
+            console.log(error);
         }
     }
 
     return(
-        <FormLogicRegistrar 
-            data={data}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            entityData={entityData}
-            />
+        <>
+            <FormLogicRegistrar 
+                data={data}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                formErrors={formErrors}
+                setFormErrors={setFormErrors}
+                />
+            <div>
+
+                {formErrors.length > 0 && 
+
+                    formErrors.map((error, i) => 
+                        <Typography  
+                            variant="small" 
+                            color="gray" 
+                            className="flex items-center gap-1 font-normal mt-2"
+                            key={i}
+                            >
+                            <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                            {error.msg}
+                        </Typography>
+                        
+                    )}
+            </div>
+        </>
+            
     )
 }
 

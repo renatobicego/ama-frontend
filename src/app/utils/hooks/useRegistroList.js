@@ -26,7 +26,7 @@ export const useRegistroList = (entityTypes) => {
         };
 
         fetchEntityData()
-        }, [])
+    }, [])
     
-        return { entityData, loading, error };
+    return { entityData, loading, error };
 }

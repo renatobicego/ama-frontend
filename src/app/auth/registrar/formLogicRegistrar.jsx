@@ -1,23 +1,43 @@
 import { useState } from "react"
 import { Input, Option, Select, Typography } from "@/app/utils/materialTailwind";
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
-import inscripcionValidate from "@/app/inscripciones/inscripcionValidation";
+import registerValidate from "@/app/utils/formValidation/registerValidation";
+import { useRegistroList } from "@/app/utils/hooks/useRegistroList";
 
-const FormLogicRegistrar = ({data, handleChange, handleSubmit, entityData}) => {
-    const [errorInput, setErrorInput] = useState('')
-    const [errorMsg, setErrorMsg] = useState('')
+
+
+const FormLogicRegistrar = ({
+    data, 
+    handleChange, 
+    handleSubmit, 
+    setFormErrors,
+    formErrors
+}) => {
+
+    const [passwordRepeat, setPasswordRepeat] = useState('')
+    // Get form input for select dropdowns
+    const { entityData, loading, error } = useRegistroList(['club', 'federaciones', 'asociaciones'])
     const { club, federaciones, asociaciones } = entityData
+
+    if (loading) {
+        return <div className="mt-6">Cargando los datos del formulario...</div>;
+    }
+    if (error) {
+      return <div>Error al cargar el formulario</div>;
+    }
 
     const validateSubmit = (e) => {
         e.preventDefault()
-        const {inscripcion, errorKey, error} = inscripcionValidate(data)
-        if(inscripcion){
+        const {valid, errors} = registerValidate(data, passwordRepeat)
+        
+        if(valid){
             handleSubmit()
         }else{
-            setErrorInput(errorKey)
-            setErrorMsg(error)
+            setFormErrors(errors)
         }
     }
+
+    const isError = path => formErrors.some(error => error.path === path)
 
     return (
         <form className="w-full lg:w-2/3 mt-10 flex flex-col items-start gap-6" onSubmit={validateSubmit}>
@@ -26,7 +46,9 @@ const FormLogicRegistrar = ({data, handleChange, handleSubmit, entityData}) => {
                     tabIndex={1}
                     color="gray" 
                     label="Nombre y Apellido*" 
-                    error={errorInput === 'nombre_apellido' ? true : false}
+                    aria-labelledby="nombre"
+                    labelProps={{id: 'nombre'}}
+                    error={isError('nombre_apellido')}
                     
                     value={data.nombre_apellido}
                     onChange={(e => handleChange('nombre_apellido', e.target.value))}
@@ -37,7 +59,9 @@ const FormLogicRegistrar = ({data, handleChange, handleSubmit, entityData}) => {
                     onChange={(value) => handleChange('club', value)} 
                     defaultValue={data.club} 
                     color="gray"
-                    error={errorInput === 'club' ? true : false}
+                    error={isError('club')}
+                    aria-labelledby="club"
+                    labelProps={{id: 'club'}}
                     label="Club*">
 
                     {club.clubes.map((club, i) => 
@@ -56,8 +80,10 @@ const FormLogicRegistrar = ({data, handleChange, handleSubmit, entityData}) => {
                     tabIndex={3}
                     color="gray" 
                     label="DNI*"
-                    error={errorInput === 'dni' ? true : false}
+                    error={isError('dni')}
                     value={data.dni} 
+                    aria-labelledby="dni"
+                    labelProps={{id: 'dni'}}
                     onChange={(e) => handleChange('dni', e.target.value)} 
                     />
 
@@ -66,7 +92,9 @@ const FormLogicRegistrar = ({data, handleChange, handleSubmit, entityData}) => {
                     type="date"
                     color="gray" 
                     label="Fecha de Nacimiento*" 
-                    error={errorInput === 'fecha_nacimiento' ? true : false}
+                    aria-labelledby="fecha-nacimiento"
+                    labelProps={{id: 'fecha-nacimiento'}}
+                    error={isError('fecha_nacimiento')}
                     value={data.fecha_nacimiento} 
                     onChange={(e) => handleChange('fecha_nacimiento', e.target.value)}
                     />
@@ -79,7 +107,9 @@ const FormLogicRegistrar = ({data, handleChange, handleSubmit, entityData}) => {
                     color="gray" 
                     label="Teléfono*"
                     type="tel"
-                    error={errorInput === 'telefono' ? true : false}
+                    aria-labelledby="telefono"
+                    labelProps={{id: 'telefono'}}
+                    error={isError('telefono')}
                     value={data.telefono} 
                     onChange={(e) => handleChange('telefono', e.target.value)} 
                     />
@@ -89,18 +119,22 @@ const FormLogicRegistrar = ({data, handleChange, handleSubmit, entityData}) => {
                     type="email"
                     color="gray" 
                     label="Email*" 
-                    error={errorInput === 'email' ? true : false}
+                    aria-labelledby="email"
+                    labelProps={{id: 'email'}}
+                    error={isError('email')}
                     value={data.email} 
                     onChange={(e) => handleChange('email', e.target.value)}
                     />
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
                 <Select 
-                    tabIndex={2}
+                    tabIndex={7}
                     onChange={(value) => handleChange('federacion', value)} 
                     defaultValue={data.federacion} 
+                    aria-labelledby="federacion"
+                    labelProps={{id: 'federacion'}}
                     color="gray"
-                    error={errorInput === 'federacion' ? true : false}
+                    error={isError('federacion')}
                     label="Federación*">
 
                     {federaciones.federaciones.map((federacion, i) => 
@@ -112,11 +146,13 @@ const FormLogicRegistrar = ({data, handleChange, handleSubmit, entityData}) => {
                 </Select>
 
                 <Select 
-                    tabIndex={2}
+                    tabIndex={8}
                     onChange={(value) => handleChange('asociacion', value)} 
                     defaultValue={data.asociacion} 
+                    aria-labelledby="asociacion"
+                    labelProps={{id: 'asociacion'}}
                     color="gray"
-                    error={errorInput === 'asociacion' ? true : false}
+                    error={isError('asociacion')}
                     label="Asociación*">
 
                     {asociaciones.asociaciones.map((asociacion, i) => 
@@ -129,16 +165,41 @@ const FormLogicRegistrar = ({data, handleChange, handleSubmit, entityData}) => {
                 
             </div>
 
-            <div>
-                <button type="submit" className="btn-primary">Crear Usuario</button>
+            <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
 
-                {errorMsg && 
+                <div className="w-full">
+                    <Input 
+                        tabIndex={9}
+                        color="gray" 
+                        label="Contraseña*"
+                        aria-labelledby="password"
+                        labelProps={{id: 'password'}}
+                        type="password"
+                        error={isError('password')}
+                        value={data.password} 
+                        onChange={(e) => handleChange('password', e.target.value)} 
+                        />
                     <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
                         <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                        {errorMsg}
+                        La contraseña debe tener 8 o más caracteres
                     </Typography>
-                }
+
+                </div>
+
+                <Input 
+                    tabIndex={10}
+                    type="password"
+                    color="gray" 
+                    label="Repetir Contraseña*" 
+                    aria-labelledby="password-check"
+                    labelProps={{id: 'password-check'}}
+                    error={isError('password')}
+                    value={passwordRepeat} 
+                    onChange={(e) => setPasswordRepeat(e.target.value)}
+                    />
             </div>
+            <button type="submit" className="btn-primary">Crear Usuario</button>
+            
         </form>
     )
 }

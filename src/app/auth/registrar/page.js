@@ -1,4 +1,4 @@
-import FormRegistrar from "./formRegistrar";
+import FormRegistrar from "./FormRegistrar";
 
 
 export default function Registrar(){

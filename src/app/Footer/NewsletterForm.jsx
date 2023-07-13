@@ -1,7 +1,6 @@
 "use client"
 import { Input } from "@/app/utils/materialTailwind"
 import { useState } from "react"
-import validateEmail from "../utils/formValidation/emailValidation"
 
 
 const NewsletterForm = ({socialMedia}) => {
@@ -12,7 +11,6 @@ const NewsletterForm = ({socialMedia}) => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(validateEmail(email))
     }
 
     return(

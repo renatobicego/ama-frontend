@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/app/utils/materialTailwind";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
-import inscripcionValidate from "../inscripcionValidation";
+import inscripcionValidate from "../../utils/formValidation/registerValidation";
 
 
 export default function InscripcionesTorneos(){

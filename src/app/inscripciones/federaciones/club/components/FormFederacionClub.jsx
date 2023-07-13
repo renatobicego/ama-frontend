@@ -1,7 +1,7 @@
 
 import { Input, Typography } from "@/app/utils/materialTailwind"
 import { useState } from "react"
-import inscripcionValidate from "../../../inscripcionValidation"
+import inscripcionValidate from "../../../../utils/formValidation/registerValidation"
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
 
 
@@ -14,8 +14,8 @@ const FormFederacionClub = () => {
         idpago: 'IDPAGO'
     })
 
-    const [errorInput, setErrorInput] = useState('')
-    const [errorMsg, setErrorMsg] = useState('')
+    // const [errorInput, setErrorInput] = useState('')
+    // const [errorMsg, setErrorMsg] = useState('')
 
 
     const handleChange = (property, value) => {
@@ -24,14 +24,14 @@ const FormFederacionClub = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const {inscripcion, errorKey, error} = inscripcionValidate(data)
+        // const {inscripcion, errorKey, error} = inscripcionValidate(data)
 
-        if(inscripcion){
-            console.log(data)
-        }else{
-            setErrorInput(errorKey)
-            setErrorMsg(error)
-        }
+        // if(inscripcion){
+        //     console.log(data)
+        // }else{
+        //     setErrorInput(errorKey)
+        //     setErrorMsg(error)
+        // }
     }
 
 
@@ -44,7 +44,7 @@ const FormFederacionClub = () => {
                     label="Nombre de Club*" 
                     aria-labelledby="club"
                     labelProps={{id: 'club'}}
-                    error={errorInput === 'nombre' ? true : false}
+                    // error={errorInput === 'nombre' ? true : false}
                     
                     value={data.nombre}
                     onChange={(e => handleChange('nombre', e.target.value))}
@@ -57,7 +57,7 @@ const FormFederacionClub = () => {
                         label="Email*" 
                         aria-labelledby="email"
                         labelProps={{id: 'email'}}
-                        error={errorInput === 'email' ? true : false}
+                        // error={errorInput === 'email' ? true : false}
                         value={data.email} 
                         onChange={(e) => handleChange('email', e.target.value)}
                     />
