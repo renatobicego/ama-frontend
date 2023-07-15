@@ -1,7 +1,6 @@
 
 import { Input, Typography } from "@/app/utils/materialTailwind"
 import { useState } from "react"
-import inscripcionValidate from "../../../../utils/formValidation/registerValidation"
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
 
 
@@ -9,12 +8,11 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline"
 const FormFederacionClub = () => {
     
     const [data, setData] = useState({
-        nombre: '',
-        email: '',
+        club: '',
         idpago: 'IDPAGO'
     })
 
-    // const [errorInput, setErrorInput] = useState('')
+    const [formErrors, setFormErrors] = useState([])
     // const [errorMsg, setErrorMsg] = useState('')
 
 
@@ -24,14 +22,14 @@ const FormFederacionClub = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // const {inscripcion, errorKey, error} = inscripcionValidate(data)
+        const {valid, errors} = registerValidate(data, passwordRepeat)
+        
+        if(valid){
+            console.log(data);
+        }else{
+            setFormErrors(errors)
+        }
 
-        // if(inscripcion){
-        //     console.log(data)
-        // }else{
-        //     setErrorInput(errorKey)
-        //     setErrorMsg(error)
-        // }
     }
 
 
@@ -44,22 +42,10 @@ const FormFederacionClub = () => {
                     label="Nombre de Club*" 
                     aria-labelledby="club"
                     labelProps={{id: 'club'}}
-                    // error={errorInput === 'nombre' ? true : false}
+                    error={isError('club', formErrors)}
                     
                     value={data.nombre}
                     onChange={(e => handleChange('nombre', e.target.value))}
-                    />
-
-                    <Input 
-                        tabIndex={2}
-                        type="email"
-                        color="gray" 
-                        label="Email*" 
-                        aria-labelledby="email"
-                        labelProps={{id: 'email'}}
-                        // error={errorInput === 'email' ? true : false}
-                        value={data.email} 
-                        onChange={(e) => handleChange('email', e.target.value)}
                     />
                 
             </div>
@@ -67,12 +53,23 @@ const FormFederacionClub = () => {
             <div>
                 <button type="submit" className="btn-primary">Inscribir Club</button>
 
-                {errorMsg && 
-                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                        {errorMsg}
-                    </Typography>
-                }
+                <div>
+
+                    {formErrors.length > 0 && 
+
+                        formErrors.map((error, i) => 
+                            <Typography  
+                                variant="small" 
+                                color="gray" 
+                                className="flex items-center gap-1 font-normal mt-2"
+                                key={i}
+                                >
+                                <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                                {error.msg}
+                            </Typography>
+                            
+                        )}
+                </div>
             </div>
         </form>
     )

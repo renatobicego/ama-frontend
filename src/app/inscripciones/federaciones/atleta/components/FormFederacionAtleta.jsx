@@ -2,9 +2,8 @@
 
 import { Input, Option, Select, Typography } from "@/app/utils/materialTailwind"
 import { useState } from "react"
-import inscripcionValidate from "../../../../utils/formValidation/registerValidation"
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
-import passwordValidate from "@/app/utils/formValidation/passwordValidation"
+import isError from "@/app/utils/formValidation/isErrorInput"
 
 const clubes = [
     {
@@ -18,6 +17,7 @@ const clubes = [
 
 ]
 
+//TODO REHACER FORMULARIO CON DATOS
 
 const FormFederacionAtleta = () => {
     
@@ -26,24 +26,22 @@ const FormFederacionAtleta = () => {
         idpago: 'IDPAGO'
     })
 
+    const [formErrors, setFormErrors] = useState([])
+
+
     const handleChange = (property, value) => {
         setData({...data, [property]: value})
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // const {inscripcion, errorKey, error} = inscripcionValidate(data)
-        // const {statusPassword, errorPasswordMsg} = passwordValidate(data.password, passwordRepeat)
-
-        // if(inscripcion && statusPassword){
-        //     console.log(data)
-        // }else if(!inscripcion){
-        //     setErrorInput(errorKey)
-        //     setErrorMsg(error)
-        // }else if(!statusPassword){
-        //     setErrorInput('password')
-        //     setErrorMsg(errorPasswordMsg)
-        // }
+        const {valid, errors} = registerValidate(data, passwordRepeat)
+        
+        if(valid){
+            console.log(data);
+        }else{
+            setFormErrors(errors)
+        }
     }
 
 
@@ -56,7 +54,7 @@ const FormFederacionAtleta = () => {
                     label="Nombre y Apellido*" 
                     aria-labelledby="nombre"
                     labelProps={{id: 'nombre'}}
-                    error={errorInput === 'nombre_apellido' ? true : false}
+                    error={isError('nombre_apellido', formErrors)}
                     
                     value={data.nombre_apellido}
                     onChange={(e => handleChange('nombre_apellido', e.target.value))}
@@ -66,7 +64,7 @@ const FormFederacionAtleta = () => {
                     tabIndex={2}
                     onChange={(value) => handleChange('club', value)} 
                     defaultValue={data.club} 
-                    error={errorInput === 'club' ? true : false}
+                    error={isError('club', formErrors)}
                     color="gray" 
                     label="Club*"
                     aria-labelledby="club"
@@ -88,12 +86,23 @@ const FormFederacionAtleta = () => {
             <div>
                 <button type="submit" className="btn-primary">Inscribirse</button>
 
-                {errorMsg && 
-                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                        {errorMsg}
-                    </Typography>
-                }
+                <div>
+
+                {formErrors.length > 0 && 
+
+                    formErrors.map((error, i) => 
+                        <Typography  
+                            variant="small" 
+                            color="gray" 
+                            className="flex items-center gap-1 font-normal mt-2"
+                            key={i}
+                            >
+                            <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                            {error.msg}
+                        </Typography>
+                        
+                    )}
+                </div>
             </div>
         </form>
     )

@@ -14,24 +14,16 @@ export default function InscripcionesTorneos(){
     const [data, setData] = useState({
         torneo: '',
         categoria: '',
-        nombre_apellido: '',
-        dni: '',
-        sexo: '',
-        fecha_nacimiento: '',
-        club: '',
-        federacion: '',
-        asociacion: '',
-        pais: '',
-        pruebas: [],
-        idpago: 'IDPAGO'
+        atleta: '',
+        pruebasInscripto: [],
+        // idpago: 'IDPAGO'
     })
 
     // FOr come back button
     const router = useRouter()
 
     // Which input returned error and the message
-    const [errorInput, setErrorInput] = useState('')
-    const [errorMsg, setErrorMsg] = useState('')
+    const [formErrors, setFormErrors] = useState([])
 
     const handleSubmit = () => {
         const {inscripcion, errorKey, error} = inscripcionValidate(data)
@@ -62,8 +54,7 @@ export default function InscripcionesTorneos(){
                     data={data} 
                     setData={setData} 
                     handleSubmit={handleSubmit}
-                    errorInput={errorInput}
-                    errorMsg={errorMsg}
+                    formErrors={formErrors}
                     />
             </section>
         </main>

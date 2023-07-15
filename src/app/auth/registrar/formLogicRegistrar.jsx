@@ -3,6 +3,7 @@ import { Input, Option, Select, Typography } from "@/app/utils/materialTailwind"
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
 import registerValidate from "@/app/utils/formValidation/registerValidation";
 import { useRegistroList } from "@/app/utils/hooks/useRegistroList";
+import isError from "@/app/utils/formValidation/isErrorInput";
 
 
 
@@ -37,7 +38,6 @@ const FormLogicRegistrar = ({
         }
     }
 
-    const isError = path => formErrors.some(error => error.path === path)
 
     return (
         <form className="w-full lg:w-2/3 mt-10 flex flex-col items-start gap-6" onSubmit={validateSubmit}>
@@ -48,7 +48,7 @@ const FormLogicRegistrar = ({
                     label="Nombre y Apellido*" 
                     aria-labelledby="nombre"
                     labelProps={{id: 'nombre'}}
-                    error={isError('nombre_apellido')}
+                    error={isError('nombre_apellido', formErrors)}
                     
                     value={data.nombre_apellido}
                     onChange={(e => handleChange('nombre_apellido', e.target.value))}
@@ -59,7 +59,7 @@ const FormLogicRegistrar = ({
                     onChange={(value) => handleChange('club', value)} 
                     defaultValue={data.club} 
                     color="gray"
-                    error={isError('club')}
+                    error={isError('club', formErrors)}
                     aria-labelledby="club"
                     labelProps={{id: 'club'}}
                     label="Club*">
@@ -80,7 +80,7 @@ const FormLogicRegistrar = ({
                     tabIndex={3}
                     color="gray" 
                     label="DNI*"
-                    error={isError('dni')}
+                    error={isError('dni', formErrors)}
                     value={data.dni} 
                     aria-labelledby="dni"
                     labelProps={{id: 'dni'}}
@@ -94,7 +94,7 @@ const FormLogicRegistrar = ({
                     label="Fecha de Nacimiento*" 
                     aria-labelledby="fecha-nacimiento"
                     labelProps={{id: 'fecha-nacimiento'}}
-                    error={isError('fecha_nacimiento')}
+                    error={isError('fecha_nacimiento', formErrors)}
                     value={data.fecha_nacimiento} 
                     onChange={(e) => handleChange('fecha_nacimiento', e.target.value)}
                     />
@@ -109,7 +109,7 @@ const FormLogicRegistrar = ({
                     type="tel"
                     aria-labelledby="telefono"
                     labelProps={{id: 'telefono'}}
-                    error={isError('telefono')}
+                    error={isError('telefono', formErrors)}
                     value={data.telefono} 
                     onChange={(e) => handleChange('telefono', e.target.value)} 
                     />
@@ -121,7 +121,7 @@ const FormLogicRegistrar = ({
                     label="Email*" 
                     aria-labelledby="email"
                     labelProps={{id: 'email'}}
-                    error={isError('email')}
+                    error={isError('email', formErrors)}
                     value={data.email} 
                     onChange={(e) => handleChange('email', e.target.value)}
                     />
@@ -134,7 +134,7 @@ const FormLogicRegistrar = ({
                     aria-labelledby="federacion"
                     labelProps={{id: 'federacion'}}
                     color="gray"
-                    error={isError('federacion')}
+                    error={isError('federacion', formErrors)}
                     label="Federación*">
 
                     {federaciones.federaciones.map((federacion, i) => 
@@ -152,7 +152,7 @@ const FormLogicRegistrar = ({
                     aria-labelledby="asociacion"
                     labelProps={{id: 'asociacion'}}
                     color="gray"
-                    error={isError('asociacion')}
+                    error={isError('asociacion', formErrors)}
                     label="Asociación*">
 
                     {asociaciones.asociaciones.map((asociacion, i) => 
@@ -175,7 +175,7 @@ const FormLogicRegistrar = ({
                         aria-labelledby="password"
                         labelProps={{id: 'password'}}
                         type="password"
-                        error={isError('password')}
+                        error={isError('password', formErrors)}
                         value={data.password} 
                         onChange={(e) => handleChange('password', e.target.value)} 
                         />
@@ -193,7 +193,7 @@ const FormLogicRegistrar = ({
                     label="Repetir Contraseña*" 
                     aria-labelledby="password-check"
                     labelProps={{id: 'password-check'}}
-                    error={isError('password')}
+                    error={isError('password', formErrors)}
                     value={passwordRepeat} 
                     onChange={(e) => setPasswordRepeat(e.target.value)}
                     />
