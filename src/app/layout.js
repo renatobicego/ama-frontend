@@ -3,6 +3,7 @@ import Header from './Header/Header'
 import './globals.css'
 import { Rubik, Krub } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
+import Providers from './Providers'
 
 const rubik = Rubik({
   weight: ['400', '500', '600'],
@@ -29,10 +30,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${rubik.variable} ${krub.variable}`}>
-        <Header />
-        {children}
-        <Footer />
-        <Analytics />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+          <Analytics />
+        </Providers>
       </body>
     </html>
   )
