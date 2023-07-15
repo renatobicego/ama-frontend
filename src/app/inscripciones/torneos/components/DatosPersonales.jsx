@@ -1,6 +1,7 @@
+import isError from "@/app/utils/formValidation/isErrorInput";
 import { Input, Option, Select } from "@/app/utils/materialTailwind";
 
-const DatosPersonales = ({data, handleChange, errorInput}) => {
+const DatosPersonales = ({data, handleChange, formErrors}) => {
     
     return(
         <>
@@ -14,7 +15,7 @@ const DatosPersonales = ({data, handleChange, errorInput}) => {
                     labelProps={{
                         id: 'nombre_apellido'
                     }}
-                    error={errorInput === 'nombre_apellido' ? true : false}
+                    error={isError('nombre_apellido', formErrors)}
                     
                     value={data.nombre_apellido}
                     onChange={(e => handleChange('nombre_apellido', e.target.value))}
@@ -25,7 +26,7 @@ const DatosPersonales = ({data, handleChange, errorInput}) => {
                     tabIndex={4}
                     value={data.sexo} 
                     color="gray" 
-                    error={errorInput === 'sexo' ? true : false}
+                    error={isError('sexo', formErrors)}
                     label="Sexo*"
                     labelProps={{id: 'sexo'}}
                     onChange={(value) => handleChange('sexo', value)} 
@@ -43,7 +44,7 @@ const DatosPersonales = ({data, handleChange, errorInput}) => {
                     color="gray" 
                     label="DNI*"
                     labelProps={{id: 'dni'}}
-                    error={errorInput === 'dni' ? true : false}
+                    error={isError('dni', formErrors)}
                     value={data.dni} 
                     onChange={(e) => handleChange('dni', e.target.value)} 
                     />
@@ -55,7 +56,7 @@ const DatosPersonales = ({data, handleChange, errorInput}) => {
                     color="gray" 
                     label="Fecha de Nacimiento*" 
                     labelProps={{id: 'fecha_nacimiento'}}
-                    error={errorInput === 'fecha_nacimiento' ? true : false}
+                    error={isError('fecha_nacimiento', formErrors)}
                     value={data.fecha_nacimiento} 
                     onChange={(e) => handleChange('fecha_nacimiento', e.target.value)}
                     />

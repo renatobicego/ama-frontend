@@ -19,7 +19,7 @@ const pruebas = [
 
 ]
 
-const PruebasLogic = ({pruebasSelected, setPruebasSelected, errorInput}) => {
+const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors}) => {
 
     // Create prueba added
     const handleAdd = () => {
@@ -51,7 +51,7 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected, errorInput}) => {
                 </Button>
                 
                 {/* If user doesn't add pruebas, show error */}
-                {errorInput === 'pruebas' &&
+                {formErrors.some(error => error.path === 'pruebasInscripto') &&
                     <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
                         <InformationCircleIcon className="w-4 h-4 -mt-px" />
                         Por favor, seleccione las pruebas en las que quiere competir

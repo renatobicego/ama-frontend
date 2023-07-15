@@ -88,20 +88,20 @@ const FormFederacionAtleta = () => {
 
                 <div>
 
-                {formErrors.length > 0 && 
+                    {formErrors.length > 0 && 
 
-                    formErrors.map((error, i) => 
-                        <Typography  
-                            variant="small" 
-                            color="gray" 
-                            className="flex items-center gap-1 font-normal mt-2"
-                            key={i}
-                            >
-                            <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                            {error.msg}
-                        </Typography>
-                        
-                    )}
+                        formErrors.map((error, i) => 
+                            <Typography  
+                                variant="small" 
+                                color="gray" 
+                                className="flex items-center gap-1 font-normal mt-2"
+                                key={i}
+                                >
+                                <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                                {error.msg}
+                            </Typography>
+                            
+                        )}
                 </div>
             </div>
         </form>

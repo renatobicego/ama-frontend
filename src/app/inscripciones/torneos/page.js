@@ -4,8 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/app/utils/materialTailwind";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
-import inscripcionValidate from "../../utils/formValidation/registerValidation";
-
 
 export default function InscripcionesTorneos(){
     
@@ -26,13 +24,12 @@ export default function InscripcionesTorneos(){
     const [formErrors, setFormErrors] = useState([])
 
     const handleSubmit = () => {
-        const {inscripcion, errorKey, error} = inscripcionValidate(data)
-
-        if(inscripcion){
-            console.log(data)
+        const {valid, errors} = registerValidate(data, passwordRepeat)
+        
+        if(valid){
+            console.log(data);
         }else{
-            setErrorInput(errorKey)
-            setErrorMsg(error)
+            setFormErrors(errors)
         }
     }
 

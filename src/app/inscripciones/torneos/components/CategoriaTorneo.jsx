@@ -1,59 +1,11 @@
 
+import isError from "@/app/utils/formValidation/isErrorInput";
 import { Option, Select } from "@/app/utils/materialTailwind";
 
-const categorias = [
-    {
-        name: 'U12',
-        value: 'u12'
-    },
-    {
-        name: 'U14',
-        value: 'u14'
-    },
-    {
-        name: 'U16',
-        value: 'u16'
-    },
-    {
-        name: 'U18',
-        value: 'u18'
-    },
-    {
-        name: 'U20',
-        value: 'u20'
-    },
-    {
-        name: 'U23',
-        value: 'u23'
-    },
-    {
-        name: 'Mayores',
-        value: 'mayores'
-    },
-    {
-        name: 'Master',
-        value: 'master'
-    },
+const torneos = []
+const categorias = []
 
-]
-
-const torneos = [
-    {
-        name: 'Torneo 1',
-        value: 'torneo1'
-    },
-    {
-        name: 'Torneo 2',
-        value: 'torneo2'
-    },
-    {
-        name: 'Torneo 3',
-        value: 'torneo3'
-    },
-
-]
-
-const CategoriaTorneo = ({data, handleChange, errorInput}) => {
+const CategoriaTorneo = ({data, handleChange, formErrors}) => {
     return (
         <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
             <Select 
@@ -63,7 +15,7 @@ const CategoriaTorneo = ({data, handleChange, errorInput}) => {
                 color="gray" 
                 label="Torneo a Inscribirse*"
                 labelProps={{id: 'torneo'}}
-                error={errorInput === 'torneo' ? true : false}
+                error={isError('torneo', formErrors)}
                 onChange={(value) => handleChange('torneo', value)} 
                 >
                 {torneos.map((torneo, i) => 
@@ -78,7 +30,7 @@ const CategoriaTorneo = ({data, handleChange, errorInput}) => {
                 labelProps={{id: 'categoria'}}
                 color="gray" 
                 label="Categoría*"
-                error={errorInput === 'categoria' ? true : false}
+                error={isError('categoria', formErrors)}
                 value={data.categoria}
                 onChange={(value) => handleChange('categoria', value)} 
                 >
