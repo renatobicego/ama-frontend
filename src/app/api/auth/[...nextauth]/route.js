@@ -20,37 +20,27 @@ const handler = NextAuth({
                             password: credentials.contraseña
                         }
                     )
-                    console.log(response);
+                    return response.data
                 } catch (error) {
                     if(error instanceof AxiosError){
                         const axiosErrors = error.response.data
-                        console.log(axiosErrors)
+                        throw new Error(axiosErrors)
+                    }else{
+                        throw new Error(error)
                     }
                 }
-
-                // if (user) {
-                //     // Any object returned will be saved in `user` property of the JWT
-                //     return user
-                // } else {
-                //     // If you return null then an error will be displayed advising the user to check their details.
-                //     return null
-
-                //     // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
-                // }
             }
         })
     ],
     callbacks: {
-        // jwt({account, token, user, profile, session}){
-        //     if(user) token.user = user
-        //     console.log(token);
-        //     return token
-        // },
-        // session({session, token}){
-        //     console.log(session, token)
-        //     session.user = token.user
-        //     return session
-        // }
+        async jwt({token, user}){
+            return {...token, ...user}
+        },
+        async session({session, token}){
+            session.user = token
+            console.log(session);
+            return session
+        }
     }
 })
 

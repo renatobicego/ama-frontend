@@ -36,7 +36,7 @@ const socialMedia = [
         logo: '/icons/Twitter.png'
     },
     {
-        href: '',
+        href: 'https://www.instagram.com/asociacionmendocinadeatletismo/',
         logo: '/icons/Instagram.png'
     }
 ]

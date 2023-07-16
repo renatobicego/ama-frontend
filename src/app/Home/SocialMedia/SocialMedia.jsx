@@ -16,7 +16,7 @@ const SocialMedia = () => {
             <h3 className="title-section">Seguinos en las Redes Sociales</h3>
             <div className="flex justify-evenly w-full flex-wrap">
                 <InstagramEmbed 
-                    url='https://www.instagram.com/p/Cs1K3QFLlSw/' 
+                    url='https://www.instagram.com/reel/CuKxE_sxX7v/' 
                     width={isMobile ? "100%" : "40%"} 
                     />
                 

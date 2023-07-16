@@ -4,6 +4,8 @@ import FormLogicRegistrar from "./FormLogicRegistrar";
 import axios, { AxiosError } from "axios";
 import { Typography } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 //TODO
 // ERROR DNI EXISTE
@@ -32,6 +34,7 @@ const FormRegistrar = () => {
     })
 
     const [formErrors, setFormErrors] = useState([])
+    const router = useRouter()
     
     const handleChange = (property, value) => {
         setData({...data, [property]: value})
@@ -40,8 +43,16 @@ const FormRegistrar = () => {
     const handleSubmit = async() => {  
         // create user
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/usuarios`, data)
+            const registerRes = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/usuarios`, data)
+            const res = await signIn('credentials', {
+                email: data.email,
+                password: data.password,
+                redirect: false
+            })
+            console.log(registerRes)
             console.log(res);
+            if(res.ok) return router.push('/')
+
         } catch (error) {
             if(error instanceof AxiosError){
                 const axiosErrors = error.response.data.errors

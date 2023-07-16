@@ -99,11 +99,42 @@ const FormLogicRegistrar = ({
                     onChange={(e) => handleChange('fecha_nacimiento', e.target.value)}
                     />
             </div>
+            <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
+
+                <Input
+                    tabIndex={5}
+                    color="gray" 
+                    label="País*"
+                    error={isError('pais', formErrors)}
+                    value={data.pais} 
+                    aria-labelledby="pais"
+                    labelProps={{id: 'pais'}}
+                    onChange={(e) => handleChange('pais', e.target.value)} 
+                    />
+
+                <Select 
+                    tabIndex={6}
+                    onChange={(value) => handleChange('sexo', value)} 
+                    defaultValue={data.sexo} 
+                    color="gray"
+                    error={isError('sexo', formErrors)}
+                    aria-labelledby="sexo"
+                    labelProps={{id: 'sexo'}}
+                    label="Sexo*">
+                        <Option key={1} value={'M'}>
+                            Masculino
+                        </Option>
+                        <Option key={1} value={'M'}>
+                            Femenino
+                        </Option>
+
+                </Select>
+            </div>
 
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
 
                 <Input 
-                    tabIndex={5}
+                    tabIndex={7}
                     color="gray" 
                     label="Teléfono*"
                     type="tel"
@@ -115,7 +146,7 @@ const FormLogicRegistrar = ({
                     />
 
                 <Input 
-                    tabIndex={6}
+                    tabIndex={8}
                     type="email"
                     color="gray" 
                     label="Email*" 
@@ -128,7 +159,7 @@ const FormLogicRegistrar = ({
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
                 <Select 
-                    tabIndex={7}
+                    tabIndex={9}
                     onChange={(value) => handleChange('federacion', value)} 
                     defaultValue={data.federacion} 
                     aria-labelledby="federacion"
@@ -146,7 +177,7 @@ const FormLogicRegistrar = ({
                 </Select>
 
                 <Select 
-                    tabIndex={8}
+                    tabIndex={10}
                     onChange={(value) => handleChange('asociacion', value)} 
                     defaultValue={data.asociacion} 
                     aria-labelledby="asociacion"
@@ -169,7 +200,7 @@ const FormLogicRegistrar = ({
 
                 <div className="w-full">
                     <Input 
-                        tabIndex={9}
+                        tabIndex={11}
                         color="gray" 
                         label="Contraseña*"
                         aria-labelledby="password"
@@ -187,7 +218,7 @@ const FormLogicRegistrar = ({
                 </div>
 
                 <Input 
-                    tabIndex={10}
+                    tabIndex={12}
                     type="password"
                     color="gray" 
                     label="Repetir Contraseña*" 
