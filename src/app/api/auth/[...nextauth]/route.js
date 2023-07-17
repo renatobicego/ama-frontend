@@ -7,40 +7,44 @@ const handler = NextAuth({
         CredentialsProvider({
             name: "Credentials",
 
-            credentials: {
-                email: { label: "Email", type: "text", placeholder: "email@mail.com" },
-                contraseña: { label: "Contraseña", type: "password" }
-            },
             async authorize(credentials, req) {
+
                 try {
                     const response = await axios.post(
                         `${process.env.NEXT_PUBLIC_URL_API}/auth/login`, 
                         {
-                            email: credentials.email,
-                            password: credentials.contraseña
+                            email: req.body.email,
+                            password: req.body.password
                         }
                     )
                     return response.data
                 } catch (error) {
                     if(error instanceof AxiosError){
                         const axiosErrors = error.response.data
-                        throw new Error(axiosErrors)
+                        axiosErrors.status = error.response.status
+                        throw new Error({error: axiosErrors})
                     }else{
-                        throw new Error(error)
+                        throw new Error({error})
                     }
                 }
             }
         })
     ],
     callbacks: {
+        async signIn({user}){
+            return user
+        },
         async jwt({token, user}){
             return {...token, ...user}
         },
         async session({session, token}){
             session.user = token
-            console.log(session);
             return session
-        }
+        },
+    },
+    pages: {
+        signIn: '/perfil/login',
+        
     }
 })
 

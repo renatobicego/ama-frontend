@@ -43,22 +43,23 @@ const FormRegistrar = () => {
     const handleSubmit = async() => {  
         // create user
         try {
-            const registerRes = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/usuarios`, data)
+            await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/usuarios`, data)
             const res = await signIn('credentials', {
                 email: data.email,
                 password: data.password,
                 redirect: false
             })
-            console.log(registerRes)
-            console.log(res);
             if(res.ok) return router.push('/')
 
         } catch (error) {
             if(error instanceof AxiosError){
                 const axiosErrors = error.response.data.errors
                 setFormErrors(axiosErrors)
+            }else{
+                setFormErrors([{
+                    msg: error.message
+                }])
             }
-            console.log(error);
         }
     }
 
