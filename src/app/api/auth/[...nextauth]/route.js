@@ -22,9 +22,9 @@ const handler = NextAuth({
                     if(error instanceof AxiosError){
                         const axiosErrors = error.response.data
                         axiosErrors.status = error.response.status
-                        throw new Error({error: axiosErrors})
+                        throw new Error(JSON.stringify(axiosErrors))
                     }else{
-                        throw new Error({error})
+                        throw new Error(JSON.stringify(error))
                     }
                 }
             }

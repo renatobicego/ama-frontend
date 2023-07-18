@@ -32,7 +32,7 @@ const FormLogin = () => {
                 redirect: false
             })
 
-            console.log(res)
+            console.log(JSON.parse(res.error));
 
             //if(res.ok) return router.push('/')
 
@@ -81,7 +81,7 @@ const FormLogin = () => {
                     />
 
             </div>
-            <button type="submit" className="btn-primary">Crear Usuario</button>
+            <button type="submit" className="btn-primary">Iniciar Sesión</button>
         </form>
         <div>
 

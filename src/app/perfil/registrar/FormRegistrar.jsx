@@ -49,7 +49,8 @@ const FormRegistrar = () => {
                 password: data.password,
                 redirect: false
             })
-            if(res.ok) return router.push('/')
+            if(res.ok) return router.replace('/')
+            
 
         } catch (error) {
             if(error instanceof AxiosError){
