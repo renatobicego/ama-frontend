@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Input, Option, Select, Typography } from "@/app/utils/materialTailwind";
+import { Input, Option, Select, Spinner, Typography } from "@/app/utils/materialTailwind";
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
 import registerValidate from "@/app/utils/formValidation/registerValidation";
 import { useRegistroList } from "@/app/utils/hooks/useRegistroList";
@@ -21,7 +21,7 @@ const FormLogicRegistrar = ({
     const { club, federaciones, asociaciones } = entityData
 
     if (loading) {
-        return <div className="mt-6">Cargando los datos del formulario...</div>;
+        return <div className="mt-6"><Spinner color="amber" /></div>;
     }
     if (error) {
       return <div>Error al cargar el formulario</div>;

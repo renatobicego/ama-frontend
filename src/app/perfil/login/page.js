@@ -1,3 +1,4 @@
+import Link from "next/link";
 import FormLogin from "./FormLogin";
 
 
@@ -7,6 +8,9 @@ export default function Login(){
              <section className="size-section xl:mt-6">
                 <h2 className="text-title title-section text-left">Iniciar Sesión</h2>
                 <FormLogin />
+                <h5 className="mt-4">¿No tenés una cuenta? 
+                    <Link className="text-light-blue-800" href={'/perfil/registrar'}> Creala acá</Link> 
+                </h5>
              </section>
         </main>
     )

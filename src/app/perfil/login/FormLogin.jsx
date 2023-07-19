@@ -2,7 +2,6 @@
 import isError from "@/app/utils/formValidation/isErrorInput"
 import { Input, Typography } from "@/app/utils/materialTailwind"
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
-import { AxiosError } from "axios"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -25,30 +24,25 @@ const FormLogin = () => {
     const handleSubmit = async(e) => {  
         e.preventDefault()
         // create user
-        try {
+        
             const res = await signIn('credentials', {
                 email: data.email,
                 password: data.password,
                 redirect: false
             })
 
-            console.log(JSON.parse(res.error));
-
-            //if(res.ok) return router.push('/')
-
-        } catch (error) {
-            console.log(error);
-            if(error instanceof AxiosError){
-                const axiosErrors = error
-                //console.log(axiosErrors);
-                //setFormErrors(axiosErrors)
+            if(res.error){
+                const serverErrors = JSON.parse(res.error)
+                // Si el middleware devuelve errores, lo hace en un array errors
+                if(serverErrors.errors){
+                    setFormErrors(serverErrors.errors)
+                }else{
+                    setFormErrors([serverErrors])
+                }
             }else{
-                setFormErrors([{
-                    msg: 'Error en el servidor: ' + error.message
-                }])
+                return router.replace('/')
             }
-            // Error page
-        }
+
     }
 
     return(

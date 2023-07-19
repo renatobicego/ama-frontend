@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios"
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-const handler = NextAuth({
+const authOptions = {
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -45,7 +45,12 @@ const handler = NextAuth({
     pages: {
         signIn: '/perfil/login',
         
+    },
+    session: {
+        maxAge: 14 * 24 * 60 * 60
     }
-})
+}
 
-export { handler as GET, handler as POST }
+const handler = NextAuth(authOptions)
+
+export { handler as GET, handler as POST, authOptions }
