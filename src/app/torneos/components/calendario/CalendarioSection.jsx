@@ -1,5 +1,8 @@
+"use client"
 import { monthsAbbreviated } from "@/app/utils/months"
 import TorneoCard from "../TorneoCard"
+import useFetch from "@/app/utils/hooks/useFetch"
+import { Spinner } from "@/app/utils/materialTailwind"
 
 const proximosTorneosMocked = [
     {
@@ -26,10 +29,17 @@ const proximosTorneosMocked = [
 ]
 
 const CalendarioSection = () => {
-    return proximosTorneosMocked.map((torneo, i) => 
+    const {data, loading, error} = useFetch('torneo/activos')
+    if (loading) {
+        return <div className="mt-6"><Spinner color="amber" /></div>;
+    }
+    if (error) {
+        return <div>Error al cargar torneos</div>;
+    }
+    return data.torneos.map(torneo => 
         <TorneoCard 
-            placeholderBtn={'Descargar Programa Horario'} 
-            key={i} 
+            calendar={true} 
+            key={torneo._id} 
             torneo={torneo} 
             months={monthsAbbreviated}
             />)

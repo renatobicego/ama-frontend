@@ -5,9 +5,11 @@ import VolverButton from "@/app/components/button/volverButton"
 import FormErrorMsg from "@/app/components/form/FormErrorMsg"
 import axios, { AxiosError } from "axios"
 import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
 const FormCrearTorneo = () => {
     const {data: session} = useSession()
+    const router = useRouter()
 
     const [data, setData] = useState({
         nombre: '',
@@ -24,27 +26,32 @@ const FormCrearTorneo = () => {
     }
 
     const handleSubmit = async() => {
-        const formData = new FormData()
-        formData.append('nombre', data.nombre)
-        formData.append('fecha', data.fecha)
-        formData.append('lugar', data.lugar)
-        formData.append('categoriasDisponibles', data.categoriasDisponibles)
-        formData.append('pruebasDisponibles', data.pruebasDisponibles)
-        formData.append('programaHorario', programaHorario)
+
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/torneo`, formData, {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/torneo`, data, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
                     'x-token': session.user.token
                   },
 
             })
-            console.log(res)
+            const idTorneo = res.data.torneo._id
+            const formData = new FormData()
+            formData.append('programaHorario', programaHorario)
+            await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/torneo/${idTorneo}`, formData, {
+                headers: {
+                    'x-token': session.user.token
+                  },
+            })
+            if(res.status === 200) return router.push('/torneos')
+
         } catch (error) {
             if(error instanceof AxiosError){
-                const axiosErrors = error.response
-                console.log(axiosErrors)
-                setFormErrors(axiosErrors)
+                const axiosErrors = error.response.data
+                if(axiosErrors.errors){
+                    setFormErrors(axiosErrors.errors)
+                }else{
+                    setFormErrors([axiosErrors])
+                }
             }else{
                 setFormErrors([{
                     msg: error.message

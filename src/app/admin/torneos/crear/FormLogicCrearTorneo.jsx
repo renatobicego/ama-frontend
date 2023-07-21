@@ -114,22 +114,5 @@ const FormLogicCrearTorneo = ({
         </form>
     )
 }
-/* <Select 
-        tabIndex={2}
-        onChange={(value) => handleChange('club', value)} 
-        defaultValue={data.club} 
-        color="gray"
-        error={isError('club', formErrors)}
-        aria-labelledby="club"
-        labelProps={{id: 'club'}}
-        label="Club*">
-
-        {club.clubes.map((club, i) => 
-        <Option key={i} value={club._id}>
-            {club.nombre}
-        </Option>
-        )}
-
-    </Select> */
 
 export default FormLogicCrearTorneo
