@@ -1,6 +1,6 @@
 "use client"
-import CategorySelect from "@/app/components/CategorySelect"
-import SearchBar from "@/app/components/SearchBar"
+import CategorySelect from "@/app/components/search/CategorySelect"
+import SearchBar from "@/app/components/search/SearchBar"
 import { useState } from "react"
 
 const categories = [

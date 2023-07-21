@@ -3,6 +3,8 @@ import { sliceIntoChunks} from "@/app/utils/utils"
 import { Carousel, Typography} from "@/app/utils/materialTailwind"
 import ContainerCards from "./ContainerCards"
 import useWindowSize from "@/app/utils/hooks/useWindowSize"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 const mockedCampeones = [
     {
@@ -30,12 +32,17 @@ const mockedCampeones = [
 const Campeones = () => {
 
     const windowSize = useWindowSize()
+    const [campeones, setCampeones] = useState([])
+
+    useEffect(async() => {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/campeones`)
+        console.log(res.data)
+    }, )
 
     // Check for how many cards to render in div
     const isMobile = windowSize.width < 768 
     const isDesktop = windowSize.width > 1280
 
-    
     return(
         <section className="w-full bg-hamburguer-menu-bg py-14">
             <div className="size-section flex justify-between flex-col items-center">

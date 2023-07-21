@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/route"
-import PanelAdmin from "./Panel"
+import PanelAdmin from "./PanelAdmin"
 
 
 export default async function AdminSection(){

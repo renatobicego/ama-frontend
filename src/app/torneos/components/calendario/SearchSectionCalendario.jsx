@@ -1,5 +1,5 @@
 "use client"
-import SearchBar from "@/app/components/SearchBar"
+import SearchBar from "@/app/components/search/SearchBar"
 import { useState } from "react"
 
 const SearchSectionCalendario = () => {

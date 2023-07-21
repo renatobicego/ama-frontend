@@ -44,9 +44,31 @@ const validatePassword = (password, repeatPassword) => {
     return {statusPassword, errorPasswordMsg}
 }
 
+const validateFile = (file) => {
+    let statusFile = true
+    let errorFileMsg = ''
+
+    // Size
+    const MIN_FILE_SIZE = 8 // 8KB
+    const MAX_FILE_SIZE = 10000 // 10MB
+
+    const fileSizeKiloBytes = file.size / 1024
+
+    if(fileSizeKiloBytes < MIN_FILE_SIZE){
+        statusFile = false
+        errorFileMsg = 'El archivo debe ser mayor a 8KB'
+    }
+    if(fileSizeKiloBytes > MAX_FILE_SIZE){
+        statusFile = false
+        errorFileMsg = 'El archivo debe ser menor a 10MB'
+    }
+    return {statusFile, errorFileMsg}
+}
+
 export {
     validateEmptyInput, 
     validateNombreApellido,
     validateEmail,
-    validatePassword
+    validatePassword,
+    validateFile
 }
