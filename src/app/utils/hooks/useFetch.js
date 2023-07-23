@@ -7,7 +7,7 @@ const useFetch = (route) => {
     const [error, setError] = useState(null)
   
     useEffect(() => {
-        const fetchData = async () => {
+        async function fetchData(){
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/${route}`)
                 const data = await response.json()

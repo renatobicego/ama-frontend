@@ -19,7 +19,7 @@ const ResultadosSection = () => {
     }
 
     // Filtrar los torneos con inscripcionAbierta igual a false
-    let torneosFiltrados
+    let torneosFiltrados = []
     if(data){
         torneosFiltrados = data.torneos.filter((torneo) => !torneo.inscripcionesAbiertas)
 
