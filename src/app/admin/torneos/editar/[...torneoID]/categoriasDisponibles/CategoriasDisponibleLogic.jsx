@@ -8,7 +8,7 @@ const CategoriasDisponiblesLogic = ({setData, categorias, formErrors, data}) => 
         setData({
             ...data,
             categoriasDisponibles: data.categoriasDisponibles.map(categoria => {
-                if(categoria === prevValue){
+                if(categoria._id === prevValue){
                     return newValue
                 }else{
                     return categoria
@@ -27,7 +27,7 @@ const CategoriasDisponiblesLogic = ({setData, categorias, formErrors, data}) => 
     const handleEliminarCategoria = (value) => {
         setData({
             ...data,
-            categoriasDisponibles: data.categoriasDisponibles.filter(categoria => categoria !== value)
+            categoriasDisponibles: data.categoriasDisponibles.filter(categoria => categoria._id !== value._id)
         })
     }
 

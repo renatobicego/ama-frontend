@@ -2,13 +2,11 @@ import { Option, Select } from "@/app/utils/materialTailwind"
 import { TrashIcon } from "@heroicons/react/24/outline"
 
 const CategoriaDisponibleInput = ({categorias, categoria, handleCategoriaChange, handleEliminarCategoria}) => {
-
-
     return (
         <div className="flex w-full justify-between gap-6 flex-wrap md:flex-nowrap relative">
             <Select 
-                value={categoria} 
-                onChange={(newValue) => handleCategoriaChange(categoria, newValue)} 
+                value={categoria._id} 
+                onChange={(newValue) => handleCategoriaChange(categoria._id, newValue)} 
                 color="gray" 
                 label="Seleccionar Categoria*"
                 aria-labelledby="categoria"

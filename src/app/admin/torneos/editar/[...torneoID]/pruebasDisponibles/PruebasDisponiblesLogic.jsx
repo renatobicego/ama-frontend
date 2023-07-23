@@ -8,7 +8,7 @@ const PruebasDisponiblesLogic = ({setData, pruebas, formErrors, data}) => {
         setData({
             ...data,
             pruebasDisponibles: data.pruebasDisponibles.map(prueba => {
-                if(prueba === prevValue){
+                if(prueba._id === prevValue){
                     return newValue
                 }else{
                     return prueba
@@ -27,11 +27,10 @@ const PruebasDisponiblesLogic = ({setData, pruebas, formErrors, data}) => {
     const handleEliminarPrueba = (value) => {
         setData({
             ...data,
-            pruebasDisponibles: data.pruebasDisponibles.filter(prueba => prueba !== value)
+            pruebasDisponibles: data.pruebasDisponibles.filter(prueba => prueba._id !== value)
         })
     }
 
-    console.log(data.pruebasDisponibles);
 
     return(
         <div className="flex flex-col w-full gap-4">

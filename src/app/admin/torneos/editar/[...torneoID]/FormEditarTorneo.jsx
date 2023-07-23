@@ -1,15 +1,23 @@
 import FormErrorMsg from "@/app/components/form/FormErrorMsg"
 import { useSession } from "next-auth/react"
 import { useState } from "react"
-import FormLogicCrearTorneo from "../../crear/FormLogicCrearTorneo"
+import FormLogicEditarTorneo from "./FormLogicEditarTorneo"
+import axios, { AxiosError } from "axios"
+import { useRouter } from "next/navigation"
 
 
 const FormEditarTorneo = ({torneo}) => {
     const [data, setData] = useState(
         {
-            ...torneo, 
+            nombre: torneo.nombre, 
+            lugar: torneo.lugar, 
+            pruebasDisponibles: torneo.pruebasDisponibles, 
+            categoriasDisponibles: torneo.categoriasDisponibles, 
+            inscripcionesAbiertas: torneo.inscripcionesAbiertas, 
             fecha: new Date(torneo.fecha).toISOString().split('T')[0]
         })
+    const router = useRouter()
+
     const {data: session} = useSession()
     const [programaHorario, setProgramaHorario] = useState(null)
     const [resultados, setResultados] = useState(null)
@@ -24,27 +32,26 @@ const FormEditarTorneo = ({torneo}) => {
     }
 
     const handleSubmit = async() => {
-
         try {
             const res = await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/torneo/${torneo._id}`, data, {
                 headers: {
                     'x-token': session.user.token
                   },
 
-            })
+           })
 
             const formData = new FormData()
 
             programaHorario && formData.append('programaHorario', programaHorario)
             resultados && formData.append('resultados', resultados)
 
-            await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/torneo/${torneo._id}`, formData, {
+            const response = await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/torneo/${torneo._id}`, formData, {
                 headers: {
                     'x-token': session.user.token
                 }
             })
 
-            if(res.status === 200) return router.push('/torneos')
+            if(res.status === 200) return router.push('/admin/torneos/editar')
 
         } catch (error) {
             if(error instanceof AxiosError){
@@ -64,7 +71,7 @@ const FormEditarTorneo = ({torneo}) => {
 
     return (
         <>
-            <FormLogicCrearTorneo 
+            <FormLogicEditarTorneo 
                     data={data}
                     setData={setData} 
                     setFormErrors={setFormErrors} 

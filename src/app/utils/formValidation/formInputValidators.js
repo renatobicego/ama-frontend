@@ -13,6 +13,12 @@ const validateEmptyInput = (input) => {
         }else{
             return true
         } 
+    }else if(typeof input == "boolean"){
+        if(input !== false && input !== true){
+            return false
+        }else{
+            return true
+        } 
     }
    
 }

@@ -1,3 +1,4 @@
+"use client"
 import VolverButton from "@/app/components/button/VolverButton";
 import ListTorneosEditar from "./ListTorneosEditar";
 

@@ -1,8 +1,9 @@
 import isError from "@/app/utils/formValidation/isErrorInput"
 import torneoValidate from "@/app/utils/formValidation/torneoValidation"
-import { Input } from "@/app/utils/materialTailwind"
+import { Input, Option, Select, Spinner } from "@/app/utils/materialTailwind"
 import PruebasDisponiblesLogic from "./pruebasDisponibles/PruebasDisponiblesLogic"
 import CategoriasDisponiblesLogic from "./categoriasDisponibles/CategoriasDisponibleLogic"
+import { useRegistroList } from "@/app/utils/hooks/useRegistroList"
 
 
 const FormLogicEditarTorneo = ({
@@ -14,9 +15,9 @@ const FormLogicEditarTorneo = ({
     programaHorario,
     resultados,
     handleProgramaHorarioChange,
-    handleResultadosChange,
-    torneo
+    handleResultadosChange
 }) => {
+    
     const handleChange = (property, value) => {
         setData({...data, [property]: value})
     }
@@ -42,7 +43,7 @@ const FormLogicEditarTorneo = ({
             setFormErrors(errors)
         }
     }
-    console.log(data);
+
     return (
         <form className="w-full lg:w-2/3 mt-10 flex flex-col items-start gap-6" onSubmit={validateSubmit}>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
@@ -96,6 +97,36 @@ const FormLogicEditarTorneo = ({
                 </div>
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
+                
+                <div className="relative flex w-full max-w-[24rem]">
+                    <Input 
+                        tabIndex={4}
+                        color="gray" 
+                        type="file"
+                        accept=".pdf, .doc, .docx"
+                        label="Resultados" 
+                        aria-labelledby="resultados"
+                        labelProps={{id: 'resultados'}}
+                        error={isError('resultados', formErrors)}
+                        onChange={handleResultadosChange}
+                    />
+                </div>
+                <Select 
+                    tabIndex={5}
+                    color="gray" 
+                    label="Inscripciones Abiertas*"
+                    aria-labelledby="inscripcionesAbiertas"
+                    labelProps={{id: 'inscripcionesAbiertas'}}
+                    error={isError('inscripcionesAbiertas', formErrors)}
+                    value={data.inscripcionesAbiertas}
+                    defaultValue={data.inscripcionesAbiertas}
+                    onChange={(value => handleChange('inscripcionesAbiertas', value))}
+                    >
+                        <Option value={true}>Si</Option>
+                        <Option value={false}>No</Option>
+                </Select>
+            </div>
+            <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
                 <PruebasDisponiblesLogic 
                     setData={setData}
                     formErrors={formErrors} 
@@ -113,3 +144,5 @@ const FormLogicEditarTorneo = ({
         </form>
     )
 }
+
+export default FormLogicEditarTorneo
