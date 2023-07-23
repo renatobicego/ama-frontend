@@ -34,9 +34,8 @@ const Campeones = () => {
     const windowSize = useWindowSize()
     const [campeones, setCampeones] = useState([])
 
-    useEffect(async() => {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/campeones`)
-        console.log(res.data)
+    useEffect(() => {
+        // const res = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/campeones`)
     }, [])
 
     // Check for how many cards to render in div

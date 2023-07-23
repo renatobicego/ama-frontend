@@ -17,7 +17,7 @@ const useFetch = (route) => {
                 setError(error)
                 setLoading(false)
             }
-        };
+        }
 
         fetchData()
     }, [route])
