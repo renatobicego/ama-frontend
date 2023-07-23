@@ -20,7 +20,7 @@ const useFetch = (route) => {
         };
 
         fetchData()
-    }, [])
+    }, [route])
     
     return { data, loading, error }
     

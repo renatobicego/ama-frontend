@@ -28,7 +28,8 @@ const FormLogicCrearTorneo = ({
         return <div className="mt-6"><Spinner color="amber" /></div>;
     }
     if (error) {
-        return <div>Error al cargar el formulario</div>;
+        return <h3 className="text-text font-text">Error al cargar el formulario</h3>
+
     }
 
     const validateSubmit = (e) => {

@@ -1,7 +1,7 @@
 "use client" 
 import { useState } from "react"
 import FormLogicCrearTorneo from "./FormLogicCrearTorneo"
-import VolverButton from "@/app/components/button/volverButton"
+import VolverButton from "@/app/components/button/VolverButton"
 import FormErrorMsg from "@/app/components/form/FormErrorMsg"
 import axios, { AxiosError } from "axios"
 import { useSession } from "next-auth/react"
@@ -36,12 +36,13 @@ const FormCrearTorneo = () => {
             })
             const idTorneo = res.data.torneo._id
             const formData = new FormData()
-            formData.append('programaHorario', programaHorario)
-            await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/torneo/${idTorneo}`, formData, {
-                headers: {
-                    'x-token': session.user.token
-                  },
-            })
+            if(programaHorario){
+                formData.append('programaHorario', programaHorario)
+                await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/torneo/${idTorneo}`, formData, {
+                    headers: {
+                        'x-token': session.user.token
+                    },
+            })}
             if(res.status === 200) return router.push('/torneos')
 
         } catch (error) {

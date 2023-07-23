@@ -6,7 +6,7 @@ const torneoValidate = (form,  programaHorario=null, resultados=null) => {
 
     for(let path in form){
         // If some input is wrong, push error
-        if(!validateEmptyInput(form[path])){
+        if(!validateEmptyInput(form[path]) && path !== 'programaHorario'){
             valid = false
             errors.push({
                 msg: 'El campo no puede estar vacío',

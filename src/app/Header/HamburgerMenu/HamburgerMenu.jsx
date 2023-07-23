@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 "use client"
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
-import { Drawer, IconButton, List, ListItem } from '../../utils/materialTailwind';
+import { Drawer, IconButton, List, ListItem } from '@/app/utils/materialTailwind';
 import { useState } from "react";
 import Link from 'next/link';
 

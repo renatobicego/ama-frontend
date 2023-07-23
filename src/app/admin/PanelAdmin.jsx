@@ -25,7 +25,7 @@ const listItems = [
       {
         icon: <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />,
         item: 'Inscripciones',
-        href: ''
+        href: '/admin/torneos/inscripciones'
       },
       {
         icon: <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />,
