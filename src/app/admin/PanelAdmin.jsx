@@ -30,7 +30,7 @@ const listItems = [
       {
         icon: <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />,
         item: 'Gestionar Torneos',
-        href: ''
+        href: '/admin/torneos/editar'
       },
       {
         icon: <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />,

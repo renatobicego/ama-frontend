@@ -1,7 +1,7 @@
 import { Typography } from "@/app/utils/materialTailwind"
 
 
-const ListTorneoRow = ({torneo}) => {
+const ListTorneoRow = ({torneo, placeholder, urlBtn}) => {
     return (
         <tr className="even:bg-blue-gray-50/50">
             <td className="p-4">
@@ -12,11 +12,11 @@ const ListTorneoRow = ({torneo}) => {
             <td className="p-4">
                 <Typography 
                     as="a" 
-                    href={`${process.env.NEXT_PUBLIC_URL_API}/inscripciones/torneo/${torneo._id}`} 
+                    href={`${urlBtn}`} 
                     variant="small" 
                     color="blue" 
                     className="font-medium">
-                  Descargar Inscripciones
+                  {placeholder}
                 </Typography>
             </td>
         </tr>
@@ -24,3 +24,4 @@ const ListTorneoRow = ({torneo}) => {
 }
 
 export default ListTorneoRow
+

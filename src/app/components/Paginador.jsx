@@ -15,13 +15,14 @@ const Paginador = ({total, setPagina, pagina, division}) => {
     const pageNumbers = generatePageNumbers(totalPages) 
     
     const handleNext = () => {
-        if(pagina === pageNumbers){
+        if(pagina === totalPages){
             return 
         }else{
             setPagina(prev => prev + 1)
         }
     } 
     const handlePrevious = () => {
+
         if(pagina === 1){
             return 
         }else{
@@ -38,7 +39,9 @@ const Paginador = ({total, setPagina, pagina, division}) => {
             </Button>
             <div className="flex items-center gap-2">
                 {pageNumbers.map((pageNumber) => (
-                    <IconButton key={pageNumber} onClick={() => handlePageChange(pageNumber)} variant="text" color="blue-gray" size="sm">
+                    <IconButton key={pageNumber} 
+                        onClick={() => handlePageChange(pageNumber)} 
+                        variant={pagina === pageNumber ? 'filled' : 'text'} color="blue-gray" size="sm">
                         {pageNumber}
                     </IconButton>
                 ))}
