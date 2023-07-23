@@ -18,8 +18,12 @@ const ResultadosSection = () => {
 
     }
 
-    // Filtrar los torneos con inscripcionAbierta igual a false.
-    const torneosFiltrados = data.torneos.filter((torneo) => !torneo.inscripcionesAbiertas)
+    // Filtrar los torneos con inscripcionAbierta igual a false
+    let torneosFiltrados
+    if(data){
+        torneosFiltrados = data.torneos.filter((torneo) => !torneo.inscripcionesAbiertas)
+
+    }
 
     return (
         <>
