@@ -34,6 +34,8 @@ const TorneoCard = ({torneo, months, calendar}) => {
                 <Link 
                     className="border-l-2 pl-3 md:pl-6 h-full flex justify-center items-center"
                     href={torneo.programaHorario}
+                    target="_blank"
+
                 >
                     <button className="btn-primary hidden md:block">
                         Descargar Programa Horario
@@ -48,6 +50,8 @@ const TorneoCard = ({torneo, months, calendar}) => {
                 <Link 
                     className="border-l-2 pl-3 md:pl-6 h-full flex justify-center items-center"
                     href={torneo.resultados}
+                    target="_blank"
+
                 >
                     <button className="btn-primary hidden md:block">
                         Descargar Resultados

@@ -1,4 +1,5 @@
 import { Button,  CardFooter, IconButton, } from "@/app/utils/materialTailwind"
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline"
 
 // Función para generar el arreglo de números de página.
 const generatePageNumbers = (totalPages) => {
@@ -34,8 +35,11 @@ const Paginador = ({total, setPagina, pagina, division}) => {
 
     return (
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-            <Button variant="outlined" onClick={handlePrevious} color="blue-gray" size="sm">
+            <Button className="hidden md:block" variant="outlined" onClick={handlePrevious} color="blue-gray" size="sm">
                 Anterior
+            </Button>
+            <Button className="block md:hidden" variant="outlined" onClick={handlePrevious} color="blue-gray" size="sm">
+                <ArrowLeftIcon className="h-3 w-3" strokeWidth={3}/>
             </Button>
             <div className="flex items-center gap-2">
                 {pageNumbers.map((pageNumber) => (
@@ -46,8 +50,12 @@ const Paginador = ({total, setPagina, pagina, division}) => {
                     </IconButton>
                 ))}
             </div>
-            <Button variant="outlined" onClick={handleNext} color="blue-gray" size="sm">
+            <Button className="hidden md:block" variant="outlined" onClick={handleNext} color="blue-gray" size="sm">
                 Siguiente
+            </Button>
+            <Button className="block md:hidden" variant="outlined" onClick={handleNext} color="blue-gray" size="sm">
+                <ArrowRightIcon className="h-3 w-3" strokeWidth={3}/>
+
             </Button>
         </CardFooter>
     );

@@ -1,4 +1,4 @@
-import { monthsAbbreviated } from "@/app/utils/months";
+import { monthsAbbreviated } from "@/app/utils/utils";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -1,5 +1,5 @@
 "use client"
-import { monthsAbbreviated } from "@/app/utils/months"
+import { monthsAbbreviated } from "@/app/utils/utils"
 import TorneoCard from "./TorneoCard"
 import { Card, Spinner } from "@/app/utils/materialTailwind"
 import Paginador from "@/app/components/Paginador"

@@ -4,6 +4,7 @@ import { useState } from "react"
 import FormLogicEditarTorneo from "./FormLogicEditarTorneo"
 import axios, { AxiosError } from "axios"
 import { useRouter } from "next/navigation"
+import { subirArchivoFirebase } from "@/app/utils/files/archivosFirebase"
 
 
 const FormEditarTorneo = ({torneo}) => {
@@ -33,6 +34,12 @@ const FormEditarTorneo = ({torneo}) => {
 
     const handleSubmit = async() => {
         try {
+            if(programaHorario){
+                data.programaHorario = await subirArchivoFirebase(programaHorario, 'archivos/programaHorarioTorneos/')
+            }
+            if(resultados){
+                data.resultados = await subirArchivoFirebase(resultados, 'archivos/resultadosTorneos/')
+            }
             const res = await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/torneo/${torneo._id}`, data, {
                 headers: {
                     'x-token': session.user.token
@@ -40,20 +47,10 @@ const FormEditarTorneo = ({torneo}) => {
 
            })
 
-            const formData = new FormData()
-
-            programaHorario && formData.append('programaHorario', programaHorario)
-            resultados && formData.append('resultados', resultados)
-
-            const response = await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/torneo/${torneo._id}`, formData, {
-                headers: {
-                    'x-token': session.user.token
-                }
-            })
-
             if(res.status === 200) return router.push('/admin/torneos/editar')
 
         } catch (error) {
+            console.log(error);
             if(error instanceof AxiosError){
                 const axiosErrors = error.response.data
                 if(axiosErrors.errors){

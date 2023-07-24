@@ -6,6 +6,7 @@ import FormErrorMsg from "@/app/components/form/FormErrorMsg"
 import axios, { AxiosError } from "axios"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { subirArchivoFirebase } from "@/app/utils/files/archivosFirebase"
 
 const FormCrearTorneo = () => {
     const {data: session} = useSession()
@@ -28,21 +29,16 @@ const FormCrearTorneo = () => {
     const handleSubmit = async() => {
 
         try {
+            if(programaHorario){
+                data.programaHorario = await subirArchivoFirebase(programaHorario, 'archivos/programaHorarioTorneos/')
+            }
             const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/torneo`, data, {
                 headers: {
                     'x-token': session.user.token
                   },
 
             })
-            const idTorneo = res.data.torneo._id
-            const formData = new FormData()
-            if(programaHorario){
-                formData.append('programaHorario', programaHorario)
-                await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/torneo/${idTorneo}`, formData, {
-                    headers: {
-                        'x-token': session.user.token
-                    },
-            })}
+
             if(res.status === 200) return router.push('/torneos')
 
         } catch (error) {

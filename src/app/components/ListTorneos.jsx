@@ -4,8 +4,8 @@ import ListTorneoRow from "./ListTorneosRow"
 
 const ListTorneos = ({tableHead, data, pagina, setPagina, division, urlBtn, placeholder}) => {
     return (
-        <Card className="h-full w-2/3">
-            <table className="w-full min-w-max table-auto text-left">
+        <Card className="h-full w-full md:w-2/3">
+            <table className="w-full table-auto text-left">
                 <thead>
                     <tr>
                     {tableHead.map((head) => (
@@ -21,7 +21,7 @@ const ListTorneos = ({tableHead, data, pagina, setPagina, division, urlBtn, plac
                         ))}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="max-w-full">
                     {data.torneos.map(torneo => 
                         <ListTorneoRow 
                             torneo={torneo} 
