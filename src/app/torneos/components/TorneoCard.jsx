@@ -5,7 +5,7 @@ const TorneoCard = ({torneo, months, calendar}) => {
     const fecha = new Date(torneo.fecha)
     return(
         <div className="flex items-center w-full h-20 gap-5 md:gap-8">
-            <Link href={calendar && '/inscripciones/torneos'} className="flex items-center gap-3 md:gap-6 h-full w-2/3 md:w-1/2">
+            <Link href={calendar ? '/inscripciones/torneos' : ''} className="flex items-center gap-3 md:gap-6 h-full w-2/3 md:w-1/2">
                 <div className="flex flex-col items-center h-full pr-3 md:pr-6 border-r-2 md:flex-row md:gap-6">
                     <Image 
                         src={"/icons/Calendar.svg"} 

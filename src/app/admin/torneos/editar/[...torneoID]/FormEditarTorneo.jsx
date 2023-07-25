@@ -50,7 +50,7 @@ const FormEditarTorneo = ({torneo}) => {
             if(res.status === 200) return router.push('/admin/torneos/editar')
 
         } catch (error) {
-            console.log(error);
+            
             if(error instanceof AxiosError){
                 const axiosErrors = error.response.data
                 if(axiosErrors.errors){

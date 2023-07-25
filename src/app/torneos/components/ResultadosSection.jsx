@@ -9,7 +9,7 @@ import useFetch from "@/app/utils/hooks/useFetch"
 
 const ResultadosSection = () => {
     const [pagina, setPagina] = useState(1)
-    const {data, loading, error} = useFetch(`torneo/?desde=${(pagina - 1) * 8}`)
+    const {data, loading, error} = useFetch(`torneo/resultados`)
     if (loading) {
         return <div className="mt-6"><Spinner color="amber" /></div>;
     }
@@ -18,16 +18,10 @@ const ResultadosSection = () => {
 
     }
 
-    // Filtrar los torneos con inscripcionAbierta igual a false
-    let torneosFiltrados = []
-    if(data){
-        torneosFiltrados = data.torneos.filter((torneo) => !torneo.inscripcionesAbiertas)
-
-    }
 
     return (
         <>
-            {torneosFiltrados.map((torneo, i) => !torneo.inscripcionesAbiertas &&
+            {data.torneos.map((torneo, i) =>
                 <TorneoCard 
                     key={i} 
                     torneo={torneo}
@@ -35,13 +29,13 @@ const ResultadosSection = () => {
                     calendar={false} 
                     />)}
            
-                {torneosFiltrados.length > 0 ?  
-                    <Card>
+                {data.total > 0 ?  
+                    <Card className="w-full md:w-2/3 lg:w-1/2">
                         <Paginador 
                         pagina={pagina} 
                         setPagina={setPagina} 
-                        total={torneosFiltrados.length} 
-                        division={8}/>
+                        total={data.total} 
+                        division={5}/>
                     </Card>
                     :
                     <h3 className="text-text font-text">No hay resultados disponibles</h3>
