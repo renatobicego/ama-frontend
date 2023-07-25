@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/app/utils/materialTailwind"
-import { months } from "@/app/utils/months"
+import { months } from "@/app/utils/utils"
 import { ArrowLeftIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
