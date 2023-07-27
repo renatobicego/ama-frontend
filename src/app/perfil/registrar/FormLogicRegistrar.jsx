@@ -45,7 +45,7 @@ const FormLogicRegistrar = ({
                 <Input 
                     tabIndex={1}
                     color="gray" 
-                    label="Nombre y Apellido*" 
+                    label="Apellido y Nombre*" 
                     aria-labelledby="nombre"
                     labelProps={{id: 'nombre'}}
                     error={isError('nombre_apellido', formErrors)}

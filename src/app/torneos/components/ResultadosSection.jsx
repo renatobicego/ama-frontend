@@ -17,8 +17,7 @@ const ResultadosSection = () => {
         return <h3 className="text-text font-text">Error al cargar los resultados</h3>
 
     }
-
-
+   
     return (
         <>
             {data.torneos.map((torneo, i) =>

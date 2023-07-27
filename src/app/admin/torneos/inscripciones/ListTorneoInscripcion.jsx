@@ -13,7 +13,7 @@ const ListTorneosInscripcion = () => {
         return <div className="mt-6"><Spinner color="amber" /></div>;
     }
     if (error) {
-        return <div>Error al cargar los torneos</div>;
+        return <h3 className="text-text font-text">Error al cargar los torneos</h3>;
     }
 
     return(

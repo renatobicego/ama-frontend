@@ -1,16 +1,31 @@
-import { Input, Option, Select } from "@/app/utils/materialTailwind"
-import { TrashIcon } from "@heroicons/react/24/outline"
+import { Input, Option, Select, Typography } from "@/app/utils/materialTailwind"
+import { InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline"
+
 
 const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
-
+    
+    const setFormato = (prueba) => {
+        switch (prueba.tipo) {
+            case 'L':
+                return '00.00'
+            case 'F':
+                return '99.99.99'
+            case 'P':
+                return '99.99'
+            case 'S':
+                return '00.00'
+        }
+    }
 
     const handleSelect = (value) => {
+        const pruebaSelected = pruebas.find(p => p._id === value)
         setPruebasSelected(prevState => prevState.map(p => {
             // Change only pruebaAgregada input
             if(p.id === pruebaAgregada.id){
                 return {
                     ...p,
-                    prueba: value
+                    prueba: value,
+                    formato: setFormato(pruebaSelected)
                 }
             }else{
                 return p
@@ -24,7 +39,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
             if(p.id === pruebaAgregada.id){
                 return {
                     ...p,
-                    marca: event.target.value
+                    marca: event.target.value.trim()
                 }
             }else{
                 return p
@@ -39,7 +54,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
     return (
         <div className="flex w-full justify-between gap-6 flex-wrap md:flex-nowrap relative">
             <Select 
-                value={pruebaAgregada.value} 
+                value={pruebaAgregada.prueba} 
                 onChange={handleSelect} 
                 color="gray" 
                 label="Seleccionar Prueba*"
@@ -47,18 +62,26 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
                 labelProps={{id: 'prueba'}}
                 >
                     
-                {pruebas.map((p, i) => 
-                    <Option key={i} value={p.value}>{p.name}</Option>
+                {pruebas.map(p => 
+                    <Option key={p._id} value={p._id}>{p.nombre}</Option>
                 )}
             </Select>
-            <Input 
-                value={pruebaAgregada.marca} 
-                onChange={handleInputMarca} 
-                color="gray" 
-                label="Mejor Marca de Prueba*"
-                aria-labelledby="marca-prueba"
-                labelProps={{id: 'marca-prueba'}} 
-                />
+            {pruebaAgregada.formato && 
+                <div className="w-full">
+                    <Input 
+                        value={pruebaAgregada.marca} 
+                        onChange={handleInputMarca} 
+                        color="gray" 
+                        label="Mejor Marca de Prueba*"
+                        aria-labelledby="marca-prueba"
+                        labelProps={{id: 'marca-prueba'}} 
+                        />
+                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                        El formato de la marca debe ser {pruebaAgregada.formato}
+                    </Typography>
+                </div>
+            }
 
             <button 
                 aria-label='delete prueba'

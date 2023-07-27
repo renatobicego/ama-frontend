@@ -38,6 +38,7 @@ const subirArchivoFirebase = (file, refRoute) => {
             }
           )
         } catch (error) {
+          console.log(error)
           reject(new Error('Error al subir el archivo', error));
         }
       })

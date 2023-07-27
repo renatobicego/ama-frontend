@@ -1,7 +1,7 @@
 import isError from "@/app/utils/formValidation/isErrorInput"
 import torneoValidate from "@/app/utils/formValidation/torneoValidation"
 import { useRegistroList } from "@/app/utils/hooks/useRegistroList"
-import { Button, Input, Spinner } from "@/app/utils/materialTailwind"
+import { Button, Input, Option, Select, Spinner } from "@/app/utils/materialTailwind"
 import PruebasDisponiblesLogic from "./pruebasDisponibles/PruebasDisponiblesLogic"
 import CategoriasDisponiblesLogic from "./categoriasDisponibles/CategoriasDisponibleLogic"
 
@@ -34,8 +34,9 @@ const FormLogicCrearTorneo = ({
 
     const validateSubmit = (e) => {
         e.preventDefault()
+  
         const {valid, errors} = torneoValidate(data, programaHorario)
-        
+
         if(valid){
             handleSubmit()
         }else{
@@ -59,6 +60,20 @@ const FormLogicCrearTorneo = ({
                 <Input 
                     tabIndex={2}
                     color="gray" 
+                    label="Lugar*"
+                    aria-labelledby="lugar"
+                    labelProps={{id: 'lugar'}}
+                    error={isError('lugar', formErrors)}
+                    
+                    value={data.lugar}
+                    onChange={(e => handleChange('lugar', e.target.value))}
+                    />
+            </div>
+            <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
+                
+                <Input 
+                    tabIndex={3}
+                    color="gray" 
                     label="Fecha*"
                     type="date" 
                     aria-labelledby="fecha"
@@ -68,34 +83,37 @@ const FormLogicCrearTorneo = ({
                     value={data.fecha}
                     onChange={(e => handleChange('fecha', e.target.value))}
                     />
+                <Select 
+                    tabIndex={4}
+                    value={data.cantidadDias} 
+                    onChange={(newValue) => handleChange(cantidadDias, newValue)} 
+                    color="gray" 
+                    label="Cantidad de Dias*"
+                    aria-labelledby="cantidadDias"
+                    labelProps={{id: 'cantidadDias'}}
+                    >
+
+                    <Option value={1}>1</Option>
+                    <Option value={2}>2</Option>
+                    <Option value={3}>3</Option>
+                    <Option value={4}>4</Option>
+
+                </Select>
+                
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
-                
                 <Input 
-                    tabIndex={3}
+                    tabIndex={5}
                     color="gray" 
-                    label="Lugar*"
-                    aria-labelledby="lugar"
-                    labelProps={{id: 'lugar'}}
-                    error={isError('lugar', formErrors)}
-                    
-                    value={data.lugar}
-                    onChange={(e => handleChange('lugar', e.target.value))}
-                    />
-                <div className="relative flex w-full max-w-[24rem]">
-                    <Input 
-                        tabIndex={3}
-                        color="gray" 
-                        type="file"
-                        accept=".pdf, .doc, .docx"
-                        className=""
-                        label="Programa Horario" 
-                        aria-labelledby="programaHorario"
-                        labelProps={{id: 'programaHorario'}}
-                        error={isError('programaHorario', formErrors)}
-                        onChange={handleProgramaHorarioChange}
-                    />
-                </div>
+                    type="file"
+                    accept=".pdf, .doc, .docx"
+                    className=""
+                    label="Programa Horario" 
+                    aria-labelledby="programaHorario"
+                    labelProps={{id: 'programaHorario'}}
+                    error={isError('programaHorario', formErrors)}
+                    onChange={handleProgramaHorarioChange}
+                />
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
                 <PruebasDisponiblesLogic 

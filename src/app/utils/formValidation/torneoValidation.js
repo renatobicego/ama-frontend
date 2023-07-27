@@ -1,4 +1,4 @@
-import { validateEmptyInput, validateFile } from "./formInputValidators"
+import { validateArrayElementosRepetidos, validateEmptyInput, validateFile } from "./formInputValidators"
 
 const torneoValidate = (form,  programaHorario=null, resultados=null) => {
     let valid = true
@@ -25,6 +25,22 @@ const torneoValidate = (form,  programaHorario=null, resultados=null) => {
                 }
             })
         }
+    }
+
+    if(!validateArrayElementosRepetidos(form['pruebasDisponibles'])){
+        valid = false
+        errors.push({
+            msg: 'Las pruebas disponibles no pueden estar repetidas',
+            path: 'pruebasDisponibles'
+        }) 
+    }
+
+    if(!validateArrayElementosRepetidos(form['categoriasDisponibles'])){
+        valid = false
+        errors.push({
+            msg: 'Las categorías disponibles no pueden estar repetidas',
+            path: 'categoriasDisponibles'
+        }) 
     }
 
 

@@ -3,39 +3,26 @@ import { InformationCircleIcon, PlusIcon } from "@heroicons/react/24/outline"
 import PruebaInput from "./PruebaInput"
 import { v4 as uuidv4 } from 'uuid'
 
-const pruebas = [
-    {
-        value: '100',
-        name: '100m',
-    },
-    {
-        value: '200',
-        name: '200m',
-    },
-    {
-        value: 'jabalina',
-        name: 'Jabalina',
-    },
 
-]
-
-const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors}) => {
+const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas}) => {
 
     // Create prueba added
     const handleAdd = () => {
         setPruebasSelected(prevState => [...prevState, {
             id: uuidv4(),
             prueba: '',
-            marca: ''
+            marca: '',
+            formato: ''
         }])
     }
 
     return(
         <>
+            <h3 className="text-text font-text">Si no tiene marca en una prueba, deje el casillero vacío</h3>
             {/* For each prueba added, render Prueba chosen and Marca input */}
-            {pruebasSelected.map(pruebaAgregada =>
+            {pruebasSelected.map((pruebaAgregada, i) =>
                 <PruebaInput
-                    key={pruebaAgregada.id}
+                    key={i}
                     pruebas={pruebas}
                     pruebaAgregada={pruebaAgregada}
                     setPruebasSelected={setPruebasSelected}

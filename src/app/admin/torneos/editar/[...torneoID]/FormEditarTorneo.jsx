@@ -66,6 +66,38 @@ const FormEditarTorneo = ({torneo}) => {
         }
     }
 
+    const handleDelete = async() => {
+        const shouldDelete = window.confirm('¿Estás seguro de que quieres borrar el torneo?')
+
+        if (!shouldDelete) {
+            return
+        }
+        try {
+            const res = await axios.delete(`${process.env.NEXT_PUBLIC_URL_API}/torneo/${torneo._id}`, {
+                headers: {
+                    'x-token': session.user.token
+                  },
+           })
+
+            if(res.status === 200) return router.push('/torneos')
+
+        } catch (error) {
+
+            if(error instanceof AxiosError){
+                const axiosErrors = error.response.data
+                if(axiosErrors.errors){
+                    setFormErrors(axiosErrors.errors)
+                }else{
+                    setFormErrors([axiosErrors])
+                }
+            }else{
+                setFormErrors([{
+                    msg: error.message
+                }])
+            }
+        }
+    }
+
     return (
         <>
             <FormLogicEditarTorneo 
@@ -80,6 +112,7 @@ const FormEditarTorneo = ({torneo}) => {
                     handleResultadosChange={handleResultadosChange}
                 />
             <FormErrorMsg formErrors={formErrors} />
+            <button onClick={handleDelete} className="btn-primary bg-primary2 text-white">Borrar Torneo</button>
         </>
     )
 }

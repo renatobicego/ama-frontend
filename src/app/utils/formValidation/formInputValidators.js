@@ -20,6 +20,7 @@ const validateEmptyInput = (input) => {
             return true
         } 
     }
+    return true
    
 }
 
@@ -71,10 +72,25 @@ const validateFile = (file) => {
     return {statusFile, errorFileMsg}
 }
 
+const validateArrayElementosRepetidos = (arr) => {
+    const seenIds = new Set()
+
+    for (const obj of arr) {
+      if (seenIds.has(obj.id)) {
+        return false
+      }
+  
+      seenIds.add(obj.id);
+    }
+  
+    return true
+
+}
 export {
     validateEmptyInput, 
     validateNombreApellido,
     validateEmail,
     validatePassword,
-    validateFile
+    validateFile,
+    validateArrayElementosRepetidos
 }

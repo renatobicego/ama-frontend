@@ -17,7 +17,8 @@ const FormCrearTorneo = () => {
         fecha: '',
         lugar: '',
         pruebasDisponibles: [],
-        categoriasDisponibles: []
+        categoriasDisponibles: [],
+        cantidadDias: 1
     })
     const [programaHorario, setProgramaHorario] = useState(null)
     const [formErrors, setFormErrors] = useState([])
@@ -39,7 +40,7 @@ const FormCrearTorneo = () => {
 
             })
 
-            if(res.status === 200) return router.push('/torneos')
+            if(res.status === 200) return router.replace('/torneos')
 
         } catch (error) {
             if(error instanceof AxiosError){
