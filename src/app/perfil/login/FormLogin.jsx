@@ -3,7 +3,7 @@ import isError from "@/app/utils/formValidation/isErrorInput"
 import { Input, Typography } from "@/app/utils/materialTailwind"
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
 import { signIn } from "next-auth/react"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useState } from "react"
 
 
@@ -16,11 +16,10 @@ const FormLogin = () => {
 
     const [formErrors, setFormErrors] = useState([])
     const router = useRouter()
-    
     const handleChange = (property, value) => {
         setData({...data, [property]: value})
     }
-    
+
     const handleSubmit = async(e) => {  
         e.preventDefault()
         // create user
@@ -40,9 +39,11 @@ const FormLogin = () => {
                     setFormErrors([serverErrors])
                 }
             }else{
+
                 return router.replace('/')
             }
-
+        
+            
     }
 
     return(

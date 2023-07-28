@@ -3,12 +3,14 @@ import FormLogicTorneo from "./components/FormLogic";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import VolverButton from "@/app/components/button/VolverButton";
-import inscripcionValidate from "@/app/utils/formValidation/inscripcionValidation";
+import axios, { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 export default function InscripcionesTorneos(){
     
     //If user logged in, fetch user data
     const {data: session} = useSession()
+    const router = useRouter()
 
     const [data, setData] = useState({
         torneo: '',
@@ -16,7 +18,6 @@ export default function InscripcionesTorneos(){
         atleta: '',
         pruebasInscripto: [],
     })
-
     // Which input returned error and the message
     const [formErrors, setFormErrors] = useState([])
 
@@ -39,13 +40,27 @@ export default function InscripcionesTorneos(){
         }
     }, [data.torneo])
 
-    const handleSubmit = () => {
-        const {valid, errors} = inscripcionValidate(data)
-        
-        if(valid){
-            console.log(data);
-        }else{
-            setFormErrors(errors)
+    const handleSubmit = async() => {
+        try {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/inscripciones`, data, {
+                headers: {
+                    'x-token': session.user.token 
+                }
+            })
+            if(res.status === 200) return router.replace('/perfil')
+        } catch (error) {
+            if(error instanceof AxiosError){
+                const axiosErrors = error.response.data
+                if(axiosErrors.errors){
+                    setFormErrors(axiosErrors.errors)
+                }else{
+                    setFormErrors([axiosErrors])
+                }
+            }else{
+                setFormErrors([{
+                    msg: 'Error en el servidor'
+                }])
+            }
         }
     }
 
@@ -60,6 +75,7 @@ export default function InscripcionesTorneos(){
                     setData={setData} 
                     handleSubmit={handleSubmit}
                     formErrors={formErrors}
+                    setFormErrors={setFormErrors}
                     />
                     }
             </section>

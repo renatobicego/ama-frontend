@@ -7,7 +7,7 @@ import Link from "next/link"
 
 const PanelBodyItem = ({bodyItem}) => {
     return (          
-        <List className="p-0">
+        <List className="p-0 font-title text-text">
             <Link href={bodyItem.href}>
                 <ListItem>
                     <ListItemPrefix>

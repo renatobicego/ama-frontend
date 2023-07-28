@@ -4,16 +4,18 @@ import PruebaInput from "./PruebaInput"
 import { v4 as uuidv4 } from 'uuid'
 
 
-const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas}) => {
-
+const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas, usuario}) => {
+  
     // Create prueba added
     const handleAdd = () => {
-        setPruebasSelected(prevState => [...prevState, {
-            id: uuidv4(),
-            prueba: '',
-            marca: '',
-            formato: ''
-        }])
+        setPruebasSelected([
+            ...pruebasSelected, 
+            {
+                id: uuidv4(),
+                prueba: '',
+                formato: '',
+                atleta: usuario._id
+            }])
     }
 
     return(
@@ -39,9 +41,10 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas}
                 
                 {/* If user doesn't add pruebas, show error */}
                 {formErrors.some(error => error.path === 'pruebasInscripto') &&
+                    
                     <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
                         <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                        Por favor, seleccione las pruebas en las que quiere competir
+                        Por favor, corrija las pruebas
                     </Typography>
                 }
             </div>

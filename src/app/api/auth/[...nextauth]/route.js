@@ -40,11 +40,11 @@ const authOptions = {
         async session({session, token}){
             session.user = token
             return session
-        },
+        }
     },
     pages: {
         signIn: '/perfil/login',
-        
+        signOut: '/perfil/logout'
     },
     session: {
         maxAge: 14 * 24 * 60 * 60

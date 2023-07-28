@@ -5,40 +5,26 @@ import { useEffect,  useState } from "react";
 import { useRegistroList } from "@/app/utils/hooks/useRegistroList";
 import FormErrorMsg from "@/app/components/form/FormErrorMsg";
 import FormInputs from "./FormInputs";
+import axios, { AxiosError } from "axios";
+import inscripcionValidate from "@/app/utils/formValidation/inscripcionValidation";
 
 
 // The prop error in each input is to make borders red in case that input returns error
 
-const FormLogicTorneo = ({data, setData, handleSubmit, formErrors, usuario}) => {
+const FormLogicTorneo = ({data, setData, handleSubmit, usuario, formErrors, setFormErrors}) => {
 
     // Which pruebas user added
     const [pruebasSelected, setPruebasSelected] = useState([])
-    // status variable to update data before is send
     const [shouldSubmit, setShouldSubmit] = useState(false)
-
     //Get pruebas favoritas
-    const {entityData, loading, error} = useRegistroList(['torneo/activos', `usuarios/${usuario.uid}`])
-            
+    const {entityData, loading, error} = useRegistroList(['torneo/activos', `usuarios/${usuario.uid}`]) 
+
     useEffect(() => {
-        //Set pruebas that user has saved as favourites
-        if(Object.keys(entityData).length !== 0){
-            setPruebasSelected(prevState => [
-                ...prevState, 
-                ...entityData[`usuarios/${usuario.uid}`].usuario.pruebasFavoritas
-            ])
-        }
-        
-        return () => {
-            setPruebasSelected([])
-        }
-    }, [entityData])    
-    
-    useEffect(() => {
-        if (shouldSubmit) {
+        if(shouldSubmit){
             handleSubmit()
-            setShouldSubmit(false);
         }
-    }, [shouldSubmit]);
+        setShouldSubmit(false)
+    }, [shouldSubmit])
     
     if (loading) {
         return <div className="mt-6"><Spinner color="amber" /></div>;
@@ -52,15 +38,43 @@ const FormLogicTorneo = ({data, setData, handleSubmit, formErrors, usuario}) => 
     }
 
     // Save pruebasSelecte to data before submiting
-    const saveDataOnSubmit = (e) => {
+    const saveDataOnSubmit = async(e) => {
         e.preventDefault()
+        const {valid, errors} = inscripcionValidate(data, pruebasSelected)
+        if(valid){
+            try {
+                const requests = pruebasSelected.map(async (prueba) => {
+                    const {data} = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/pruebas_atleta`, prueba)
+                    return data.pruebaAtleta._id
+                })
+                const pruebasInscripto = await Promise.all(requests)
+                setData(data => {
+                    return {
+                        ...data,
+                        pruebasInscripto
+                    }
+                })
+                setShouldSubmit(true)
 
-        setData((prevData) => ({
-            ...prevData,
-            pruebasInscripto: pruebasSelected
-        }))
-
-        setShouldSubmit(true)
+            } catch (error) {
+                if(error instanceof AxiosError){
+                    const axiosErrors = error.response.data
+                    if(axiosErrors.errors){
+                        setFormErrors(axiosErrors.errors)
+                    }else{
+                        setFormErrors([axiosErrors])
+                    }
+                }else{
+                    setFormErrors([{
+                        msg: 'Error en el servidor'
+                    }])
+                }
+            }
+            
+            
+        }else{
+            setFormErrors(errors)
+        }
     }
 
     return(

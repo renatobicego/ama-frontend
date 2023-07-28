@@ -69,6 +69,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
             {pruebaAgregada.formato && 
                 <div className="w-full">
                     <Input 
+                        defaultValue={''}
                         value={pruebaAgregada.marca} 
                         onChange={handleInputMarca} 
                         color="gray" 

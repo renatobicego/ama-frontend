@@ -76,21 +76,56 @@ const validateArrayElementosRepetidos = (arr) => {
     const seenIds = new Set()
 
     for (const obj of arr) {
-      if (seenIds.has(obj.id)) {
+      if (seenIds.has(obj._id)) {
         return false
       }
   
-      seenIds.add(obj.id);
+      seenIds.add(obj._id);
     }
   
     return true
-
 }
+
+const validatePruebasInscriptoRepetidas = (arr) => {
+    const seenIds = new Set()
+
+    for (const obj of arr) {
+      if (seenIds.has(obj.prueba)) {
+        return false
+      }
+  
+      seenIds.add(obj.prueba);
+    }
+  
+    return true
+}
+
+const validateFormatoMarca = (pruebasInscripto) => {
+    let statusFormato = true
+    pruebasInscripto.forEach(prueba => {
+        if(prueba.marca){
+            const marca = prueba.marca
+            const formato = prueba.formato
+            if(marca.length !== formato.length){
+                statusFormato = false
+            }
+            if(marca.length === 5 && marca[2] !== formato[2]){
+                statusFormato = false
+            }else if(marca.length === 8 && (marca[2] !== formato[2] || marca[5] !== formato[5])){
+                statusFormato = false
+            }
+        }
+    })
+    return statusFormato
+}
+
 export {
     validateEmptyInput, 
     validateNombreApellido,
     validateEmail,
     validatePassword,
     validateFile,
-    validateArrayElementosRepetidos
+    validateArrayElementosRepetidos,
+    validateFormatoMarca,
+    validatePruebasInscriptoRepetidas
 }

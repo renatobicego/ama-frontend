@@ -2,6 +2,7 @@ import isError from "@/app/utils/formValidation/isErrorInput";
 import { Input, Option, Select,  } from "@/app/utils/materialTailwind";
 import { useEffect, useState } from "react";
 import PruebasLogic from "./PruebasLogic";
+import Link from "next/link";
 
 
 const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected, setPruebasSelected, usuario}) => {
@@ -25,7 +26,6 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
         return () => setTorneoData({})
 
     }, [data.categoria])
-
 
     return(
         <>
@@ -70,7 +70,9 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
             </div>
             {(data.categoria !== '' && data.torneo !== '') &&
             <> 
-            <h3 className="text-text font-text">Para editar estos datos, edite su perfil en 'Mi Perfil'</h3>
+            <h3 className="text-text font-text">Para editar estos datos, edite su perfil en 
+                <Link href={'/perfil'} className="text-light-blue-800"> Mi Perfil</Link> 
+            </h3>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
 
                 <Input 
@@ -87,6 +89,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                 <Select 
                     aria-labelledby="sexo"
                     defaultValue={usuario.sexo} 
+                    value={usuario.sexo} 
                     color="gray" 
                     label="Sexo*"
                     labelProps={{id: 'sexo'}}
@@ -121,7 +124,8 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
             <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-6">
                 <Select 
                     aria-labelledby="club"
-                    defaultValue={usuario.club._id} 
+                    defaultValue={usuario.club._id}
+                    value={usuario.club.nombre}
                     disabled
                     color="gray" 
                     label="Club*"
@@ -133,7 +137,8 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                 </Select>
 
                 <Select 
-                    defaultValue={usuario.federacion} 
+                    defaultValue={usuario.federacion}
+                    value={usuario.federacion.nombre} 
                     color="gray" 
                     label="Federación*"
                     labelProps={{id: 'federacion'}}
@@ -151,6 +156,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
 
                 <Select 
                     defaultValue={usuario.asociacion._id} 
+                    value={usuario.asociacion.nombre} 
                     color="gray" 
                     label="Asociación*"
                     labelProps={{id: 'asociacion'}}
@@ -179,6 +185,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                 pruebasSelected={pruebasSelected}
                 setPruebasSelected={setPruebasSelected}
                 formErrors={formErrors}
+                usuario={usuario}
             />
             </> 
             }
