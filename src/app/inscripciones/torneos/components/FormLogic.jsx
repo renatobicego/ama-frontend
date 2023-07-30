@@ -40,7 +40,9 @@ const FormLogicTorneo = ({data, setData, handleSubmit, usuario, formErrors, setF
     // Save pruebasSelecte to data before submiting
     const saveDataOnSubmit = async(e) => {
         e.preventDefault()
+        console.log('Enviando', data)
         const {valid, errors} = inscripcionValidate(data, pruebasSelected)
+        
         if(valid){
             try {
                 const requests = pruebasSelected.map(async (prueba) => {

@@ -35,6 +35,7 @@ const NavBarHeader = ({socialMedia, menuItems}) => {
                                 <li key={i}>
                                     <Link 
                                         href={item.href} 
+                                        prefetch={false}
                                         smooth="true" 
                                         className={` ${item.href === pathname && "border-b"} pb-1`}>
                                             {item.text}
@@ -56,7 +57,7 @@ const NavBarHeader = ({socialMedia, menuItems}) => {
                             })}
                         </div>
                         <li className="parent-btn">
-                            <Link href={inscripcionesItem.href}>
+                            <Link href={inscripcionesItem.href} prefetch={false}>
                                 <button 
                                     className='btn-secondary'>
                                         {inscripcionesItem.text}

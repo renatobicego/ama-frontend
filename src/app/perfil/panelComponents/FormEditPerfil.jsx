@@ -3,7 +3,7 @@
 import { Input, Option, Select, Typography } from "@/app/utils/materialTailwind";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import inscripcionValidate from "../utils/formValidation/registerValidation";
+import inscripcionValidate from "../../utils/formValidation/registerValidation";
 
 const clubes = [
     {

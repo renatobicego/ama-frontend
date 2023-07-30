@@ -23,7 +23,6 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
             })
         }
         setPruebasSelected([])
-        return () => setTorneoData({})
 
     }, [data.categoria])
 

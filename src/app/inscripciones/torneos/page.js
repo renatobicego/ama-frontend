@@ -22,26 +22,18 @@ export default function InscripcionesTorneos(){
     const [formErrors, setFormErrors] = useState([])
 
     useEffect(() => {
-        if(session){
+        if(session.user){
             setData({...data, atleta: session.user.usuario.uid})
         }
-        return () => {
-            setData({})
-        }
-    }, [session])
-
-    useEffect(() => {
-        setData({
-            ...data,
-            categoria: ''
-        })
-        return () => {
-            setData({})
-        }
-    }, [data.torneo])
+        setData((prevData) => ({
+            ...prevData,
+            categoria: '',
+        }))
+    }, [session, data.torneo])
 
     const handleSubmit = async() => {
         try {
+
             const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/inscripciones`, data, {
                 headers: {
                     'x-token': session.user.token 

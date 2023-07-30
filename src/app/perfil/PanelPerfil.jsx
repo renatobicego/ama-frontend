@@ -3,15 +3,18 @@
 import { 
     Card, 
     List, 
+    Spinner, 
     Typography } from "@/app/utils/materialTailwind";
 import { 
     ArrowLeftOnRectangleIcon, 
     PresentationChartBarIcon,  
     UserCircleIcon, 
   } from "@heroicons/react/24/outline";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import PanelItem from "../components/panel/PanelItem";
-import FormEditPerfil from "./FormEditPerfil";
+import FormEditPerfil from "./panelComponents/FormEditPerfil";
+import { useSession } from "next-auth/react";
+import InscripcionesList from "./panelComponents/InscripcionesList";
 
 const listItems = [
   {
@@ -40,15 +43,20 @@ const listItems = [
 ]
 
 const PanelPerfil = () => {
-    const [open, setOpen] = useState(0)
+  const {data: session} = useSession()
+  const [open, setOpen] = useState(0)
 
-    const handleOpen = (value) => {
-        setOpen(open === value ? 0 : value);
-    }
+  const handleOpen = (value) => {
+      setOpen(open === value ? 0 : value);
+  }
 
-    return (
-        <>
-            <Card className="w-full max-w-[30rem] p-4 shadow-xl shadow-blue-gray-900/5">
+  if (!session) {
+    return <div className="mt-6"><Spinner color="amber" /></div>;
+}
+
+  return (
+      <>
+          <Card className="w-full max-w-[30rem] p-4 shadow-xl shadow-blue-gray-900/5 mb-6">
             <div className="mb-2 p-4">
                 <Typography className="font-title text-title" variant="h5">
                 Panel Mi Perfil
@@ -59,10 +67,11 @@ const PanelPerfil = () => {
                 <PanelItem key={i} item={item} open={open} handleOpen={handleOpen} />
                 )}
             </List>
-            </Card>
-            {open === 2 && <FormEditPerfil />}
-        </>
-      )
+          </Card>
+          {open === 2 && <FormEditPerfil />}
+          {(open === 1 ) && <InscripcionesList user={session.user}/>}
+      </>
+    )
 }
 
 export default PanelPerfil

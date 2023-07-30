@@ -1,6 +1,7 @@
 import { Card, Typography } from "@/app/utils/materialTailwind"
-import Paginador from "./Paginador"
+import Paginador from "../Paginador"
 import ListTorneoRow from "./ListTorneosRow"
+import ListInscripcionRow from "./ListInscripcionRow"
 
 const ListTorneos = ({tableHead, data, pagina, setPagina, division, urlBtn, placeholder}) => {
     return (
@@ -22,15 +23,24 @@ const ListTorneos = ({tableHead, data, pagina, setPagina, division, urlBtn, plac
                     </tr>
                 </thead>
                 <tbody className="max-w-full">
-                    {data.torneos.map(torneo => 
-                        <ListTorneoRow 
-                            torneo={torneo} 
-                            key={torneo._id} 
-                            urlBtn={`${urlBtn}/${torneo._id}`}
-                            placeholder={placeholder}/>)}
+                    {data.torneos && 
+                        data.torneos.map(torneo => 
+                            <ListTorneoRow 
+                                torneo={torneo} 
+                                key={torneo._id} 
+                                urlBtn={`${urlBtn}/${torneo._id}`}
+                                placeholder={placeholder}/>)
+                    }
+                    {data.inscripcionesPorAtleta && 
+                        data.inscripcionesPorAtleta.map(inscripcion => 
+                            <ListInscripcionRow 
+                                inscripcion={inscripcion} 
+                                key={inscripcion._id} 
+                                />)
+                    }
                 </tbody>
             </table>
-            {data.total > 0 && 
+            {(data.total > 0 && pagina) && 
                 <Paginador 
                 pagina={pagina} 
                 setPagina={setPagina} 

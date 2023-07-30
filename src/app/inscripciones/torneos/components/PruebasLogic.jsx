@@ -14,6 +14,7 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas,
                 id: uuidv4(),
                 prueba: '',
                 formato: '',
+                marca: null,
                 atleta: usuario._id
             }])
     }

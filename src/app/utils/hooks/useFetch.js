@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 
-const useFetch = (route) => {
+const useFetch = (route, token) => {
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -9,7 +9,11 @@ const useFetch = (route) => {
     useEffect(() => {
         async function fetchData(){
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/${route}`)
+                const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/${route}`, token && {
+                    headers: {
+                        'x-token': token
+                    }
+                })
                 const data = await response.json()
                 setData(data)
                 setLoading(false)
