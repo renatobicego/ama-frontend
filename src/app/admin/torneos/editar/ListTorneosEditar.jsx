@@ -1,5 +1,5 @@
 "use client"
-import ListTorneos from "@/app/components/ListTorneos"
+import ListTorneos from "@/app/components/listTorneosComponents/ListTorneos"
 import useFetch from "@/app/utils/hooks/useFetch"
 import { Spinner } from "@/app/utils/materialTailwind"
 import { useState } from "react"
