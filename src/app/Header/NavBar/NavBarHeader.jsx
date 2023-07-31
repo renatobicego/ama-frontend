@@ -33,13 +33,12 @@ const NavBarHeader = ({socialMedia, menuItems}) => {
                         {navBarItems.map((item, i ) => {
                             return(
                                 <li key={i}>
-                                    <Link 
+                                    <a
                                         href={item.href} 
-                                        prefetch={false}
                                         smooth="true" 
                                         className={` ${item.href === pathname && "border-b"} pb-1`}>
                                             {item.text}
-                                    </Link>
+                                    </a>
                                 </li>
                             )
                         })}
@@ -57,12 +56,12 @@ const NavBarHeader = ({socialMedia, menuItems}) => {
                             })}
                         </div>
                         <li className="parent-btn">
-                            <Link href={inscripcionesItem.href} prefetch={false}>
+                            <a href={inscripcionesItem.href}>
                                 <button 
                                     className='btn-secondary'>
                                         {inscripcionesItem.text}
                                 </button>
-                            </Link>
+                            </a>
                         </li>
                     </ul>
                 </nav>

@@ -1,4 +1,4 @@
-import { validateArrayElementosRepetidos, validateEmptyInput, validateFormatoMarca, validatePruebasInscriptoRepetidas } from "./formInputValidators"
+import { validateArrayElementosRepetidos, validateEmptyInput, validateFormatoMarca, validatePruebaInscripto, validatePruebasInscriptoRepetidas } from "./formInputValidators"
 
 const inscripcionValidate = (form, pruebasInscripto) => {
     let valid = true
@@ -27,6 +27,14 @@ const inscripcionValidate = (form, pruebasInscripto) => {
         valid = false
         errors.push({
             msg: 'Escriba correctamente el formato de marca de las pruebas',
+            path: 'pruebasInscripto'
+        }) 
+    }
+
+    if(!validatePruebaInscripto(pruebasInscripto)){
+        valid = false
+        errors.push({
+            msg: 'No deje el campo vacío de la prueba elegida. Si necesita, puede borrar la prueba tocando el ícono del basurero',
             path: 'pruebasInscripto'
         }) 
     }

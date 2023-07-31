@@ -3,7 +3,7 @@ import isError from "@/app/utils/formValidation/isErrorInput"
 import { Input, Typography } from "@/app/utils/materialTailwind"
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
 import { signIn } from "next-auth/react"
-import { usePathname, useRouter } from "next/navigation"
+import { useParams, usePathname, useRouter } from "next/navigation"
 import { useState } from "react"
 
 
@@ -39,8 +39,8 @@ const FormLogin = () => {
                     setFormErrors([serverErrors])
                 }
             }else{
-
-                return router.replace('/')
+                const callbackUrl = new URL(res.url).searchParams.get('callbackUrl')
+                return router.replace(callbackUrl)
             }
         
             

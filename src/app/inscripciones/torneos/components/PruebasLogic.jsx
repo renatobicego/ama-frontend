@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 
 const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas, usuario}) => {
-  
+    
     // Create prueba added
     const handleAdd = () => {
         setPruebasSelected([
@@ -14,8 +14,7 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas,
                 id: uuidv4(),
                 prueba: '',
                 formato: '',
-                marca: null,
-                atleta: usuario._id
+                atleta: usuario._id ? usuario._id : usuario.uid
             }])
     }
 

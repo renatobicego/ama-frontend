@@ -21,7 +21,7 @@ const socialMedia = [
 
 const menuItems = [
     {
-        href: '',
+        href: '/',
         text: 'Inicio',
     },    
     {

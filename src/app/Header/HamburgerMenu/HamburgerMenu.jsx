@@ -33,16 +33,15 @@ const HamburgerMenu = ({socialMedia, menuItems}) => {
                 <List className="ml-6">
                     {menuItems.map((item, i) => {
                         return (
-                            <Link 
+                            <a 
                                 href={item.href} 
                                 key={i} 
                                 className="text-white font-title"
-                                prefetch={false}
                                 onClick={closeDrawer}>
                                 <ListItem className="md:text-2xl">
                                     {item.text}
                                 </ListItem>
-                            </Link>
+                            </a>
                         )
                     })}
                     <div className="flex gap-6 items-center ml-[10px] mt-3">

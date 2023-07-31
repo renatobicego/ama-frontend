@@ -45,17 +45,16 @@ const PanelItem = ({item, handleOpen, open}) => {
 
     }else {
         return (
-            <ListItem className="p-3">
-                <Link href={item.href} className="flex">
-                
-                    <ListItemPrefix>
-                        {item.header.icon}
-                    </ListItemPrefix>
-                    <Typography className="mr-auto font-normal font-title text-text">
-                        {item.header.title}
-                    </Typography>
-                  </Link>
-           </ListItem>
+            <Link href={item.href}>
+                <ListItem className="p-3 flex">
+                        <ListItemPrefix>
+                            {item.header.icon}
+                        </ListItemPrefix>
+                        <Typography className="mr-auto font-normal font-title text-text">
+                            {item.header.title}
+                        </Typography>
+            </ListItem>
+            </Link>
         )
     }
 }

@@ -13,7 +13,7 @@ const ListInscripcionRow = ({inscripcion}) => {
             <td className="p-4 ">
                 <Typography 
                     as="a" 
-                    href={`/`} 
+                    href={`/inscripciones/torneos/editar/${inscripcion._id}`} 
                     variant="small" 
                     color="blue" 
                     className="font-medium hidden md:block">

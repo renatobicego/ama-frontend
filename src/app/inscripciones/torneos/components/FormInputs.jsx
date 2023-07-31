@@ -11,6 +11,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
 
     useEffect(() => {
         if(torneoData.pruebasDisponibles){
+            
             setTorneoData({
                 ...torneoData,
                 pruebasDisponibles: torneoData.pruebasDisponibles.filter( p => {
@@ -81,21 +82,18 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                     labelProps={{
                         id: 'nombre_apellido'
                     }}
-                    value={usuario.nombre_apellido}
+                    defaultValue={usuario.nombre_apellido}
                     disabled
                     />
 
                 <Select 
                     aria-labelledby="sexo"
-                    defaultValue={usuario.sexo} 
                     value={usuario.sexo} 
                     color="gray" 
                     label="Sexo*"
                     labelProps={{id: 'sexo'}}
                     disabled
                     >
-                    <Option value="M">M</Option>
-                    <Option value="F">F</Option>
                 </Select>
 
             </div>
@@ -123,20 +121,15 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
             <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-6">
                 <Select 
                     aria-labelledby="club"
-                    defaultValue={usuario.club._id}
                     value={usuario.club.nombre}
                     disabled
                     color="gray" 
                     label="Club*"
                     labelProps={{id: 'club'}}
                     >
-                    <Option value={usuario.club._id}>
-                        {usuario.club.nombre}
-                    </Option>
                 </Select>
 
                 <Select 
-                    defaultValue={usuario.federacion}
                     value={usuario.federacion.nombre} 
                     color="gray" 
                     label="Federación*"
@@ -144,9 +137,6 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                     aria-labelledby="federacion"
                     disabled
                     >
-                    <Option value={usuario.federacion._id}>
-                        {usuario.federacion.nombre}
-                    </Option>
                 </Select>
 
             </div>
@@ -154,7 +144,6 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
             <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-6">
 
                 <Select 
-                    defaultValue={usuario.asociacion._id} 
                     value={usuario.asociacion.nombre} 
                     color="gray" 
                     label="Asociación*"
@@ -162,10 +151,6 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                     aria-labelledby="asociacion"
                     disabled
                     >
-                    <Option value={usuario.asociacion._id}>
-                        {usuario.asociacion.nombre}
-                    </Option>
-
                 </Select>
 
                 <Input 

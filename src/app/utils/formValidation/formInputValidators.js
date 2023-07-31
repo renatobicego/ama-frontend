@@ -103,7 +103,7 @@ const validatePruebasInscriptoRepetidas = (arr) => {
 const validateFormatoMarca = (pruebasInscripto) => {
     let statusFormato = true
     pruebasInscripto.forEach(prueba => {
-        if(prueba.marca){
+        if(prueba.marca ){
             const marca = prueba.marca
             const formato = prueba.formato
             if(marca.length !== formato.length){
@@ -119,6 +119,17 @@ const validateFormatoMarca = (pruebasInscripto) => {
     return statusFormato
 }
 
+const validatePruebaInscripto = (pruebasInscripto) => {
+    let statusPruebas = true
+    pruebasInscripto.forEach(prueba => {
+        
+        if(!prueba.prueba || prueba.prueba.length < 5 ){
+            statusPruebas = false
+        }
+    })
+    return statusPruebas
+}
+
 export {
     validateEmptyInput, 
     validateNombreApellido,
@@ -127,5 +138,6 @@ export {
     validateFile,
     validateArrayElementosRepetidos,
     validateFormatoMarca,
-    validatePruebasInscriptoRepetidas
+    validatePruebasInscriptoRepetidas,
+    validatePruebaInscripto
 }

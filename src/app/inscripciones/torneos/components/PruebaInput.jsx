@@ -1,21 +1,9 @@
 import { Input, Option, Select, Typography } from "@/app/utils/materialTailwind"
+import { setFormatoMarca } from "@/app/utils/utils"
 import { InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline"
 
 
 const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
-    
-    const setFormato = (prueba) => {
-        switch (prueba.tipo) {
-            case 'L':
-                return '00.00'
-            case 'F':
-                return '99.99.99'
-            case 'P':
-                return '99.99'
-            case 'S':
-                return '00.00'
-        }
-    }
 
     const handleSelect = (value) => {
         const pruebaSelected = pruebas.find(p => p._id === value)
@@ -25,7 +13,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
                 return {
                     ...p,
                     prueba: value,
-                    formato: setFormato(pruebaSelected)
+                    formato: setFormatoMarca(pruebaSelected)
                 }
             }else{
                 return p

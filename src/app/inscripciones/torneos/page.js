@@ -22,14 +22,18 @@ export default function InscripcionesTorneos(){
     const [formErrors, setFormErrors] = useState([])
 
     useEffect(() => {
-        if(session.user){
-            setData({...data, atleta: session.user.usuario.uid})
+        if (session) {
+            setData((prevData) => ({ ...prevData, atleta: session.user.usuario.uid }));
         }
+    }, [session])
+      
+    useEffect(() => {
         setData((prevData) => ({
             ...prevData,
-            categoria: '',
+            categoria: ''
         }))
-    }, [session, data.torneo])
+        setFormErrors([])
+    }, [data.torneo])
 
     const handleSubmit = async() => {
         try {
