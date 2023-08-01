@@ -23,17 +23,14 @@ const listItems = [
     open: 1,
     body: [
       {
-        icon: <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />,
         item: 'Inscripciones',
         href: '/admin/torneos/inscripciones'
       },
       {
-        icon: <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />,
         item: 'Gestionar Torneos',
         href: '/admin/torneos/editar'
       },
       {
-        icon: <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />,
         item: 'Crear Torneo',
         href: '/admin/torneos/crear'
       },
@@ -47,12 +44,10 @@ const listItems = [
     open: 2,
     body: [
       {
-        icon: <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />,
         item: 'Escribir Noticia',
         href: ''
       },
       {
-        icon: <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />,
         item: 'Editar Noticia',
         href: ''
 
@@ -66,7 +61,14 @@ const listItems = [
     },
     open: 3,
     body: [
-      
+      {
+        item: 'Crear Club',
+        href: ''
+      },
+      {
+        item: 'Editar Club',
+        href: ''
+      },
     ]
   },
   {
@@ -76,7 +78,14 @@ const listItems = [
     },
     open: 4,
     body: [
-      
+      {
+        item: 'Publicar Campeón',
+        href: '/admin/campeones/publicar'
+      },
+      {
+        item: 'Editar Campeón',
+        href: '/admin/campeones'
+      },
     ]
   },
 ]

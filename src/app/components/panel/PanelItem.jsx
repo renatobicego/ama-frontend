@@ -6,12 +6,9 @@ import {
     ListItemPrefix, 
     Typography 
 } from "@/app/utils/materialTailwind"
-
-import { 
-    ChevronDownIcon
-} from "@heroicons/react/24/outline"
 import PanelBodyItem from "./PanelBodyItem"
 import Link from "next/link"
+import { ChevronDownIcon } from "@heroicons/react/24/outline"
 
 const PanelItem = ({item, handleOpen, open}) => {
     if(item.body){
@@ -53,7 +50,7 @@ const PanelItem = ({item, handleOpen, open}) => {
                         <Typography className="mr-auto font-normal font-title text-text">
                             {item.header.title}
                         </Typography>
-            </ListItem>
+                </ListItem>
             </Link>
         )
     }

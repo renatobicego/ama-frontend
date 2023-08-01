@@ -11,18 +11,18 @@ const CampeonCard = ({campeon}) => {
             >
                 <Image 
                     width={700} height={700} 
-                    src={campeon.imgHref} 
-                    alt={`Foto de ${campeon.name}`} 
+                    src={campeon.img} 
+                    alt={`Foto de ${campeon.nombreApellido}`} 
                     className="h-44 md:h-52 lg:h-64 object-cover"
                 />
             </CardHeader>
             <CardBody>
                 <Typography variant="h5" className="mb-2 text-title font-title">
-                    {campeon.name}
+                    {campeon.nombreApellido}
                 </Typography>
                 <Typography className="text-title font-title">
-                    {campeon.pruebas.map((prueba, i) => {
-                        return prueba + ' / '
+                    {campeon.pruebasCampeon.map((prueba, i) => {
+                        return prueba.nombre + ' / '
                     })}
                 </Typography>
             </CardBody>

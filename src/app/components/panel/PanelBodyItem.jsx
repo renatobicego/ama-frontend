@@ -3,6 +3,7 @@ import {
     ListItem, 
     ListItemPrefix, 
 } from "@/app/utils/materialTailwind"
+import { ChevronRightIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 
 const PanelBodyItem = ({bodyItem}) => {
@@ -11,7 +12,7 @@ const PanelBodyItem = ({bodyItem}) => {
             <Link href={bodyItem.href}>
                 <ListItem>
                     <ListItemPrefix>
-                        {bodyItem.icon}
+                        <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                     </ListItemPrefix>
                     {bodyItem.item}
                 </ListItem>

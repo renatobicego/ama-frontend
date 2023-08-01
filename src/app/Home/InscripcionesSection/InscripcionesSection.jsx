@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 const inscripcionesNav = [
     {
@@ -27,7 +26,7 @@ const InscripcionesSection = () => {
                     {inscripcionesNav.map((navItem, i) => {
                         return(
                             <li className="w-full sm:w-1/2 lg:w-full" key={i}>
-                                <Link className="flex justify-between items-center gap-4" href={navItem.href}>
+                                <a className="flex justify-between items-center gap-4" href={navItem.href}>
                                     {/* Icon left */}
                                     <Image 
                                         width={200} 
@@ -47,7 +46,7 @@ const InscripcionesSection = () => {
                                             src='/icons/arrowRight.svg' 
                                             alt="Icono para ir a sección de inscripciones" />
                                     </button>
-                                </Link>
+                                </a>
                             </li>
                         )
                     })}

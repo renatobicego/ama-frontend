@@ -3,40 +3,13 @@ import { sliceIntoChunks} from "@/app/utils/utils"
 import { Carousel, Typography} from "@/app/utils/materialTailwind"
 import ContainerCards from "./ContainerCards"
 import useWindowSize from "@/app/utils/hooks/useWindowSize"
-import { useEffect, useState } from "react"
-import axios from "axios"
+import useFetch from "@/app/utils/hooks/useFetch"
 
-const mockedCampeones = [
-    {
-        name: 'Renzo Cremaschi',
-        imgHref: '/imgs/renzo.jpg',
-        pruebas: ['110 C/V', '200m']
-    },
-    {
-        name: 'Renata Zanata',
-        imgHref: '/imgs/renata.jpeg',
-        pruebas: ['5000m Marcha']
-    },
-    {
-        name: 'Ignacio Erario',
-        imgHref: '/imgs/erario.jpeg',
-        pruebas: ['5000m', '10000m']
-    },
-    {
-        name: 'Alma Marcha',
-        imgHref: '/imgs/almaMarcha.jpeg',
-        pruebas: ['5000m Marcha']
-    },
-]
 
 const Campeones = () => {
 
     const windowSize = useWindowSize()
-    const [campeones, setCampeones] = useState([])
-
-    useEffect(() => {
-        // const res = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/campeones`)
-    }, [])
+    const {data} = useFetch('campeones')
 
     // Check for how many cards to render in div
     const isMobile = windowSize.width < 768 
@@ -70,7 +43,8 @@ const Campeones = () => {
                 >
                     {/* Render 1 card if mobile, 2 if tablet and 3 if desktop */}
                     {
-                        sliceIntoChunks(mockedCampeones, 
+                        data &&
+                        sliceIntoChunks(data.campeones, 
                             isMobile ? 1 : (isDesktop ? 3 : 2))
                             .map((chunk, i) => <ContainerCards campeones={chunk} key={i}/>)
                     }

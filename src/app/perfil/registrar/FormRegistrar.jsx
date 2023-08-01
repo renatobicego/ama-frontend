@@ -4,13 +4,14 @@ import FormLogicRegistrar from "./FormLogicRegistrar";
 import axios, { AxiosError } from "axios";
 import { Typography } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import LoadingError from "@/app/components/LoadingError";
+import FormErrorMsg from "@/app/components/form/FormErrorMsg";
 
 //TODO
 // ERROR DNI EXISTE
 // MANEJAR MEJOR LAS PROPS
-// PRUEBAS FAVORITAS 
 // MEJORAR ERRORES INPUT Y MSG
 
 const FormRegistrar = () => {
@@ -21,20 +22,18 @@ const FormRegistrar = () => {
         dni: '',
         fecha_nacimiento: '',
         password:'',
-        club: '',
         telefono: '',
         role: 'USER_ROLE',
-        email: '',
-        asociacion: '',
-        federacion: '',
-        pruebasFavoritas: [{
-            prueba: "64a42d0c0d4546fc086227b2",
-            marca: "100s"
-        }]
+        email: ''
     })
 
     const [formErrors, setFormErrors] = useState([])
     const router = useRouter()
+
+    const {data : session, status} = useSession()
+
+    if(status === 'loading') return <LoadingError loading={true}/>
+    if(status === 'authenticated') return router.replace('/perfil')
     
     const handleChange = (property, value) => {
         setData({...data, [property]: value})
@@ -49,7 +48,7 @@ const FormRegistrar = () => {
                 password: data.password,
                 redirect: false
             })
-            if(res.ok) return router.replace('/')
+            if(res.ok) return router.replace('/perfil')
             
 
         } catch (error) {
@@ -73,23 +72,7 @@ const FormRegistrar = () => {
                 formErrors={formErrors}
                 setFormErrors={setFormErrors}
                 />
-            <div>
-
-                {formErrors.length > 0 && 
-
-                    formErrors.map((error, i) => 
-                        <Typography  
-                            variant="small" 
-                            color="gray" 
-                            className="flex items-center gap-1 font-normal mt-2"
-                            key={i}
-                            >
-                            <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                            {error.msg}
-                        </Typography>
-                        
-                    )}
-            </div>
+            <FormErrorMsg formErrors={formErrors} />
         </>
             
     )

@@ -4,6 +4,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline"
 import registerValidate from "@/app/utils/formValidation/registerValidation";
 import { useRegistroList } from "@/app/utils/hooks/useRegistroList";
 import isError from "@/app/utils/formValidation/isErrorInput";
+import LoadingError from "@/app/components/LoadingError";
 
 
 
@@ -20,12 +21,8 @@ const FormLogicRegistrar = ({
     const { entityData, loading, error } = useRegistroList(['club', 'federaciones', 'asociaciones'])
     const { club, federaciones, asociaciones } = entityData
 
-    if (loading) {
-        return <div className="mt-6"><Spinner color="amber" /></div>;
-    }
-    if (error) {
-        return <h3 className="text-text font-text">Error al cargar el formulario</h3>
-    }
+    if (loading || error) return <LoadingError loading={loading} error={error} />
+
 
     const validateSubmit = (e) => {
         e.preventDefault()

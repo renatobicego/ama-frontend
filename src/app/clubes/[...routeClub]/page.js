@@ -1,53 +1,46 @@
 "use client"
 import Image from "next/image";
-import {Button} from '@/app/utils/materialTailwind'
-import { ArrowLeftIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
-
-const club = {
-    name: 'ALMA',
-    place: 'Maipú',
-    contacts: [
-        {
-            name: 'Manuel Aidar',
-            phoneNumber: 2612486182
-        },
-        
-    ],
-    instagramHref: 'https://www.instagram.com/atletismo_alma_maipu/',
-    facebookHref: 'https://www.facebook.com/profile.php?id=100071862310697&mibextid=ZbWKwL',
-    twitterHref: ''
-}
+import VolverButton from "@/app/components/button/VolverButton";
+import useFetch from "@/app/utils/hooks/useFetch";
+import LoadingError from "@/app/components/LoadingError";
 
 export default function Club(){
     // For coming back button
-    const router = useRouter()
+    const {routeClub} = useParams()
+    const {data, loading, error} = useFetch(`club/${routeClub}`)
+    
+    if(loading || error) return (
+        <main className="pt-[17vh] lg:pt-44 2xl:pt-52 pb-20 size-section ">
+            <section className="size-section xl:mt-6">
+                <LoadingError error={error} loading={loading}/>
+            </section>
+        </main>
+    )
+
     return(
         <main className="pt-[17vh] lg:pt-44 2xl:pt-52 pb-20 size-section ">
-            {/* Come back button */}
-            <Button 
-                variant="text" 
-                onClick={() => router.back()}
-                size="sm"
-                color="red"
-                className="w-32 pl-2 flex justify-start items-center gap-3 text-title"
-                >
-                <ArrowLeftIcon strokeWidth={2} className="w-5"/>
-                Volver
-            </Button>
+            <VolverButton />
 
-            <section className="w-4/5 2xl:w-3/4 mx-auto flex flex-wrap lg:flex-nowrap items-center mt-6 bg-hamburguer-menu-bg rounded-2xl">
-                <Image src={"/clubes/alma.jpg"} width={300} height={300} />
+            <section className="w-full 2xl:w-3/4 mx-auto flex flex-wrap lg:flex-nowrap items-center mt-6 bg-hamburguer-menu-bg rounded-2xl py-6">
+                <div className="w-full md:w-auto">
+                    <Image 
+                        src={data.club.logoImg} 
+                        className="object-contain max-h-60 w-full"
+                        width={300} 
+                        height={300} 
+                        alt={`Logo ${data.club.nombre}`}/>
+                </div>
                 <div className="flex flex-col items-start justify-around ml-4 md:ml-10 xl:ml-16 my-6 lg:my-auto">
-                    <h4 className="text-white font-title text-left mb-1">{club.place}</h4>
-                    <h2 className="text-white title-section text-left mb-3">{club.name}</h2>
+                    <h4 className="text-white font-title text-left mb-1">{data.club.ciudad}</h4>
+                    <h2 className="text-white title-section text-left mb-3">{data.club.nombre}</h2>
                     <h4 className="text-white subtitle-news text-left mb-2">Contacto</h4>
                     <nav>
                         <ul className="text-white font-title text-left ">
-                            {club.contacts.map((contact, i) => 
+                            {data.club.entrenadores.map((entrenador, i) => 
                                 <li key={i}>
-                                    {contact.name}: {contact.phoneNumber}
+                                    {entrenador.nombre_apellido}: {entrenador.telefono}
                                 </li>
                             )}
                         </ul>
@@ -57,24 +50,24 @@ export default function Club(){
                             {/* Render social media link if it's defined in database 
                             (in case it doesn't have a social media account) */}
                             {
-                                club.instagramHref && 
-                                <Link href={club.instagramHref}>
+                                data.club.instagram && 
+                                <Link href={data.club.instagram}>
                                     <li>
                                         <Image width={25} height={25} src={'/icons/Instagram.png'}/> 
                                     </li>
                                 </Link>
                             }
                             {
-                                club.facebookHref && 
-                                <Link href={club.facebookHref}>
+                                data.club.facebook && 
+                                <Link href={data.club.facebook}>
                                     <li>
                                         <Image width={25} height={25} src={'/icons/Facebook.png'}/> 
                                     </li>
                                 </Link>
                             }
                             {
-                                club.twitterHref && 
-                                <Link href={club.twitterHref}>
+                                data.club.twitter && 
+                                <Link href={data.club.twitter}>
                                     <li>
                                         <Image width={25} height={25} src={'/icons/Twitter.png'}/> 
                                     </li>

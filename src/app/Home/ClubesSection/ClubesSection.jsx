@@ -1,31 +1,10 @@
-
+"use client"
 import Link from "next/link"
 import ClubCard from "./ClubCard"
-
-const mockedClubes = [
-    {
-        name: "Universidad Nacional de Cuyo",
-        imgHref: "/clubes/uncuyo.jpg",
-        href: "/clubes/nombre_club/id"
-    },
-    {
-        name: "CAVEM",
-        imgHref: "/clubes/CAVEM.jpg",
-        href: "/clubes/nombre_club/id"
-    },
-    {
-        name: "ALMA",
-        imgHref: "/clubes/alma.jpg",
-        href: "/clubes/nombre_club/id"
-    },
-    {
-        name: "Murialdo",
-        imgHref: "/clubes/murialdo.jpg",
-        href: "/clubes/nombre_club/id"
-    },
-]
+import useFetch from "@/app/utils/hooks/useFetch"
 
 const ClubesSection = () => {
+    const {data} = useFetch('club')
     return(
         <section className="bg-gradient-to-t from-primary2 via-30% xl:via-50% via-primary2 to-30% xl:to-50% w-full">
             <div 
@@ -34,9 +13,11 @@ const ClubesSection = () => {
                     Clubes de Mendoza
                 </h3>
 
-                <div className="md:w-4/5 lg:w-full py-10 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
-                    {mockedClubes.map((club, i) => <ClubCard club={club} key={i}/>)}
-                </div>
+                {data &&
+                    <div className="md:w-4/5 lg:w-full py-10 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+                        {data.clubes.map((club, i) => <ClubCard club={club} key={i}/>)}
+                    </div>
+                }
 
                 <Link href={"/clubes"}>
                     <button className="btn-secondary">Conocer Más</button>
