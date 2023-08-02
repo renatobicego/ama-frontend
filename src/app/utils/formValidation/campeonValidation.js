@@ -1,6 +1,6 @@
 import { validateEmptyInput, validateFile } from "./formInputValidators"
 
-const campeonValidate = (form, img) => {
+const campeonValidate = (form, img, creando) => {
     let valid = true
     let errors = []
 
@@ -25,7 +25,7 @@ const campeonValidate = (form, img) => {
             }) 
         }
 
-    }else{
+    }else if (creando){
         valid = false
             errors.push({
                 msg: 'Imagen obligatoria',

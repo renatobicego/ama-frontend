@@ -4,7 +4,7 @@ import PruebasCampeonList from "./PruebasCampeonList"
 import { Input } from "@/app/utils/materialTailwind"
 import campeonValidate from "@/app/utils/formValidation/campeonValidation"
 
-const PublicarCampeonFormInputs = ({data, setImg, img, formErrors, setData, setFormErrors, handleSubmit}) => {
+const PublicarCampeonFormInputs = ({data, setImg, img, formErrors, setData, setFormErrors, handleSubmit, creando}) => {
 
     const handleChange = (property, value) => {
         setData({...data, [property]: value})
@@ -16,7 +16,7 @@ const PublicarCampeonFormInputs = ({data, setImg, img, formErrors, setData, setF
 
     const validateData = (e) => {
         e.preventDefault()
-        const {valid, errors} = campeonValidate(data, img)
+        const {valid, errors} = campeonValidate(data, img, creando)
         
         if(valid){
             handleSubmit()
@@ -33,12 +33,11 @@ const PublicarCampeonFormInputs = ({data, setImg, img, formErrors, setData, setF
                         tabIndex={1}
                         color="gray" 
                         label="Nombre y Apellido*" 
-                        aria-labelledby="nombreApellido"
-                        labelProps={{id: 'nombreApellido'}}
-                        error={isError('nombreApellido', formErrors)}
-                        
-                        value={data.nombreApellido}
-                        onChange={(e => handleChange('nombreApellido', e.target.value))}
+                        aria-labelledby="nombre_apellido"
+                        labelProps={{id: 'nombre_apellido'}}
+                        error={isError('nombre_apellido', formErrors)}
+                        value={data.nombre_apellido}
+                        onChange={(e => handleChange('nombre_apellido', e.target.value))}
                         />
                     <Input 
                         tabIndex={2}
