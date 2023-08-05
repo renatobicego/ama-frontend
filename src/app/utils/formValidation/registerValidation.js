@@ -32,14 +32,16 @@ const registerValidate = (form, passwordRepeat) => {
         }) 
     }
 
-    const passwordValidation = validatePassword(form['password'], passwordRepeat)
-
-    if(!passwordValidation.statusPassword){
-        valid = false
-        errors.push({
-            msg: passwordValidation.errorPasswordMsg,
-            path: 'password'
-        }) 
+    if(passwordRepeat){
+        const passwordValidation = validatePassword(form['password'], passwordRepeat)
+    
+        if(!passwordValidation.statusPassword){
+            valid = false
+            errors.push({
+                msg: passwordValidation.errorPasswordMsg,
+                path: 'password'
+            }) 
+        }
     }
 
     return {valid, errors}

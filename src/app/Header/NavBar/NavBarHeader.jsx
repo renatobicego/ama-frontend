@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 "use client"
 import useScrollDirection from "@/app/utils/hooks/useScrollDirection"
+import { useSession } from "next-auth/react"
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
 
@@ -8,6 +9,7 @@ import { usePathname } from 'next/navigation'
 const NavBarHeader = ({socialMedia, menuItems}) => {
     // Scroll down/up animation of navbar
     const scrollDirection = useScrollDirection()
+    const {data: session} = useSession()
 
     // In case pathname is '/', set to '' to be equall to Inicio href 
     let pathname = usePathname()

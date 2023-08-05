@@ -52,7 +52,7 @@ const PublicarCampeonFormInputs = ({data, setImg, img, formErrors, setData, setF
                         />
             </div>
             <PruebasCampeonList data={data} setData={setData}/>
-            <button type="submit" className="btn-primary">Publicar Campeón</button>
+            <button type="submit" className="btn-primary">{creando ? 'Publicar Campeón': 'Editar Campeón'} </button>
         </form>
     )
 }

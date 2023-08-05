@@ -3,65 +3,74 @@
 import FormErrorMsg from "@/app/components/form/FormErrorMsg"
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
-import PublicarCampeonFormInputs from "./PublicarCampeonFormInputs"
+import PublicarClubFormInputs from "./PublicarClubFormInputs"
 import { subirArchivoFirebase } from "@/app/utils/files/archivosFirebase"
 import axios, { AxiosError } from "axios"
 import { useParams, useRouter } from "next/navigation"
 import VolverButton from "@/app/components/button/VolverButton"
 import comprimirArchivos from "@/app/utils/files/comprimirArchivos"
+import LoadingError from "@/app/components/LoadingError"
 
-const PublicarCampeon = () => {
-    const {data: session} = useSession()
+const PublicarClub = () => {
+    const {data: session, status} = useSession()
     const params = useParams()
+
     const [formErrors, setFormErrors] = useState([])
     const [data, setData] = useState({
-        nombre_apellido: '',
-        pruebasCampeon: [],
+        nombre: '',
+        siglas: '',
+        ciudad: '',
+        instagram: '',
+        twitter: '',
+        facebook: ''
     })
 
     const router = useRouter()
 
-    const [img, setImg] = useState(null)
+    const [logoImg, setLogoImg] = useState(null)
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const {data: dataCampeon}= await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/campeones/${params.modoForm.split('/')[1]}`)
-                setData({
-                    id: dataCampeon.campeon._id,
-                    nombre_apellido: dataCampeon.campeon.nombre_apellido,
-                    pruebasCampeon: [
-                        ...dataCampeon.campeon.pruebasCampeon.map(prueba => prueba._id), 
-                        ...data.pruebasCampeon
-                    ]
-                })
-            } catch (error) {
-                console.log(error)
-                setFormErrors([{msg: 'Error al cargar el formulario'}])
-            }
-        }
+    if(status === 'loading') return <LoadingError loading={true} />
+
+    if(session.user.usuario.role === 'USER_ROLE') return router.replace('/clubes')
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const {data: dataCampeon}= await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/campeones/${params.modoForm.split('/')[1]}`)
+    //             setData({
+    //                 id: dataCampeon.campeon._id,
+    //                 nombre_apellido: dataCampeon.campeon.nombre_apellido,
+    //                 pruebasCampeon: [
+    //                     ...dataCampeon.campeon.pruebasCampeon.map(prueba => prueba._id), 
+    //                     ...data.pruebasCampeon
+    //                 ]
+    //             })
+    //         } catch (error) {
+    //             console.log(error)
+    //             setFormErrors([{msg: 'Error al cargar el formulario'}])
+    //         }
+    //     }
     
-        if (params.modoForm.split('/')[0] === 'editar') {
-            fetchData()
-        }
-    }, [params.modoForm])
+    //     if (params.modoForm.split('/')[0] === 'editar') {
+    //         fetchData()
+    //     }
+    // }, [params.modoForm])
 
     const handleSubmit = async() => {
         try {
             let res
             if(params.modoForm === 'publicar'){
-
-                data.img = await subirArchivoFirebase(await comprimirArchivos(img, 'jpeg'), 'images/campeones/')
-                res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/campeones`, data, {
+                data.logoImg = await subirArchivoFirebase(await comprimirArchivos(logoImg, 'png'), 'images/clubes/')
+                res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/clubes`, data, {
                     headers: {
                         'x-token': session.user.token
                       },
                })
             }else if (params.modoForm.split('/')[0] === 'editar'){
                 if(img){
-                    data.img = await subirArchivoFirebase(await comprimirArchivos(img, 'jpeg'), 'images/campeones/')
+                    data.logoImg = await subirArchivoFirebase(await comprimirArchivos(logoImg, 'png'), 'images/clubes/')
                 }
-                res = await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/campeones/${data.id}`, data, {
+                res = await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/clubes/${data.id}`, data, {
                     headers: {
                         'x-token': session.user.token
                       },
@@ -70,7 +79,8 @@ const PublicarCampeon = () => {
                 throw new Error('Error. Por favor, visite este sitio de nuevo y no cambie la url')
             }
 
-            if(res.status === 200) return router.push('/admin/campeones')
+            // if(res.status === 200) return router.push('/admin/campeones')
+            if(res.status === 200) return router.push('/admin')
 
         } catch (error) {
             
@@ -94,14 +104,14 @@ const PublicarCampeon = () => {
             <section className="size-section flex flex-col items-start gap-4 md:gap-8 xl:mt-6">
                 <VolverButton />
                 <h2 className="text-title title-section text-left">
-                    {params.modoForm.split('/')[0] === 'editar' ? 'Editar Campeón Nacional': 'Publicar Campeón Nacional'}
+                    {params.modoForm.split('/')[0] === 'editar' ? 'Editar Club': 'Publicar Club'}
                 </h2>
-                <PublicarCampeonFormInputs 
+                <PublicarClubFormInputs 
                     data={data}
                     formErrors={formErrors}
-                    img={img}
+                    logoImg={logoImg}
                     setData={setData}
-                    setImg={setImg}
+                    setLogoImg={setLogoImg}
                     setFormErrors={setFormErrors}
                     handleSubmit={handleSubmit}
                     creando={params.modoForm === 'publicar'}
@@ -112,4 +122,4 @@ const PublicarCampeon = () => {
     )
 }
 
-export default PublicarCampeon
+export default PublicarClub

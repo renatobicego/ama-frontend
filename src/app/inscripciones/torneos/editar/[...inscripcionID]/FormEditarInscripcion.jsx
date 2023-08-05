@@ -44,11 +44,11 @@ const FormEditarInscripcion = ({formErrors, usuario, setFormErrors, inscripcionD
                 const requests = pruebasSelected.map(async (prueba) => {
                     if(inscripcionData.inscripcion.pruebasInscripto.some(p => p._id === prueba.id)){
                         const {data} = await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/pruebas_atleta/${prueba.id}`, prueba)
-                        console.log('Actualizada', data)
+                        
                         return data.pruebaAtleta._id
                     }
                     const {data} = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/pruebas_atleta`, prueba)
-                    console.log('Creada', data)
+                    
                     return data.pruebaAtleta._id
                 })
                 const pruebasInscripto = await Promise.all(requests)

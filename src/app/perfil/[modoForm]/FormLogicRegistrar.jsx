@@ -13,7 +13,8 @@ const FormLogicRegistrar = ({
     handleChange, 
     handleSubmit, 
     setFormErrors,
-    formErrors
+    formErrors,
+    mode
 }) => {
 
     const [passwordRepeat, setPasswordRepeat] = useState('')
@@ -26,11 +27,12 @@ const FormLogicRegistrar = ({
 
     const validateSubmit = (e) => {
         e.preventDefault()
-        const {valid, errors} = registerValidate(data, passwordRepeat)
+        const {valid, errors} = registerValidate(data, mode === 'create' && passwordRepeat)
         
         if(valid){
             handleSubmit()
         }else{
+            console.log(errors)
             setFormErrors(errors)
         }
     }
@@ -51,38 +53,48 @@ const FormLogicRegistrar = ({
                     onChange={(e => handleChange('nombre_apellido', e.target.value))}
                     />
 
-                <Select 
-                    tabIndex={2}
-                    onChange={(value) => handleChange('club', value)} 
-                    defaultValue={data.club} 
-                    color="gray"
-                    error={isError('club', formErrors)}
-                    aria-labelledby="club"
-                    labelProps={{id: 'club'}}
-                    label="Club*">
+                <div className="w-full">
+                    <Select 
+                        tabIndex={2}
+                        onChange={(value) => handleChange('club', value)} 
+                        value={data.club} 
+                        color="gray"
+                        error={isError('club', formErrors)}
+                        aria-labelledby="club"
+                        labelProps={{id: 'club'}}
+                        label="Club*">
 
-                    {club.clubes.map((club, i) => 
-                        <Option key={i} value={club._id}>
-                            {club.nombre}
-                        </Option>
-                        )}
+                        {club.clubes.map((club, i) => 
+                            <Option key={i} value={club._id}>
+                                {club.nombre}
+                            </Option>
+                            )}
 
-                </Select>
-                
-
+                    </Select>
+                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                        Si no tiene club y es atleta libre, no seleccione nada
+                    </Typography>
+                </div>
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
-
+                <div className="w-full">
                 <Input
                     tabIndex={3}
                     color="gray" 
                     label="DNI*"
+                    pattern="^[0-9]*$"
                     error={isError('dni', formErrors)}
                     value={data.dni} 
                     aria-labelledby="dni"
                     labelProps={{id: 'dni'}}
                     onChange={(e) => handleChange('dni', e.target.value)} 
                     />
+                <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    Solo números, no agregar puntos.
+                </Typography>
+                </div>
 
                 <Input
                     tabIndex={4}
@@ -112,7 +124,7 @@ const FormLogicRegistrar = ({
                 <Select 
                     tabIndex={6}
                     onChange={(value) => handleChange('sexo', value)} 
-                    defaultValue={data.sexo} 
+                    value={data.sexo} 
                     color="gray"
                     error={isError('sexo', formErrors)}
                     aria-labelledby="sexo"
@@ -121,7 +133,7 @@ const FormLogicRegistrar = ({
                         <Option key={1} value={'M'}>
                             Masculino
                         </Option>
-                        <Option key={1} value={'M'}>
+                        <Option key={1} value={'F'}>
                             Femenino
                         </Option>
 
@@ -158,7 +170,7 @@ const FormLogicRegistrar = ({
                 <Select 
                     tabIndex={9}
                     onChange={(value) => handleChange('federacion', value)} 
-                    defaultValue={data.federacion} 
+                    value={data.federacion} 
                     aria-labelledby="federacion"
                     labelProps={{id: 'federacion'}}
                     color="gray"
@@ -176,7 +188,7 @@ const FormLogicRegistrar = ({
                 <Select 
                     tabIndex={10}
                     onChange={(value) => handleChange('asociacion', value)} 
-                    defaultValue={data.asociacion} 
+                    value={data.asociacion} 
                     aria-labelledby="asociacion"
                     labelProps={{id: 'asociacion'}}
                     color="gray"
@@ -192,6 +204,8 @@ const FormLogicRegistrar = ({
                 </Select>
                 
             </div>
+
+        {mode === 'create' && 
 
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
 
@@ -226,7 +240,10 @@ const FormLogicRegistrar = ({
                     onChange={(e) => setPasswordRepeat(e.target.value)}
                     />
             </div>
-            <button type="submit" className="btn-primary">Crear Usuario</button>
+        }
+            <button type="submit" className="btn-primary">
+                {mode === 'create' ? 'Crear Usuario' : 'Editar Perfil'}
+            </button>
             
         </form>
     )

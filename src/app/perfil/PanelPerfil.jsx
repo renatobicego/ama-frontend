@@ -12,7 +12,6 @@ import {
   } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import PanelItem from "../components/panel/PanelItem";
-import FormEditPerfil from "./panelComponents/FormEditPerfil";
 import { useSession } from "next-auth/react";
 import InscripcionesList from "./panelComponents/InscripcionesList";
 
@@ -31,7 +30,7 @@ const listItems = [
       icon: <UserCircleIcon className="h-5 w-5" />
     },
     open: 2,
-    body: []
+    href: '/perfil/editar'
   },
   {
     header: {
@@ -68,7 +67,6 @@ const PanelPerfil = () => {
                 )}
             </List>
           </Card>
-          {open === 2 && <FormEditPerfil />}
           {(open === 1 ) && <InscripcionesList user={session.user}/>}
       </>
     )

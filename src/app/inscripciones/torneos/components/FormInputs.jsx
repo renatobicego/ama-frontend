@@ -121,7 +121,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
             <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-6">
                 <Select 
                     aria-labelledby="club"
-                    value={usuario.club.nombre}
+                    value={usuario.club ? usuario.club.nombre : 'Club No Elegido'}
                     disabled
                     color="gray" 
                     label="Club*"

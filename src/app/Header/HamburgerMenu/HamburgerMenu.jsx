@@ -4,12 +4,14 @@ import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import { Drawer, IconButton, List, ListItem } from '@/app/utils/materialTailwind';
 import { useState } from "react";
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 
 const HamburgerMenu = ({socialMedia, menuItems}) => {
-    const [open, setOpen] = useState(false);
-    const openDrawer = () => setOpen(true);
-    const closeDrawer = () => setOpen(false);
+    const [open, setOpen] = useState(false)
+    const {data: session} = useSession()
+    const openDrawer = () => setOpen(true)
+    const closeDrawer = () => setOpen(false)
 
     return (
         <>
@@ -44,6 +46,18 @@ const HamburgerMenu = ({socialMedia, menuItems}) => {
                             </a>
                         )
                     })}
+                    {(session && session.user.usuario.role !== 'USER_ROLE')
+                            &&
+                            <a 
+                                href="/admin" 
+                                className="text-white font-title"
+                                onClick={closeDrawer}
+                                >
+                                <ListItem className="md:text-2xl">
+                                    Admin
+                                </ListItem>
+                            </a>
+                        }
                     <div className="flex gap-6 items-center ml-[10px] mt-3">
                         {socialMedia.map((item, i) => {
                             return(

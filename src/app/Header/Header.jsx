@@ -5,14 +5,14 @@ import './Header.css'
 import NavBarHeader from './NavBar/NavBarHeader'
 
 const socialMedia = [
-    {
-        href: '',
-        logo: '/icons/Facebook.png'
-    },
-    {
-        href: '',
-        logo: '/icons/Twitter.png'
-    },
+    // {
+    //     href: '',
+    //     logo: '/icons/Facebook.png'
+    // },
+    // {
+    //     href: '',
+    //     logo: '/icons/Twitter.png'
+    // },
     {
         href: 'https://www.instagram.com/asociacionmendocinadeatletismo/',
         logo: '/icons/Instagram.png'

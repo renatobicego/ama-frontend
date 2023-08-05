@@ -2,8 +2,12 @@
 
 import { Input, Option, Select, Typography } from "@/app/utils/materialTailwind";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import inscripcionValidate from "../../utils/formValidation/registerValidation";
+import { useSession } from "next-auth/react";
+import LoadingError from "@/app/components/LoadingError";
+import isError from "@/app/utils/formValidation/isErrorInput";
+import FormErrorMsg from "@/app/components/form/FormErrorMsg";
 
 const clubes = [
     {
@@ -19,18 +23,11 @@ const clubes = [
 
 const FormEditPerfil = () => {
 
-    const [data, setData] = useState({
-        nombre_apellido: '',
-        dni: '',
-        fecha_nacimiento: '',
-        club: '',
-        telefono: '',
-        email: '',
-        idpago: 'IDPAGO'
-    })
-    const [errorInput, setErrorInput] = useState('')
-    const [errorMsg, setErrorMsg] = useState('')
-    
+    const [data, setData] = useState({})
+    const [formErrors, setFormErrors] = useState([])
+    const {data : session, status} = useSession()
+    console.log(session)
+
     
     const handleChange = (property, value) => {
         setData({...data, [property]: value})
@@ -48,6 +45,8 @@ const FormEditPerfil = () => {
         }
     }
 
+    if(status === 'loading') return <LoadingError loading={true} />
+
     return(
         <form className="w-full lg:w-2/3 mt-10 flex flex-col items-start gap-6" onSubmit={handleSubmit}>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
@@ -55,7 +54,7 @@ const FormEditPerfil = () => {
                     tabIndex={1}
                     color="gray" 
                     label="Nombre y Apellido*" 
-                    error={errorInput === 'nombre_apellido' ? true : false}
+                    error={isError('nombre_apellido', formErrors)}
                     
                     value={data.nombre_apellido}
                     onChange={(e => handleChange('nombre_apellido', e.target.value))}
@@ -66,7 +65,7 @@ const FormEditPerfil = () => {
                     onChange={(value) => handleChange('club', value)} 
                     defaultValue={data.club} 
                     color="gray"
-                    error={errorInput === 'club' ? true : false}
+                    error={isError('club', formErrors)}
                     label="Club*">
 
                     {clubes.map((club, i) => 
@@ -85,7 +84,7 @@ const FormEditPerfil = () => {
                     tabIndex={3}
                     color="gray" 
                     label="DNI*"
-                    error={errorInput === 'dni' ? true : false}
+                    error={isError('dni', formErrors)}
                     value={data.dni} 
                     onChange={(e) => handleChange('dni', e.target.value)} 
                     />
@@ -95,7 +94,7 @@ const FormEditPerfil = () => {
                     type="date"
                     color="gray" 
                     label="Fecha de Nacimiento*" 
-                    error={errorInput === 'fecha_nacimiento' ? true : false}
+                    error={isError('fecha_nacimiento', formErrors)}
                     value={data.fecha_nacimiento} 
                     onChange={(e) => handleChange('fecha_nacimiento', e.target.value)}
                     />
@@ -108,7 +107,7 @@ const FormEditPerfil = () => {
                     color="gray" 
                     label="Teléfono*"
                     type="tel"
-                    error={errorInput === 'telefono' ? true : false}
+                    error={isError('telefono', formErrors)}
                     value={data.telefono} 
                     onChange={(e) => handleChange('telefono', e.target.value)} 
                     />
@@ -118,7 +117,7 @@ const FormEditPerfil = () => {
                     type="email"
                     color="gray" 
                     label="Email*" 
-                    error={errorInput === 'email' ? true : false}
+                    error={isError('email', formErrors)}
                     value={data.email} 
                     onChange={(e) => handleChange('email', e.target.value)}
                     />
@@ -127,12 +126,7 @@ const FormEditPerfil = () => {
             <div>
                 <button type="submit" className="btn-primary">Editar Perfil</button>
 
-                {errorMsg && 
-                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                        {errorMsg}
-                    </Typography>
-                }
+                <FormErrorMsg formErrors={formErrors}/>
             </div>
         </form>
     )

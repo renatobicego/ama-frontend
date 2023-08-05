@@ -1,16 +1,13 @@
-import sharp from "sharp"
+import Compressor from "compressorjs"
 
-const comprimirArchivos = async(file, formato) => {
-    await sharp(file.data)
-        .toFormat(formato, {quality: 75})
-        .toBuffer()
-        .then(data => { 
-            file.data = data
-        }).catch(e => {
-            throw new Error(e)
-        }) 
 
-    return file
+const comprimirArchivos = async(file) => {
+    new Compressor(file, {
+        quality: 0.7,
+        success(result) {
+            return result
+        }
+    })
 }
 
 export default comprimirArchivos

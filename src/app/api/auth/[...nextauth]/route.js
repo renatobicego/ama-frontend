@@ -34,7 +34,10 @@ const authOptions = {
         async signIn({user}){
             return user
         },
-        async jwt({token, user}){
+        async jwt({token, trigger, session, user}){
+            if (trigger === "update" && session.usuario) {
+                token.usuario = session.usuario
+            }
             return {...token, ...user}
         },
         async session({session, token}){
