@@ -1,3 +1,4 @@
+"use client"
 import { useRouter } from "next/navigation"
 import { Button } from "@/app/utils/materialTailwind"
 import { ArrowLeftIcon } from "@heroicons/react/24/outline"

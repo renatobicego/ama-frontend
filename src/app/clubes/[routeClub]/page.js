@@ -10,7 +10,7 @@ import { Button, Card, CardBody, CardFooter, CardHeader, Typography } from "@/ap
 export default function Club(){
     // For coming back button
     const {routeClub} = useParams()
-    console.log(routeClub)
+    
     const {data, loading, error} = useFetch(`club/${routeClub}`)
     
     if(loading || error) return (
@@ -38,21 +38,26 @@ export default function Club(){
                         alt={`Logo ${data.club.nombre}`}/>
                     </CardHeader>
                     <CardBody>
-                        <Typography variant="h6" className="mb-4 text-white font-title text-left ">
-                            {data.club.ciudad}
-                        </Typography>
                         <Typography variant="h3" className="mb-3 text-white title-section text-left">
                             {data.club.nombre}
                         </Typography>
-                        <nav>
-                            <ul className="text-white font-title text-left ">
-                                {data.club.entrenadores && data.club.entrenadores.map((entrenador, i) => 
-                                    <li key={i}>
-                                        {entrenador.nombre_apellido}: {entrenador.telefono}
-                                    </li>
-                                )}
-                            </ul>
-                        </nav>
+                        <Typography variant="h6" className="mb-4 text-white font-title text-left ">
+                            {data.club.ciudad}
+                        </Typography>
+                        {data.club.entrenadores.length > 0 && 
+                            <nav>
+                                <Typography variant="h5" className="mb-3 text-white title-section text-left">
+                                    Contacto
+                                </Typography>
+                                <ul className="text-white font-title text-left ">
+                                    {data.club.entrenadores && data.club.entrenadores.map((entrenador, i) => 
+                                        <li key={i}>
+                                            {entrenador.nombre_apellido}: {entrenador.telefono}
+                                        </li>
+                                    )}
+                                </ul>
+                            </nav>
+                        }
                     </CardBody>
                     <CardFooter>
                         <nav className="mt-3">
@@ -61,7 +66,7 @@ export default function Club(){
                                 (in case it doesn't have a social media account) */}
                                 {
                                     data.club.instagram && 
-                                    <Link href={data.club.instagram}>
+                                    <Link href={data.club.instagram} target="_blank">
                                         <li>
                                             <Image width={25} height={25} src={'/icons/Instagram.png'}/> 
                                         </li>
@@ -69,7 +74,7 @@ export default function Club(){
                                 }
                                 {
                                     data.club.facebook && 
-                                    <Link href={data.club.facebook}>
+                                    <Link href={data.club.facebook} target="_blank">
                                         <li>
                                             <Image width={25} height={25} src={'/icons/Facebook.png'}/> 
                                         </li>
@@ -77,7 +82,7 @@ export default function Club(){
                                 }
                                 {
                                     data.club.twitter && 
-                                    <Link href={data.club.twitter}>
+                                    <Link href={data.club.twitter} target="_blank">
                                         <li>
                                             <Image width={25} height={25} src={'/icons/Twitter.png'}/> 
                                         </li>

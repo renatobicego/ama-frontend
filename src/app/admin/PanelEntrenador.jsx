@@ -5,60 +5,61 @@ import {
     List, 
     Typography } from "@/app/utils/materialTailwind";
 import {  
-    PresentationChartBarIcon,  
-    UsersIcon
+  PencilSquareIcon,
+    UserGroupIcon
   } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PanelItem from "../components/panel/PanelItem";
 
 const listItems = [
   {
     header: {
-      title: 'Inscripciones de Atletas',
-      icon: <PresentationChartBarIcon className="h-5 w-5" />
+      title: 'Mis Atletas',
+      icon: <UserGroupIcon className="h-5 w-5" />
     },
     open: 1,
     body: [
       {
-        item: 'Inscribir Atleta',
-        href: '/admin/entrenadores/inscribirAtleta'
+        item: 'Inscribir Atletas',
+        href: '/admin/atletas'
       },
       {
         item: 'Gestionar Inscripciones del Club',
-        href: '/admin/torneos/editar'
+        href: '/admin/atletas/inscripciones'
       }
     ]
   },
   {
     header: {
       title: 'Editar Información de Club',
-      icon: <UsersIcon className="h-5 w-5" />
+      icon: <PencilSquareIcon className="h-5 w-5" />
     },
+    href: '/admin/clubes/editar',
     open: 2,
   }
 ]
 
 const PanelEntrenador = () => {
-    const [open, setOpen] = useState(0)
- 
-    const handleOpen = (value) => {
-        setOpen(open === value ? 0 : value);
-    }
+  const [open, setOpen] = useState(0)
 
-    return (
-        <Card className=" w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
-          <div className="mb-2 p-4">
-            <Typography variant="h5" className="text-title font-title">
-              Panel de Entrenador
-            </Typography>
-          </div>
-          <List>
-            {listItems.map((item, i) => 
-              <PanelItem key={i} item={item} open={open} handleOpen={handleOpen} />
-            )}
-          </List>
-        </Card>
-      );
+  const handleOpen = (value) => {
+      setOpen(open === value ? 0 : value);
+  }
+
+  return (
+      <Card className=" w-full max-w-[24rem] p-4 shadow-xl shadow-blue-gray-900/5">
+        <div className="mb-2 p-4">
+          <Typography variant="h5" className="text-title font-title">
+            Panel de Entrenador
+          </Typography>
+        </div>
+        <List>
+          {listItems.map((item, i) => 
+            <PanelItem key={i} item={item} open={open} handleOpen={handleOpen} />
+          )}
+        </List> 
+      </Card>
+    );
 }
 
 export default PanelEntrenador

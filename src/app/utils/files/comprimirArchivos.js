@@ -1,12 +1,18 @@
 import Compressor from "compressorjs"
 
 
-const comprimirArchivos = async(file) => {
-    new Compressor(file, {
-        quality: 0.7,
+const comprimirArchivos = (file) => {
+
+    return new Promise((resolve, reject) => {
+        new Compressor(file, {
+        quality: 0.8,
         success(result) {
-            return result
-        }
+            resolve(result);
+        },
+        error(err) {
+            resolve(file);
+        },
+        })
     })
 }
 

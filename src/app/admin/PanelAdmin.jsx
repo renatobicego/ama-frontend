@@ -63,11 +63,11 @@ const listItems = [
     body: [
       {
         item: 'Crear Club',
-        href: ''
+        href: '/admin/clubes/publicar'
       },
       {
         item: 'Editar Club',
-        href: ''
+        href: '/admin/clubes'
       },
     ]
   },
@@ -98,7 +98,7 @@ const PanelAdmin = () => {
     }
 
     return (
-        <Card className=" w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+        <Card className=" w-full max-w-[24rem] p-4 shadow-xl shadow-blue-gray-900/5">
           <div className="mb-2 p-4">
             <Typography variant="h5" className="text-title font-title">
               Panel de Administrador

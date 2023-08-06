@@ -12,7 +12,7 @@ export default function Registrar(){
     const router = useRouter()
 
     const {data : session, status, update} = useSession()
-    console.log(session)
+    
     let mode = 'create'
     if (modoForm === 'editar') {
       mode = 'edit'

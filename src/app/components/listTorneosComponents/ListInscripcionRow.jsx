@@ -21,7 +21,7 @@ const ListInscripcionRow = ({inscripcion}) => {
                 </Typography>
                 <Typography 
                     as="a" 
-                    href={`/`} 
+                    href={`/inscripciones/torneos/editar/${inscripcion._id}`} 
                     variant="small" 
                     color="blue" 
                     className="font-medium block md:hidden ml-auto">
