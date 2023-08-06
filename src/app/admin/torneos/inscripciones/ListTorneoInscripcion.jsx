@@ -1,3 +1,4 @@
+"use client
 import useFetch from "@/app/utils/hooks/useFetch"
 import { Spinner} from "@/app/utils/materialTailwind"
 import { useState } from "react"
