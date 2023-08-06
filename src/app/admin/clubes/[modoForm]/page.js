@@ -29,9 +29,17 @@ const PublicarClub = () => {
 
     const [logoImg, setLogoImg] = useState(null)
 
-    if(status === 'loading') return <LoadingError loading={true} />
+    if(status === 'loading') {
+        return (
+            <main className="pt-[17vh] lg:pt-44 2xl:pt-52 pb-20">
+                <section className="size-section flex flex-col items-start gap-4 md:gap-8 xl:mt-6">
+                    <LoadingError loading={true} />
+                </section>
+            </main>
+        )
+    }
 
-    if(session.user.usuario.role === 'USER_ROLE') return router.replace('/clubes')
+    if(status === 'authenticated' && session.user.usuario.role === 'USER_ROLE') router.replace('/clubes')
 
     // useEffect(() => {
     //     const fetchData = async () => {

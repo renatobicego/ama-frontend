@@ -1,5 +1,6 @@
 import isError from "@/app/utils/formValidation/isErrorInput"
-import { Input } from "@/app/utils/materialTailwind"
+import { Input, Typography } from "@/app/utils/materialTailwind"
+import { InformationCircleIcon } from "@heroicons/react/24/outline"
 
 const PublicarClubFormInputs = ({data, setLogoImg, logoImg, formErrors, setData, setFormErrors, handleSubmit, creando}) => {
 
@@ -47,10 +48,6 @@ const PublicarClubFormInputs = ({data, setLogoImg, logoImg, formErrors, setData,
                         onChange={handleLogoImgChange}
                         />
             </div>
-            <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    No es obligatorio agregar link a los perfiles de las redes sociales. 
-            </Typography>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
                     <Input 
                         tabIndex={3}
@@ -95,6 +92,10 @@ const PublicarClubFormInputs = ({data, setLogoImg, logoImg, formErrors, setData,
                         onChange={(e => handleChange('facebook', e.target.value))}
                         />
             </div>
+            <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    No es obligatorio agregar link a los perfiles de las redes sociales. 
+            </Typography>
             <button type="submit" className="btn-primary">{creando ? 'Publicar Club': 'Editar Club'} </button>
         </form>
     )
