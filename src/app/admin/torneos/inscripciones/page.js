@@ -1,5 +1,4 @@
 import VolverButton from "@/app/components/button/VolverButton";
-import GetInscripciones from "./GetInscripciones";
 import ListTorneosInscripcion from "./ListTorneoInscripcion";
 
 export default function InscripcionesTorneo(){
