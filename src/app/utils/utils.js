@@ -28,4 +28,5 @@ const setFormatoMarca = (prueba) => {
   }
 }
 
+
 export {monthsAbbreviated, months, setFormatoMarca}

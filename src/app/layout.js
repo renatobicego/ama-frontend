@@ -23,7 +23,12 @@ const krub = Krub({
 
 export const metadata = {
   title: 'AMA',
-  description: 'Aplicación web de la asociación mendocina de altetismo',
+  description: 'Aplicación web de la Asociación Mendocina de Altetismo',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
 }
 
 

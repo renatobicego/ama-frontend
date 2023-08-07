@@ -7,7 +7,7 @@ const registerValidate = (form, passwordRepeat) => {
 
     for(let path in form){
         // If some input is wrong, push error
-        if(!validateEmptyInput(form[path])){
+        if(!validateEmptyInput(form[path]) && path !== 'club'){
             valid = false
             errors.push({
                 msg: 'El campo no puede estar vacío',

@@ -13,7 +13,7 @@ const ListAtletaRow = ({atleta, urlBtn, placeholder}) => {
             <td className="p-4 ">
                 <Typography 
                     as="a" 
-                    href={`${urlBtn}/${atleta._id}`} 
+                    href={`${urlBtn}`} 
                     variant="small" 
                     color="blue" 
                     className="font-medium hidden md:block">
@@ -21,7 +21,7 @@ const ListAtletaRow = ({atleta, urlBtn, placeholder}) => {
                 </Typography>
                 <Typography 
                     as="a" 
-                    href={`${urlBtn}/${atleta._id}`} 
+                    href={`${urlBtn}`} 
                     variant="small" 
                     color="blue" 
                     className="font-medium block md:hidden ml-auto">

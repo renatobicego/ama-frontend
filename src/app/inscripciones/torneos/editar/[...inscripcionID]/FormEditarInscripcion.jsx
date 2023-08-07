@@ -1,10 +1,11 @@
 import useFetch from "@/app/utils/hooks/useFetch";
 import { Select, Spinner } from "@/app/utils/materialTailwind";
 import { useEffect, useState } from "react";
-import PruebasLogic from "../../components/PruebasLogic";
 import { setFormatoMarca } from "@/app/utils/utils";
 import inscripcionValidate from "@/app/utils/formValidation/inscripcionValidation";
 import axios, { AxiosError } from "axios";
+import PruebasLogic from "../../[[...idUsuario]]/components/PruebasLogic";
+import LoadingError from "@/app/components/LoadingError";
 
 
 const FormEditarInscripcion = ({formErrors, usuario, setFormErrors, inscripcionData, handleSubmit, setData}) => {
@@ -83,12 +84,7 @@ const FormEditarInscripcion = ({formErrors, usuario, setFormErrors, inscripcionD
     }
 
 
-    if (loading ) {
-        return <div className="mt-6"><Spinner color="amber" /></div>;
-    }
-    if (error ) {
-        return <h3 className="text-text font-text">Error al cargar el formulario</h3>
-    }
+    if (loading || error) return <LoadingError loading={loading} error={error} />
 
 
     return (

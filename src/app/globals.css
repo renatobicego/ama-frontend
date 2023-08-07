@@ -12,6 +12,7 @@ body{
   width: 100%;
 }
 
+
 @layer components {
   .size-section{
     @apply mx-auto w-4/5 lg:w-[70%] 2xl:w-3/5;

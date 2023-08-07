@@ -27,8 +27,15 @@ const EditarInscripcion = () => {
                     'x-token': session.user.token 
                 }
             })
-            if(res.status === 200) return router.replace('/perfil')
+            if(res.status === 200) {
+                if(session.user.usuario.uid !== inscripcionData.inscripcion.atleta._id){
+                    router.replace('/admin/atletas/inscripciones')
+                }else{
+                    router.replace('/perfil')
+                }
+            }
         } catch (error) {
+            console.log(error)
             if(error instanceof AxiosError){
                 const axiosErrors = error.response.data
                 if(axiosErrors.errors){

@@ -4,27 +4,32 @@ import { useEffect, useState } from "react";
 import PruebasLogic from "./PruebasLogic";
 import Link from "next/link";
 
+function encontrarPruebasAtletaComunes(pruebasAtleta, pruebasDisponibles) {
+    const objetosComunes = pruebasAtleta.filter((obj1) => pruebasDisponibles.some((obj2) => obj2._id === obj1.prueba._id));
+    return objetosComunes;
+}
+
 
 const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected, setPruebasSelected, usuario}) => {
     const [torneoData, setTorneoData] = useState({})
     const {torneos} = entityData['torneo/activos']
-
+      
     useEffect(() => {
-        if(torneoData.pruebasDisponibles){
-            
-            setTorneoData({
-                ...torneoData,
-                pruebasDisponibles: torneoData.pruebasDisponibles.filter( p => {
-                    if(!p.categorias) {
-                        return p
-                    }else if (p.categorias.some(c => c._id === data.categoria)) {
-                        return p
-                    }}
-                ) 
-            })
+ 
+        if (torneoData.pruebasDisponibles) {
+            setTorneoData((prevTorneoData) => ({
+            ...prevTorneoData,
+            pruebasParaElegir: prevTorneoData.pruebasDisponibles.filter((p) => {
+                if (!p.categorias) {
+                    return p
+                } else if (p.categorias.some((c) => c._id === data.categoria)) {
+                    return p
+                }
+            }),
+        }))
         }
+    
         setPruebasSelected([])
-
     }, [data.categoria])
 
     return(
@@ -68,7 +73,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                     </Select>
                 }
             </div>
-            {(data.categoria !== '' && data.torneo !== '') &&
+            {(data.categoria !== '' && data.torneo !== '' && torneoData.pruebasParaElegir) &&
             <> 
             <h3 className="text-text font-text">Para editar estos datos, edite su perfil en 
                 <Link href={'/perfil'} className="text-light-blue-800"> Mi Perfil</Link> 
@@ -165,7 +170,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
             <PruebasLogic 
                 // Filter for categoriasDisponibles. If prueba.categorias includes categoria
                 // selected, show prueba, else don't show 
-                pruebas={torneoData.pruebasDisponibles}
+                pruebas={torneoData.pruebasParaElegir}
                 pruebasSelected={pruebasSelected}
                 setPruebasSelected={setPruebasSelected}
                 formErrors={formErrors}

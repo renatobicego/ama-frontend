@@ -45,7 +45,7 @@ const listItems = [
     body: [
       {
         item: 'Escribir Noticia',
-        href: ''
+        href: '/admin/noticias/publicar'
       },
       {
         item: 'Editar Noticia',

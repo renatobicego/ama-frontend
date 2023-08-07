@@ -1,4 +1,4 @@
-import { validateArrayElementosRepetidos, validateEmptyInput, validateFormatoMarca, validatePruebaInscripto, validatePruebasInscriptoRepetidas } from "./formInputValidators"
+import { validateEmptyInput, validateFormatoMarca, validatePruebaInscripto, validatePruebasInscriptoRepetidas } from "./formInputValidators"
 
 const inscripcionValidate = (form, pruebasInscripto) => {
     let valid = true
@@ -13,6 +13,14 @@ const inscripcionValidate = (form, pruebasInscripto) => {
                 path
             }) 
         }
+    }
+
+    if(pruebasInscripto.length === 0){
+        valid = false
+        errors.push({
+            msg: 'Elija al menos una prueba para inscribirse',
+            path: 'pruebasInscripto'
+        }) 
     }
 
     if(!validatePruebasInscriptoRepetidas(pruebasInscripto)){

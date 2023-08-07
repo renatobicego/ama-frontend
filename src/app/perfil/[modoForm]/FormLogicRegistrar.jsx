@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Input, Option, Select, Spinner, Typography } from "@/app/utils/materialTailwind";
-import { InformationCircleIcon } from "@heroicons/react/24/outline"
+import { InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline"
 import registerValidate from "@/app/utils/formValidation/registerValidation";
 import { useRegistroList } from "@/app/utils/hooks/useRegistroList";
 import isError from "@/app/utils/formValidation/isErrorInput";
@@ -27,6 +27,7 @@ const FormLogicRegistrar = ({
 
     const validateSubmit = (e) => {
         e.preventDefault()
+        
         const {valid, errors} = registerValidate(data, mode === 'create' && passwordRepeat)
         
         if(valid){
@@ -36,7 +37,6 @@ const FormLogicRegistrar = ({
             setFormErrors(errors)
         }
     }
-
 
     return (
         <form className="w-full lg:w-2/3 mt-10 flex flex-col items-start gap-6" onSubmit={validateSubmit}>
@@ -53,7 +53,7 @@ const FormLogicRegistrar = ({
                     onChange={(e => handleChange('nombre_apellido', e.target.value))}
                     />
 
-                <div className="w-full">
+                <div className="w-full relative">
                     <Select 
                         tabIndex={2}
                         onChange={(value) => handleChange('club', value)} 
@@ -75,6 +75,14 @@ const FormLogicRegistrar = ({
                         <InformationCircleIcon className="w-4 h-4 -mt-px" />
                         Si no tiene club y es atleta libre, no seleccione nada
                     </Typography>
+                    <button 
+                        aria-label='delete club'
+                        type="button"
+                        className={`absolute -right-6 top-[42%] md:-right-10 md:top-2 rounded cursor-pointer`}
+                        onClick={() => handleChange('club', '')}
+                    >
+                        <TrashIcon strokeWidth={1} className="h-5 w-5 md:h-7 md:w-7 text-gray-700" />
+                    </button>
                 </div>
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">

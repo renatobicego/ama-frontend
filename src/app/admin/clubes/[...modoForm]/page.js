@@ -6,14 +6,14 @@ import { useEffect, useState } from "react"
 import PublicarClubFormInputs from "./PublicarClubFormInputs"
 import { subirArchivoFirebase } from "@/app/utils/files/archivosFirebase"
 import axios, { AxiosError } from "axios"
-import { useParams, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import VolverButton from "@/app/components/button/VolverButton"
 import comprimirArchivos from "@/app/utils/files/comprimirArchivos"
 import LoadingError from "@/app/components/LoadingError"
 
-const PublicarClub = () => {
+const PublicarClub = ({params}) => {
     const {data: session, status} = useSession()
-    const params = useParams()
+    const {modoForm} = params
     
     const [formErrors, setFormErrors] = useState([])
     const [data, setData] = useState({
@@ -43,7 +43,7 @@ const PublicarClub = () => {
                 if(session.user.usuario.role === 'ENTRENADOR_ROLE'){
                     res = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/club/id/${session.user.usuario.club}`)
                 }else{
-                    res = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/club/${params.modoForm.split('/')[1]}`)
+                    res = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/club/${modoForm[1]}`)
                 }
                 const {data: dataClub} = res
                 const newData = {
@@ -72,10 +72,10 @@ const PublicarClub = () => {
             }
         }
     
-        if (params.modoForm.split('/')[0] === 'editar') {
+        if (modoForm[0] === 'editar') {
             fetchData()
         }
-    }, [params.modoForm])
+    }, [modoForm])
     if(status === 'loading') {
         return (
             <main className="pt-[17vh] lg:pt-44 2xl:pt-52 pb-20">
@@ -89,14 +89,14 @@ const PublicarClub = () => {
     const handleSubmit = async() => {
         try {
             let res
-            if(params.modoForm === 'publicar'){
+            if(modoForm[0] === 'publicar'){
                 data.logoImg = await subirArchivoFirebase(await comprimirArchivos(logoImg), 'images/clubes/')
                 res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/club`, data, {
                     headers: {
                         'x-token': session.user.token
                       },
                })
-            }else if (params.modoForm.split('/')[0] === 'editar'){
+            }else if (modoForm[0] === 'editar'){
                 if(logoImg){
                     data.logoImg = await subirArchivoFirebase(await comprimirArchivos(logoImg, 'png'), 'images/clubes/')
                 }
@@ -140,7 +140,7 @@ const PublicarClub = () => {
             <section className="size-section flex flex-col items-start gap-4 md:gap-8 xl:mt-6">
                 <VolverButton />
                 <h2 className="text-title title-section text-left">
-                    {params.modoForm.split('/')[0] === 'editar' ? 'Editar Club': 'Publicar Club'}
+                    {modoForm[0] === 'editar' ? 'Editar Club': 'Publicar Club'}
                 </h2>
                 <PublicarClubFormInputs 
                     data={data}
@@ -150,7 +150,7 @@ const PublicarClub = () => {
                     setLogoImg={setLogoImg}
                     setFormErrors={setFormErrors}
                     handleSubmit={handleSubmit}
-                    creando={params.modoForm === 'publicar'}
+                    creando={modoForm[0] === 'publicar'}
                 />
                 <FormErrorMsg formErrors={formErrors} />
             </section>

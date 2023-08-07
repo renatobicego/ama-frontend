@@ -7,19 +7,18 @@ import FormErrorMsg from "@/app/components/form/FormErrorMsg";
 import FormInputs from "./FormInputs";
 import axios, { AxiosError } from "axios";
 import inscripcionValidate from "@/app/utils/formValidation/inscripcionValidation";
+import LoadingError from "@/app/components/LoadingError";
 
 
 // The prop error in each input is to make borders red in case that input returns error
 
-const FormLogicTorneo = ({data, setData, handleSubmit, usuario, formErrors, setFormErrors}) => {
-
+const FormLogicTorneo = ({data, setData, handleSubmit, formErrors, setFormErrors, entrenador}) => {
     // Which pruebas user added
     const [pruebasSelected, setPruebasSelected] = useState([])
     const [shouldSubmit, setShouldSubmit] = useState(false)
     //Get pruebas favoritas
-    const {entityData, loading, error} = useRegistroList(['torneo/activos', `usuarios/${usuario.uid}`, `pruebas_atleta/${usuario.uid}`]) 
-
-    console.log(entityData);
+    const {entityData, loading, error} = useRegistroList(['torneo/activos', `usuarios/${data.atleta}`]) 
+    
     useEffect(() => {
         if(shouldSubmit){
             handleSubmit()
@@ -27,12 +26,7 @@ const FormLogicTorneo = ({data, setData, handleSubmit, usuario, formErrors, setF
         setShouldSubmit(false)
     }, [shouldSubmit])
     
-    if (loading) {
-        return <div className="mt-6"><Spinner color="amber" /></div>;
-    }
-    if (error) {
-        return <h3 className="text-text font-text">Error al cargar el formulario</h3>
-    }
+    if (loading || error) return <LoadingError loading={loading} error={error}/>
 
     const handleChange = (property, value) => {
         setData({...data, [property]: value})
@@ -80,6 +74,7 @@ const FormLogicTorneo = ({data, setData, handleSubmit, usuario, formErrors, setF
         }
     }
 
+
     return(
         <form className="w-full lg:w-2/3 mt-10 flex flex-col items-start gap-6" onSubmit={saveDataOnSubmit}>
             <FormInputs 
@@ -89,11 +84,11 @@ const FormLogicTorneo = ({data, setData, handleSubmit, usuario, formErrors, setF
                 handleChange={handleChange}
                 pruebasSelected={pruebasSelected}
                 setPruebasSelected={setPruebasSelected} 
-                usuario={entityData[`usuarios/${usuario.uid}`].usuario}
+                usuario={entityData[`usuarios/${data.atleta}`].usuario}
                 />
 
             <div>
-                <button type="submit" className="btn-primary">Inscribirse</button>
+                <button type="submit" className="btn-primary">{entrenador ? 'Inscribir Atleta' : 'Inscribirse'}</button>
                 <FormErrorMsg formErrors={formErrors} />
             </div>
             

@@ -38,17 +38,23 @@ const PublicarClubFormInputs = ({data, setLogoImg, logoImg, formErrors, setData,
                     value={data.nombre}
                     onChange={(e => handleChange('nombre', e.target.value))}
                     />
-                <Input 
-                    tabIndex={2}
-                    color="gray" 
-                    label="Logo del Club*"
-                    accept=".png, .jpeg, .jpg"
-                    aria-labelledby="logoImg"
-                    labelProps={{id: 'logoImg'}}
-                    error={isError('logoImg', formErrors)}
-                    type="file"
-                    onChange={handleLogoImgChange}
-                    />
+                <div className="w-full">
+                    <Input 
+                        tabIndex={2}
+                        color="gray" 
+                        label="Logo del Club*"
+                        accept=".png, .jpeg, .jpg"
+                        aria-labelledby="logoImg"
+                        labelProps={{id: 'logoImg'}}
+                        error={isError('logoImg', formErrors)}
+                        type="file"
+                        onChange={handleLogoImgChange}
+                        />
+                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                        Agregar un logo solo si quiere cambiar el actual
+                    </Typography>
+                </div>
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
                 <Input 

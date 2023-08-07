@@ -2,7 +2,7 @@ import { Card, Typography } from "@/app/utils/materialTailwind"
 import ListAtletaRow from "./ListAtletaRow"
 
 
-const ListAtletas = ({atletas, urlBtn, placeholder, tableHead}) => {
+const ListAtletas = ({data, urlBtn, placeholder, tableHead, tipo}) => {
     return (
         <Card className="h-full w-full md:w-2/3">
             <table className="w-full table-auto text-left">
@@ -22,12 +22,20 @@ const ListAtletas = ({atletas, urlBtn, placeholder, tableHead}) => {
                     </tr>
                 </thead>
                 <tbody className="max-w-full">
-                    {
-                        atletas.map(atleta => 
+                    {tipo === 'misatletas' &&
+                        data.map(atleta => 
                             <ListAtletaRow
                                 atleta={atleta} 
                                 key={atleta._id} 
-                                urlBtn={`${urlBtn}`}
+                                urlBtn={`${urlBtn}/${atleta._id}`}
+                                placeholder={placeholder}/>)
+                    }
+                    {tipo === 'misatletasinscripciones' &&
+                        data.map(inscripcion => 
+                            <ListAtletaRow
+                                atleta={inscripcion.atleta} 
+                                key={inscripcion._id} 
+                                urlBtn={`${urlBtn}/${inscripcion._id}`}
                                 placeholder={placeholder}/>)
                     }
                 </tbody>

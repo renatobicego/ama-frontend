@@ -6,19 +6,19 @@ import { useEffect, useState } from "react"
 import PublicarCampeonFormInputs from "./PublicarCampeonFormInputs"
 import { subirArchivoFirebase } from "@/app/utils/files/archivosFirebase"
 import axios, { AxiosError } from "axios"
-import { useParams, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import VolverButton from "@/app/components/button/VolverButton"
 import comprimirArchivos from "@/app/utils/files/comprimirArchivos"
 
-const PublicarCampeon = () => {
+const PublicarCampeon = ({params}) => {
     const {data: session} = useSession()
-    const params = useParams()
+
     const [formErrors, setFormErrors] = useState([])
     const [data, setData] = useState({
         nombre_apellido: '',
         pruebasCampeon: [],
     })
-
+    const {modoForm} = params
     const router = useRouter()
 
     const [img, setImg] = useState(null)
@@ -26,7 +26,7 @@ const PublicarCampeon = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const {data: dataCampeon}= await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/campeones/${params.modoForm.split('/')[1]}`)
+                const {data: dataCampeon}= await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/campeones/${modoForm[1]}`)
                 setData({
                     id: dataCampeon.campeon._id,
                     nombre_apellido: dataCampeon.campeon.nombre_apellido,
@@ -41,15 +41,15 @@ const PublicarCampeon = () => {
             }
         }
     
-        if (params.modoForm.split('/')[0] === 'editar') {
+        if (modoForm[0] === 'editar') {
             fetchData()
         }
-    }, [params.modoForm])
+    }, [modoForm])
 
     const handleSubmit = async() => {
         try {
             let res
-            if(params.modoForm === 'publicar'){
+            if(modoForm[0] === 'publicar'){
 
                 data.img = await subirArchivoFirebase(await comprimirArchivos(img, 'jpeg'), 'images/campeones/')
                 res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/campeones`, data, {
@@ -57,7 +57,7 @@ const PublicarCampeon = () => {
                         'x-token': session.user.token
                       },
                })
-            }else if (params.modoForm.split('/')[0] === 'editar'){
+            }else if (modoForm[0] === 'editar'){
                 if(img){
                     data.img = await subirArchivoFirebase(await comprimirArchivos(img, 'jpeg'), 'images/campeones/')
                 }
@@ -94,7 +94,7 @@ const PublicarCampeon = () => {
             <section className="size-section flex flex-col items-start gap-4 md:gap-8 xl:mt-6">
                 <VolverButton />
                 <h2 className="text-title title-section text-left">
-                    {params.modoForm.split('/')[0] === 'editar' ? 'Editar Campeón Nacional': 'Publicar Campeón Nacional'}
+                    {modoForm[0] === 'editar' ? 'Editar Campeón Nacional': 'Publicar Campeón Nacional'}
                 </h2>
                 <PublicarCampeonFormInputs 
                     data={data}
@@ -104,7 +104,7 @@ const PublicarCampeon = () => {
                     setImg={setImg}
                     setFormErrors={setFormErrors}
                     handleSubmit={handleSubmit}
-                    creando={params.modoForm === 'publicar'}
+                    creando={modoForm[0] === 'publicar'}
                 />
                 <FormErrorMsg formErrors={formErrors} />
             </section>
