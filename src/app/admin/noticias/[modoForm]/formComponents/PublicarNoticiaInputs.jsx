@@ -1,12 +1,10 @@
 import LoadingError from "@/app/components/LoadingError"
 import isError from "@/app/utils/formValidation/isErrorInput"
 import useFetch from "@/app/utils/hooks/useFetch"
-import { Option, Select, Input, Textarea } from "@/app/utils/materialTailwind"
+import { Option, Select, Input, Textarea} from "@/MT"
 
-
-const PublicarNoticiaInputs = ({data, handleChange, handleImgPortadaChange, formErrors}) => {
+const PublicarNoticiaInputs = ({data, handleChange, formErrors}) => {
     const {data: categoriasNoticia, loading, error} = useFetch('noticia/categorias')
-
     if(loading || error) return <LoadingError loading={loading} error={error} />
     return (
         <>
@@ -32,18 +30,42 @@ const PublicarNoticiaInputs = ({data, handleChange, handleImgPortadaChange, form
                 <Input 
                     tabIndex={2}
                     color="gray" 
-                    label="Imagen Principal*"
-                    accept=".png, .jpeg, .jpg"
-                    aria-labelledby="imgPortada"
-                    labelProps={{id: 'imgPortada'}}
-                    error={isError('imgPortada', formErrors)}
-                    type="file"
-                    onChange={handleImgPortadaChange}
-                    />
+                    label="Fecha*"
+                    value={data.fecha}
+                    aria-labelledby="fecha"
+                    labelProps={{id: 'fecha'}}
+                    error={isError('fecha', formErrors)}
+                    type="date"
+                    onChange={(e) => handleChange('fecha', e.target.value)}
+                />
             </div> 
+            <Input 
+                tabIndex={3}
+                color="gray" 
+                label="Imagen Principal*"
+                accept=".png, .jpeg, .jpg"
+                aria-labelledby="imgPortada"
+                value={data.imgPortadaName}
+                labelProps={{id: 'imgPortada'}}
+                error={isError('imgPortada', formErrors)}
+                type="file"
+                onChange={(e) => {
+                    handleChange('imgPortada', e.target.files[0])
+                }}
+            />
+            <Input 
+                tabIndex={4}
+                color="gray" 
+                label="Epígrafe de la Imagen"
+                value={data.epigrafe}
+                aria-labelledby="epigrafe"
+                labelProps={{id: 'epigrafe'}}
+                error={isError('epigrafe', formErrors)}
+                onChange={(e) => handleChange('epigrafe', e.target.value)}
+                />
             <Textarea  
                 value={data.titulo}
-                tabIndex={3} 
+                tabIndex={5} 
                 onChange={(e) => handleChange('titulo', e.target.value)} 
                 color="gray" 
                 label="Titulo*"
@@ -52,7 +74,7 @@ const PublicarNoticiaInputs = ({data, handleChange, handleImgPortadaChange, form
                 error={isError('titulo', formErrors)}
                 />
             <Textarea 
-                tabIndex={4}
+                tabIndex={6}
                 value={data.subtitulo} 
                 onChange={(e) => handleChange('subtitulo', e.target.value)} 
                 color="gray" 

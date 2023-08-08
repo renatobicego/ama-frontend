@@ -11,7 +11,7 @@ const VolverButton = () => {
             onClick={() => router.back()}
             size="sm"
             color="red"
-            className="w-32 pl-2 mb-4 flex justify-start items-center gap-3 text-title"
+            className="w-32 pl-0 mb-4 flex justify-start items-center gap-3 text-title"
             >
             <ArrowLeftIcon strokeWidth={2} className="w-5"/>
             Volver

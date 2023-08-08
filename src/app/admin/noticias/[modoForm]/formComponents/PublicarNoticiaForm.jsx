@@ -3,53 +3,80 @@ import FormErrorMsg from "@/app/components/form/FormErrorMsg"
 import PublicarNoticiaLogic from "./PublicarNoticiaLogic"
 import { useState } from "react"
 import axios, { AxiosError } from "axios"
+import comprimirArchivos from "@/app/utils/files/comprimirArchivos"
+import { subirArchivoFirebase } from "@/app/utils/files/archivosFirebase"
+import { useRouter } from "next/navigation"
 
 
-const PublicarNoticiaForm = ({usuario, editando}) => {
+const PublicarNoticiaForm = ({user, editando}) => {
     const [formErrors, setFormErrors] = useState([])
+    const router = useRouter()
     const [data, setData] = useState({
         titulo: '',
-        subitutlo: '',
+        subtitulo: '',
         fecha: '',
         cuerpo: [],
-        autor: usuario.uid,
-        imgPortada: '',
+        autor: user.usuario.uid,
+        imgPortada: null,
+        epigrafe: '',
         categoria: ''
     })
 
     const handleSubmit = async() => {
+        try {
+            const url = await subirArchivoFirebase(await comprimirArchivos(data.imgPortada), 'images/noticias/')
+            const {data: imgPortadaDb} = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/imagen_noticia`, 
+                {
+                    url,
+                    epigrafe: data.epigrafe
+                }, 
+                {
+                    headers: {
+                        'x-token': user.token
+                    },
+                }
+            )
+            data.imgPortada = imgPortadaDb.imgPortada._id
 
-        // try {
-        //     if(programaHorario){
-        //         data.programaHorario = await subirArchivoFirebase(programaHorario, 'archivos/programaHorarioTorneos/')
-        //     }
-        //     const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/torneo`, data, {
-        //         headers: {
-        //             'x-token': session.user.token
-        //           },
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/noticia`, data, {
+                headers: {
+                    'x-token': user.token
+                  },
 
-        //     })
+            })
 
-        //     if(res.status === 200) return router.replace('/torneos')
+            if(res.status === 200) {
+                localStorage.removeItem('borradorNoticia')
+                localStorage.removeItem('borradorParrafos')
+                router.replace('/')
+            }
 
-        // } catch (error) {
-        //     if(error instanceof AxiosError){
-        //         const axiosErrors = error.response.data
-        //         if(axiosErrors.errors){
-        //             setFormErrors(axiosErrors.errors)
-        //         }else{
-        //             setFormErrors([axiosErrors])
-        //         }
-        //     }else{
-        //         setFormErrors([{
-        //             msg: error.message
-        //         }])
-        //     }
-        // }
+        } catch (error) {
+            console.log(error)
+            if(error instanceof AxiosError){
+                const axiosErrors = error.response.data
+                if(axiosErrors.errors){
+                    setFormErrors(axiosErrors.errors)
+                }else{
+                    setFormErrors([axiosErrors])
+                }
+            }else{
+                setFormErrors([{
+                    msg: error.message
+                }])
+            }
+        }
     }
     return (
         <>
-        <PublicarNoticiaLogic data={data} setData={setData} formErrors={formErrors} setFormErrors={setFormErrors}/>
+        <PublicarNoticiaLogic 
+            data={data} 
+            setData={setData} 
+            formErrors={formErrors} 
+            setFormErrors={setFormErrors} 
+            handleSubmit={handleSubmit}
+            user={user}
+            />
         <FormErrorMsg formErrors={formErrors} />
         
         </>

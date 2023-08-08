@@ -52,7 +52,7 @@ const EditarInscripcion = () => {
     } 
 
     const handleDelete = async() => {
-        const shouldDelete = window.confirm('¿Estás seguro de que quieres borrar el torneo?')
+        const shouldDelete = window.confirm('¿Está seguro de que quiere borrar el torneo?')
 
         if (!shouldDelete) {
             return
