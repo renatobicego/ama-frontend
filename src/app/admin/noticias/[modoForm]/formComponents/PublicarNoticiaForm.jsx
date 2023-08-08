@@ -1,7 +1,7 @@
 "use client"
 import FormErrorMsg from "@/app/components/form/FormErrorMsg"
 import PublicarNoticiaLogic from "./PublicarNoticiaLogic"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios, { AxiosError } from "axios"
 import comprimirArchivos from "@/app/utils/files/comprimirArchivos"
 import { subirArchivoFirebase } from "@/app/utils/files/archivosFirebase"
@@ -21,6 +21,17 @@ const PublicarNoticiaForm = ({user, editando}) => {
         epigrafe: '',
         categoria: ''
     })
+
+    useEffect(() =>  {
+        const fetchNoticiaData = async() => {
+            const {data} = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/noticia`)
+            console.log(data)
+        }
+
+        if(editando){
+            fetchNoticiaData()
+        }
+    }, [editando])
 
     const handleSubmit = async() => {
         try {

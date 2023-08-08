@@ -57,10 +57,8 @@ const PublicarNoticiaLogic = ({data, setData, formErrors, setFormErrors, handleS
                                 'x-token': user.token
                             },
                         })
-                        console.log(data)
                         parrafo.imagenes = data.imgPortada._id
                     }
-                    console.log(parrafo)
                     // Publicar párrafo
                     const {data} = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/parrafo_noticia`, parrafo, {
                         headers: {

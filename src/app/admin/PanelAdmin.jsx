@@ -49,7 +49,7 @@ const listItems = [
       },
       {
         item: 'Editar Noticia',
-        href: ''
+        href: '/admin/noticias'
 
       },
     ]
