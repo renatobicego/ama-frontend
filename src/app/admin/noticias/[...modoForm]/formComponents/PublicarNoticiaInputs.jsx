@@ -86,20 +86,5 @@ const PublicarNoticiaInputs = ({data, handleChange, formErrors}) => {
         </>
     )
 }
-/* <div className="w-full">
-    <Input 
-        defaultValue={''}
-        value={pruebaAgregada.marca} 
-        onChange={handleInputMarca} 
-        color="gray" 
-        label="Mejor Marca de Prueba*"
-        aria-labelledby="marca-prueba"
-        labelProps={{id: 'marca-prueba'}} 
-        />
-    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-        <InformationCircleIcon className="w-4 h-4 -mt-px" />
-        El formato de la marca debe ser {pruebaAgregada.formato}
-    </Typography>
-</div> */
 
 export default PublicarNoticiaInputs

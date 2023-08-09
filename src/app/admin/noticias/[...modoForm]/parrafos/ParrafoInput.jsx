@@ -1,5 +1,5 @@
-import { Button, Input, Textarea } from "@/MT"
-import { TrashIcon } from "@heroicons/react/24/outline"
+import { Button, Input, Textarea, Typography } from "@/MT"
+import { DocumentCheckIcon, TrashIcon } from "@heroicons/react/24/outline"
 
 
 const ParrafoInput = ({parrafoAgregado, deleteParrafo, handleInputChange}) => {
@@ -16,15 +16,25 @@ const ParrafoInput = ({parrafoAgregado, deleteParrafo, handleInputChange}) => {
                 labelProps={{id: 'titulo'}}
                 onChange={(e) => handleInputChange('titulo', e.target.value, parrafoAgregado.id)}
                 />
-            <Input 
-                tabIndex={2}
-                color="gray" 
-                label="Imagen que acompañe el párrafo (se mostrará al final del párrafo)*"
-                aria-labelledby="imagenes"
-                labelProps={{id: 'imagenes'}}
-                type="file"
-                onChange={(e) => handleInputChange('imagenes', e.target.files[0], parrafoAgregado.id)}
-                />
+            <div className="w-full">
+
+                <Input 
+                    tabIndex={2}
+                    color="gray" 
+                    label="Imagen que acompañe el párrafo (se mostrará al final del párrafo)*"
+                    aria-labelledby="imagenes"
+                    labelProps={{id: 'imagenes'}}
+                    type="file"
+                    onChange={(e) => handleInputChange('imagenes', e.target.files[0], parrafoAgregado.id)}
+                    />
+                {parrafoAgregado.imagenesId && 
+                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                        <DocumentCheckIcon className="w-4 h-4 -mt-px" />
+                         <a target="_blank" href={parrafoAgregado.imagenes} className="text-blue-800">Foto anterior subida en este link</a> 
+                    </Typography>
+                    
+                }
+            </div>
             {
                 parrafoAgregado.imagenes &&
                 <Input 
@@ -42,6 +52,7 @@ const ParrafoInput = ({parrafoAgregado, deleteParrafo, handleInputChange}) => {
                 tabIndex={4} 
                 onChange={(e) => handleInputChange('texto', e.target.value, parrafoAgregado.id)} 
                 color="gray" 
+                size="lg"
                 label="Texto*"
                 aria-labelledby="texto"
                 labelProps={{id: 'texto'}} 

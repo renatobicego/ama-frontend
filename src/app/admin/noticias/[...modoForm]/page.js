@@ -15,12 +15,24 @@ const PublicarNoticia = async({params}) => {
                     <div>
                         <VolverButton/>
                         <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-                            <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                            <InformationCircleIcon className="w-[10%] md:w-[5%] lg:w-[2.5%] xl:w-[2.25%] 2xl:w-[2%] -mt-px" />
                             Si vuelve, se guardará el borrador de la noticia en el dispositivo que este usando, excepto las imágenes
                         </Typography>
+                        {params.modoForm[0] === 'editar' &&
+                            <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                                <InformationCircleIcon className="w-[22%] md:w-[11%] lg:w-[5.5%] xl:w-[3.5%] 2xl:w-[2.5%] -mt-px" />
+                                Al editar, las imágenes aparecen como que no están subidas, pero si en la noticia aparecen, si lo están.
+                                Si quiere cambiar una imágen directamente suba un nuevo archivo donde corresponda.
+                            </Typography>
+                        }
                     </div>
-                    <h2 className="text-title title-section text-left">Escribir Noticia</h2>
-                    <PublicarNoticiaForm user={user} editando={params.modoForm[0] === 'editando'}/>
+                    <h2 className="text-title title-section text-left">
+                        {params.modoForm[0] === 'editar' ?
+                            'Editar Noticia' :
+                            'Escribir Noticia'
+                        }
+                    </h2>
+                    <PublicarNoticiaForm user={user} editando={params.modoForm[1]}/>
                 </section>
             </main>
         )

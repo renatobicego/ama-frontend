@@ -26,7 +26,7 @@ const PublicarClubFormInputs = ({data, setLogoImg, logoImg, formErrors, setData,
     }
 
     return (
-        <form className="w-full lg:w-2/3 mt-10 flex flex-col items-start gap-6" onSubmit={validateData}>
+        <form className="w-full lg:w-2/3 mt-3 flex flex-col items-start gap-6" onSubmit={validateData}>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
                 <Input 
                     tabIndex={1}

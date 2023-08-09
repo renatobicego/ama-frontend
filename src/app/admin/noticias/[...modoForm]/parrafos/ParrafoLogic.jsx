@@ -2,8 +2,42 @@ import { InformationCircleIcon, PlusIcon } from "@heroicons/react/24/outline"
 import { Button, Typography } from "@/MT"
 import { v4 } from "uuid"
 import ParrafoInput from "./ParrafoInput"
+import { useEffect } from "react"
+import axios from "axios"
 
-const ParrafoLogic = ({parrafos, setParrafos, formErrors}) => {
+const ParrafoLogic = ({parrafos, setParrafos, formErrors, editando, user, cuerpo}) => {
+
+    useEffect(() => {
+        const fetchCuerpoData = async() => {
+            const {data} = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/parrafo_noticia/${editando}`)
+            setParrafos([
+                ...parrafos,
+                ...data.parrafos.map(parrafo => {
+                    if(parrafos.some(p => p.id === parrafo._id)){
+                        return
+                    }
+                    const newData = {
+                        id: parrafo._id,
+                        texto: parrafo.texto,
+                        
+                    }
+                    if(parrafo.titulo){
+                        newData.titulo = parrafo.titulo
+                    }
+                    if(parrafo.imagenes){
+                        newData.imagenesId = parrafo.imagenes._id
+                        newData.imagenes = parrafo.imagenes.url
+                        newData.epigrafe = parrafo.imagenes.epigrafe
+                    }
+                    return newData
+                })
+            ])
+        }
+
+        if(editando !== undefined){
+            fetchCuerpoData()
+        }
+    }, [])
 
     const handleAddParrafo = () => {
         setParrafos([
@@ -14,8 +48,21 @@ const ParrafoLogic = ({parrafos, setParrafos, formErrors}) => {
             }])
     }
 
-    const deleteParrafo = (id) => {
+    const deleteParrafo = async(id) => {
+        const shouldDelete = window.confirm('¿Está seguro de que quiere borrar el párrafo?')
+
+        if (!shouldDelete) {
+            return
+        }
+
         setParrafos(prevState => prevState.filter(parrafo => parrafo.id !== id))
+        if(cuerpo.includes(id)){
+            await axios.delete(`${process.env.NEXT_PUBLIC_URL_API}/parrafo_noticia/${id}`, {
+                headers: {
+                    'x-token': user.token
+                }
+            })
+        }
     }
 
     const handleInputChange = (property, value, id) => {
