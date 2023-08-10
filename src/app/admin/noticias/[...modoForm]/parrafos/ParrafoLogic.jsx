@@ -2,7 +2,7 @@ import { InformationCircleIcon, PlusIcon } from "@heroicons/react/24/outline"
 import { Button, Typography } from "@/MT"
 import { v4 } from "uuid"
 import ParrafoInput from "./ParrafoInput"
-import { useEffect } from "react"
+import { use, useEffect } from "react"
 import axios from "axios"
 
 const ParrafoLogic = ({parrafos, setParrafos, formErrors, editando, user, cuerpo}) => {
@@ -26,7 +26,8 @@ const ParrafoLogic = ({parrafos, setParrafos, formErrors, editando, user, cuerpo
                     }
                     if(parrafo.imagenes){
                         newData.imagenesId = parrafo.imagenes._id
-                        newData.imagenes = parrafo.imagenes.url
+                        newData.imagenes = 'subida'
+                        newData.imagenesUrl = parrafo.imagenes.url
                         newData.epigrafe = parrafo.imagenes.epigrafe
                     }
                     return newData
@@ -77,6 +78,36 @@ const ParrafoLogic = ({parrafos, setParrafos, formErrors, editando, user, cuerpo
         }))
     }
 
+    const deleteImagenDeParrafo = async(parrafoAgregado, imagenDbBorrada=false) => {
+        const shouldDelete = window.confirm('¿Está seguro de que quiere borrar la imagen?')
+
+        if (!shouldDelete) {
+            return
+        }
+        if(imagenDbBorrada){
+            await axios.delete(
+                `${process.env.NEXT_PUBLIC_URL_API}/imagen_noticia/${parrafoAgregado.imagenesId}`, {
+                    headers: {
+                        'x-token': user.token
+                    }
+                })
+            
+        }
+        setParrafos(prevState => prevState.map(parrafo => {
+            if(parrafo.id === parrafoAgregado.id){
+                const newParrafoSinImagen = {
+                    texto: parrafoAgregado.texto,
+                    id: parrafoAgregado.id
+                }
+                if(parrafoAgregado.titulo){
+                    newParrafoSinImagen.titulo = parrafoAgregado.titulo
+                }
+                return newParrafoSinImagen
+            }
+            return parrafo
+        }))
+    }
+
     return (
         <>
             {parrafos.map(parrafo => 
@@ -85,6 +116,7 @@ const ParrafoLogic = ({parrafos, setParrafos, formErrors, editando, user, cuerpo
                     deleteParrafo={deleteParrafo}
                     handleInputChange={handleInputChange}
                     parrafoAgregado={parrafo}
+                    deleteImagenDeParrafo={deleteImagenDeParrafo}
                     />
             )}
             <div>
