@@ -75,7 +75,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
             </div>
             {(data.categoria !== '' && data.torneo !== '' && torneoData.pruebasParaElegir) &&
             <> 
-            <h3 className="text-text font-text">Para editar estos datos, edite su perfil en 
+            <h3 className="text-text font-text font-semibold border-2 p-2">Para editar estos datos, edite su perfil en 
                 <Link href={'/perfil'} className="text-light-blue-800"> Mi Perfil</Link> 
             </h3>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">

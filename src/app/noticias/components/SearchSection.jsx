@@ -3,6 +3,7 @@
 import { useState } from "react";
 import CategorySelect from "@/app/components/search/CategorySelect";
 import SearchBar from "@/app/components/search/SearchBar";
+import useFetch from "@/app/utils/hooks/useFetch";
 
 const categories = [
     {
@@ -28,24 +29,24 @@ const categories = [
 
 ]
 
-const SearchSection = () => {
-    const [category, setCategory] = useState(undefined)
-    const [searchTerm, setSearchTerm] = useState('')
-
-    return(
-        <div className="flex w-full gap-4 items-end !font-text flex-wrap">
-            <SearchBar 
-                searchTerm={searchTerm} 
-                setSearchTerm={setSearchTerm} 
-                placeholder={'Noticias'}/>
-            <CategorySelect 
-                category={category} 
-                setCategory={setCategory} 
-                categories={categories}
-                placeholder={'Categorías'}
-                />
-        </div>
-    )
+const SearchSection = ({setNoticias, category, setCategory, searchTerm, setSearchTerm}) => {
+    const {data} = useFetch('noticia/categorias')
+    if(data){
+        return(
+            <div className="flex w-full gap-4 items-end !font-text flex-wrap">
+                <SearchBar 
+                    searchTerm={searchTerm} 
+                    setSearchTerm={setSearchTerm} 
+                    placeholder={'Noticias'}/>
+                <CategorySelect 
+                    category={category} 
+                    setCategory={setCategory} 
+                    categories={data.categorias}
+                    placeholder={'Categorías'}
+                    />
+            </div>
+        )
+    }
 }
 
 export default SearchSection

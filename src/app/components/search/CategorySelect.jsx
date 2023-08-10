@@ -28,10 +28,9 @@ const CategorySelect = ({category, setCategory, categories, placeholder}) => {
                 >
                     {categories.map(c => 
                         <Option 
-                            key={c.index} 
-                            index={c.index} 
-                            value={c.value}>
-                                {c.text}
+                            key={c._id}  
+                            value={c._id}>
+                                {c.nombre}
                         </Option> 
                     )}
                     

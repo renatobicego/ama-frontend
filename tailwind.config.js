@@ -32,5 +32,7 @@ export default withMT({
       'text': ['var(--font-krub)']
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 })

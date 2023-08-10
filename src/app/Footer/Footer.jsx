@@ -54,7 +54,7 @@ const Footer = () => {
                             <div className='font-normal'>
                                 <h4 className='text-sm md:text-base'>Email</h4>
                                 <address className='text-sm md:text-base'>
-                                    <Link href="mailto:mail@gmail.com">mail@gmail.com</Link>
+                                    <Link href="mailto:mail@gmail.com">ama_mza@yahoo.com.ar</Link>
                                 </address>
                             </div>
                         </div>  

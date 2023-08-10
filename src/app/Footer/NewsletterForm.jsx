@@ -21,13 +21,13 @@ const NewsletterForm = ({socialMedia}) => {
                 size="lg" 
                 className="text-white" 
                 color="gray" 
-                placeholder='Ingrese su Mail*'
+                placeholder='Ingrese su Mail (próximamente)*'
                 value={email}
                 onChange={handleEmailChange}
                 />
 
             <div className='flex gap-8 justify-between items-center'>
-                <button className='btn-primary' type="submit">Suscribirse</button>
+                <button className='btn-primary ' type="submit">Suscribirse</button>
                 <nav>
                     <ul className='flex gap-2 items-center'>
                         {socialMedia.map((item, i) => {

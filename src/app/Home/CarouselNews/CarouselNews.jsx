@@ -2,32 +2,13 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline"
 import News from "./News";
 import { Carousel, IconButton } from "@/app/utils/materialTailwind";
+import useFetch from "@/app/utils/hooks/useFetch";
 
-
-const news = [
-    {
-        tag: 'Últimas Noticias',
-        title: 'Borem ipsum dolor sit amet, consectetur adipiscing elit.',
-        subtitle: 'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class ',
-        imgHref: '/imgs/carrousel.jpg',
-        href: '/noticias/titulo/id',
-        category: 'Torneos'
-    },
-    {
-        tag: 'Últimas Noticias',
-        title: 'Borem ipsum dolor sit amet, consectetur adipiscing elit.',
-        subtitle: 'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class ',
-        imgHref: '/imgs/renzo.jpg',
-        href: `/noticias/Borem ipsum dolor sit amet, consectetur adipiscing elit./id`,
-        category: 'Torneos'
-    },
-]
-
- 
 const CarouselNews = () => {
+  const {data} = useFetch(`noticia/?limite=5`)
   return (
     <Carousel
-      className="pt-[10vh] h-[65vh] lg:h-[80vh]"
+      className="h-[65vh] lg:h-[80vh]"
       autoplay={true}
       loop={true}
       //Navigation lines bottom
@@ -70,7 +51,7 @@ const CarouselNews = () => {
         </IconButton>
         )}
     >
-        {news.map((n, i) => <News news={n} key={i} />)}
+        {data && data.noticias.map((n, i) => <News noticia={n} key={n._id} />)}
       
     </Carousel>
   );

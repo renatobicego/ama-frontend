@@ -61,7 +61,7 @@ const Header = () => {
                     <div className='font-normal '>
                         <h4>Email</h4>
                         <address >
-                            <Link href="mailto:mail@gmail.com" target='_blank'>mail@gmail.com</Link>
+                            <Link href="mailto:mail@gmail.com" target='_blank'>ama_mza@yahoo.com.ar</Link>
                         </address>
                     </div>
                 </div>

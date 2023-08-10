@@ -14,16 +14,20 @@ const PublicarNoticia = async({params}) => {
                 <section className="size-section flex flex-col items-start gap-4 md:gap-8 xl:mt-6">
                     <div>
                         <VolverButton/>
-                        <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-                            <InformationCircleIcon className="w-[10%] md:w-[3%] xl:w-[2.25%] 2xl:w-[2%] -mt-px" />
-                            Si vuelve, se guardará el borrador de la noticia en el dispositivo que este usando, excepto las imágenes
-                        </Typography>
-                        {params.modoForm[0] === 'editar' &&
-                            <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-                                <InformationCircleIcon className="w-[22%] md:w-[5%] xl:w-[3.5%] 2xl:w-[2.5%] -mt-px" />
-                                Al editar, las imágenes aparecen como que no están subidas, pero si en la noticia aparecen, si lo están.
-                                Si quiere cambiar una imágen directamente suba un nuevo archivo donde corresponda.
+                        <div className="flex items-center gap-1 mt-2">
+                            <InformationCircleIcon className="w-6 h-6 -mt-px" />
+                            <Typography variant="small" color="gray" className="font-normal max-w-[95%] ">
+                                Si vuelve, se guardará el borrador de la noticia en el dispositivo que este usando, excepto las imágenes
                             </Typography>
+                        </div>
+                        {params.modoForm[0] === 'editar' &&
+                            <div className="flex items-center gap-1 mt-2">
+                                <InformationCircleIcon className="w-6 h-6 -mt-px" />
+                                <Typography variant="small" color="gray" className="font-normal max-w-[95%]">
+                                    Al editar, las imágenes aparecen como que no están subidas, pero si en la noticia aparecen, si lo están.
+                                    Si quiere cambiar una imagen directamente suba un nuevo archivo donde corresponda.
+                                </Typography>
+                            </div>
                         }
                     </div>
                     <h2 className="text-title title-section text-left">

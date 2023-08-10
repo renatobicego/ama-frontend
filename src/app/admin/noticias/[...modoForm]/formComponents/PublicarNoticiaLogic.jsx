@@ -7,6 +7,7 @@ import { subirArchivoFirebase } from "@/app/utils/files/archivosFirebase"
 import comprimirArchivos from "@/app/utils/files/comprimirArchivos"
 
 const subirImagenNoticia = async(parrafo) => {
+    // Subir la imagen a firebase comprimida y sumarle su epigrafe si tiene
     return {
         url: await subirArchivoFirebase(await comprimirArchivos(parrafo.imagenes), 'images/noticias/'),
         epigrafe: parrafo.epigrafe ? parrafo.epigrafe : null
@@ -15,6 +16,7 @@ const subirImagenNoticia = async(parrafo) => {
 
 const updateParrafo = async (parrafo, user) => {
     let imagen
+    // Si ya tenía imagen subida, se setea el id de ImagenNoticia
     if (parrafo.imagenesId) {
         // Actualizar imagen y epigrafe si la tiene
         if(parrafo.imagenes instanceof File){
@@ -35,6 +37,7 @@ const updateParrafo = async (parrafo, user) => {
 
         parrafo.imagenes = data.imgNoticia._id
 
+    // No tenía una imagen subida
     }else if(parrafo.imagenes){
         // Subir imagen del parrafo si tiene
         imagen = await subirImagenNoticia(parrafo)
@@ -49,6 +52,7 @@ const updateParrafo = async (parrafo, user) => {
         parrafo.imagenes = data.imgNoticia._id
     }
 
+    // Acttualizar párrafo con sus nuevos datos
     const { data } = await axios.put(
         `${process.env.NEXT_PUBLIC_URL_API}/parrafo_noticia/${parrafo.id}`,
         parrafo,
@@ -87,6 +91,8 @@ const PublicarNoticiaLogic = ({data, setData, formErrors, setFormErrors, handleS
     const [parrafos, setParrafos] = useState([])
     const [shouldSubmit, setShouldSubmit] = useState(false)
 
+    // Para guardar datos antes de que se publica por manejo de estados de react 
+    // https://react.dev/learn/state-as-a-snapshot
     useEffect(() => {
         if(shouldSubmit){
             handleSubmit()
@@ -95,21 +101,30 @@ const PublicarNoticiaLogic = ({data, setData, formErrors, setFormErrors, handleS
     }, [shouldSubmit])
 
     useEffect(() => {
-        const savedData = JSON.parse(localStorage.getItem('borradorNoticia'))
-        const savedParrafos = JSON.parse(localStorage.getItem('borradorParrafos'))
-
-        if (savedData && editando === undefined) {
-            setData(savedData)
+        // Obtener borrador de la noticia en caso de que el usuario salió del editor
+        const localStorageKey = editando !== undefined ? 'borradorNoticiaEditando' : 'borradorNoticia';
+        const localStorageParrafosKey = editando !== undefined ? 'borradorParrafosEditando' : 'borradorParrafos';
+    
+        const savedData = JSON.parse(localStorage.getItem(localStorageKey));
+        const savedParrafos = JSON.parse(localStorage.getItem(localStorageParrafosKey));
+    
+        if (savedData) {
+            setData(savedData);
         }
-        if(savedParrafos && editando === undefined){
-            setParrafos(savedParrafos)
+        
+        if (savedParrafos) {
+            setParrafos(savedParrafos);
         }
     }, [])
 
     useEffect(() => {
+        // Setear los datos en el borrador
         if(editando === undefined){
             localStorage.setItem('borradorNoticia', JSON.stringify(data))
             localStorage.setItem('borradorParrafos', JSON.stringify(parrafos))
+        }else{
+            localStorage.setItem('borradorNoticiaEditando', JSON.stringify(data))
+            localStorage.setItem('borradorParrafosEditando', JSON.stringify(parrafos))
         }
     }, [data, parrafos])
 
@@ -122,6 +137,7 @@ const PublicarNoticiaLogic = ({data, setData, formErrors, setFormErrors, handleS
         const {valid, errors} = noticiaValidate(data, parrafos)
         if(valid){
             try {
+                // Subir todos los párrafos
                 const requests = parrafos.map(async parrafo => {
                     
                     // Si esta editando un parrafo
@@ -143,7 +159,9 @@ const PublicarNoticiaLogic = ({data, setData, formErrors, setFormErrors, handleS
                     }
                 })
                 setShouldSubmit(true)
+
             } catch (error) {
+                // Errores en el fetch
                 console.log(error)
                 if(error instanceof AxiosError){
                     const axiosErrors = error.response.data
@@ -160,6 +178,7 @@ const PublicarNoticiaLogic = ({data, setData, formErrors, setFormErrors, handleS
             }
             
         }else{
+            // Errores de validación en frontend
             setFormErrors(errors)
         }
     }

@@ -23,6 +23,7 @@ const PublicarNoticiaForm = ({user, editando}) => {
     })
 
     useEffect(() =>  {
+        // Si está editando, obtener los datos de la noticia
         const fetchNoticiaData = async() => {
             const {data} = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/noticia/${editando}`)
             const {noticia} = data
@@ -36,8 +37,11 @@ const PublicarNoticiaForm = ({user, editando}) => {
                     fecha: new Date(noticia.fecha).toISOString().split('T')[0],
                     cuerpo: noticia.cuerpo.map(parrafo => parrafo._id),
                     epigrafe: noticia.imgPortada.epigrafe,
-                    imgPortada: noticia.imgPortada.url,
+                    // Se setean estas 3 propiedades para manejar el tema de borrar y mostrar
+                    // los archivos subidos junto con mensajes dando información
+                    imgPortada: 'subida',
                     imgPortadaId: noticia.imgPortada._id,
+                    imgPortadaUrl: noticia.imgPortada.url,
                 }
             })
         }
@@ -53,7 +57,7 @@ const PublicarNoticiaForm = ({user, editando}) => {
             // Si esta editando la noticia
             if(editando !== undefined){
                 let imagen
-                // Si actualizo la imagen
+                // Si usuario actualizó la imagen
                 if(data.imgPortada instanceof File){
                     const url = await subirArchivoFirebase(await comprimirArchivos(data.imgPortada), 'images/noticias/')
                     imagen = {
@@ -88,6 +92,7 @@ const PublicarNoticiaForm = ({user, editando}) => {
             
             // Publicar noticia
             }else {
+                // Subir imagen de portada
                 const url = await subirArchivoFirebase(await comprimirArchivos(data.imgPortada), 'images/noticias/')
                 const {data: imgPortadaDb} = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/imagen_noticia`, 
                     {
@@ -113,10 +118,11 @@ const PublicarNoticiaForm = ({user, editando}) => {
             if(res.status === 200) {
                 localStorage.removeItem('borradorNoticia')
                 localStorage.removeItem('borradorParrafos')
-                //router.replace('/')
+                router.replace('/')
             }
 
         } catch (error) {
+            // Errores de api
             console.log(error)
             if(error instanceof AxiosError){
                 const axiosErrors = error.response.data
@@ -132,6 +138,39 @@ const PublicarNoticiaForm = ({user, editando}) => {
             }
         }
     }
+
+    const handleDelete = async() => {
+        const shouldDelete = window.confirm('¿Estás seguro de que quieres borrar la noticia?')
+
+        if (!shouldDelete) {
+            return
+        }
+        try {
+            const res = await axios.delete(`${process.env.NEXT_PUBLIC_URL_API}/noticia/${data.id}`, {
+                headers: {
+                    'x-token': user.token
+                  },
+           })
+
+            if(res.status === 200) return router.push('/admin/noticias')
+
+        } catch (error) {
+
+            if(error instanceof AxiosError){
+                const axiosErrors = error.response.data
+                if(axiosErrors.errors){
+                    setFormErrors(axiosErrors.errors)
+                }else{
+                    setFormErrors([axiosErrors])
+                }
+            }else{
+                setFormErrors([{
+                    msg: error.message
+                }])
+            }
+        }
+    }
+
     return (
         <>
         <PublicarNoticiaLogic 
@@ -144,7 +183,9 @@ const PublicarNoticiaForm = ({user, editando}) => {
             editando={editando}
             />
         <FormErrorMsg formErrors={formErrors} />
-        
+        {editando !== undefined &&
+            <button onClick={handleDelete} className="btn-primary bg-primary2 text-white">Borrar Noticia</button>
+        }
         </>
     )
 }

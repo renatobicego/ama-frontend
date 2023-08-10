@@ -9,7 +9,8 @@ import useFetch from "@/app/utils/hooks/useFetch"
 
 const ResultadosSection = () => {
     const [pagina, setPagina] = useState(1)
-    const {data, loading, error} = useFetch(`torneo/resultados`)
+    const division = 5
+    const {data, loading, error} = useFetch(`torneo/resultados/?desde=${(pagina - 1) * division}&limite=${division}`)
     if (loading) {
         return <div className="mt-6"><Spinner color="amber" /></div>;
     }
@@ -20,9 +21,9 @@ const ResultadosSection = () => {
    
     return (
         <>
-            {data.torneos.map((torneo, i) =>
+            {data.torneos.map(torneo =>
                 <TorneoCard 
-                    key={i} 
+                    key={torneo._id} 
                     torneo={torneo}
                     months={monthsAbbreviated}
                     calendar={false} 
@@ -34,7 +35,7 @@ const ResultadosSection = () => {
                         pagina={pagina} 
                         setPagina={setPagina} 
                         total={data.total} 
-                        division={5}/>
+                        division={division}/>
                     </Card>
                     :
                     <h3 className="text-text font-text">No hay resultados disponibles</h3>

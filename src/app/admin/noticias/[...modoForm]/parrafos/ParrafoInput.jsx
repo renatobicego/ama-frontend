@@ -1,10 +1,7 @@
 import { Button, Input, Textarea, Typography } from "@/MT"
 import { DocumentCheckIcon, InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline"
-import axios from "axios"
-
 
 const ParrafoInput = ({parrafoAgregado, deleteParrafo, handleInputChange, deleteImagenDeParrafo}) => {
-
     return (
         <>
             <hr className="my-2 border-primary2 w-full" />
@@ -35,19 +32,28 @@ const ParrafoInput = ({parrafoAgregado, deleteParrafo, handleInputChange, delete
                     </Typography>
                     
                 }
-                <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-                    <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                    Toque el ícono del basurero si se arrepintió de agregarle una imagen al párrrafo
-                    (seguirá apareciendo el nombre del archivo pero se borra)
-                </Typography>
-                <button 
-                aria-label='delete prueba'
-                type="button"
-                className={`absolute -right-6 top-[42%] md:-right-10 md:top-2 rounded cursor-pointer`}
-                onClick={() => deleteImagenDeParrafo(parrafoAgregado)}
-                >
-                    <TrashIcon strokeWidth={1} className="h-5 w-5 md:h-7 md:w-7 text-gray-700" />
-                </button>
+                
+                {
+                    parrafoAgregado.imagenes instanceof File &&
+                    <>
+                        <div className="flex items-center gap-1 mt-2">
+                            <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                            <Typography variant="small" color="gray" className="font-normal max-w-[95%]">
+                                Toque el ícono del basurero si se arrepintió de agregarle una imagen al párrrafo
+                                (seguirá apareciendo el nombre del archivo pero se borra)
+                            </Typography>
+                        </div>
+                        <button 
+                            aria-label='delete prueba'
+                            type="button"
+                            className={`absolute -right-6 top-[42%] md:-right-10 md:top-2 rounded cursor-pointer`}
+                            onClick={() => deleteImagenDeParrafo(parrafoAgregado)}
+                            >
+                            <TrashIcon strokeWidth={1} className="h-5 w-5 md:h-7 md:w-7 text-gray-700" />
+                        </button>
+                    </>
+
+                }
             </div>
             {
                 parrafoAgregado.imagenes &&
@@ -72,10 +78,12 @@ const ParrafoInput = ({parrafoAgregado, deleteParrafo, handleInputChange, delete
                         <TrashIcon strokeWidth={2} className="h-5 w-5" />
                         Eliminar Imagen del Párrafo
                 </Button>
-                <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                <div className="flex items-center gap-1">
                     <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                    <Typography variant="small" color="gray" className="font-normal max-w-[96%]">
                     Si desea eliminar la imagen anterior ya subida, toque este botón.
-                </Typography>
+                    </Typography>
+                </div>
                 </>
             }
             <Textarea  

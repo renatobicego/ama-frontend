@@ -7,7 +7,7 @@ import SocialMedia from "./SocialMedia/SocialMedia"
 
 const Home = () => {
     return(
-        <main>
+        <main className="pt-[5vh] lg:pt-20 2xl:pt-12">
             <CarouselNews />
             <InscripcionesSection />
             <ResultadosTorneoSection />

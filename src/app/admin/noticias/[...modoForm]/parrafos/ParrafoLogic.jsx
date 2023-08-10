@@ -8,6 +8,7 @@ import axios from "axios"
 const ParrafoLogic = ({parrafos, setParrafos, formErrors, editando, user, cuerpo}) => {
 
     useEffect(() => {
+        // Obtener datos de los párrafos cuando está editando 
         const fetchCuerpoData = async() => {
             const {data} = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/parrafo_noticia/${editando}`)
             setParrafos([
@@ -25,6 +26,7 @@ const ParrafoLogic = ({parrafos, setParrafos, formErrors, editando, user, cuerpo
                         newData.titulo = parrafo.titulo
                     }
                     if(parrafo.imagenes){
+                        // Para manejar mensajes de información respecto a los archivos
                         newData.imagenesId = parrafo.imagenes._id
                         newData.imagenes = 'subida'
                         newData.imagenesUrl = parrafo.imagenes.url
@@ -57,6 +59,7 @@ const ParrafoLogic = ({parrafos, setParrafos, formErrors, editando, user, cuerpo
         }
 
         setParrafos(prevState => prevState.filter(parrafo => parrafo.id !== id))
+        // Si era un p{arrafo ya subido en la DB, borrarlo
         if(cuerpo.includes(id)){
             await axios.delete(`${process.env.NEXT_PUBLIC_URL_API}/parrafo_noticia/${id}`, {
                 headers: {
@@ -84,6 +87,8 @@ const ParrafoLogic = ({parrafos, setParrafos, formErrors, editando, user, cuerpo
         if (!shouldDelete) {
             return
         }
+        // Si se borra una imagen de la db, sino es solo una imagen subida pero
+        // no publicada todavía a la db
         if(imagenDbBorrada){
             await axios.delete(
                 `${process.env.NEXT_PUBLIC_URL_API}/imagen_noticia/${parrafoAgregado.imagenesId}`, {
