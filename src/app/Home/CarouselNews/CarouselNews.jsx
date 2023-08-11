@@ -2,10 +2,8 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline"
 import News from "./News";
 import { Carousel, IconButton } from "@/app/utils/materialTailwind";
-import useFetch from "@/app/utils/hooks/useFetch";
 
-const CarouselNews = () => {
-  const {data} = useFetch(`noticia/?limite=5`)
+const CarouselNews = ({data}) => {
   return (
     <Carousel
       className="h-[65vh] lg:h-[80vh]"
