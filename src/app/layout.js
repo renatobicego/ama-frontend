@@ -4,6 +4,8 @@ import './globals.css'
 import { Rubik, Krub } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import Providers from './Providers'
+import { Suspense } from 'react'
+import Loading from './loading'
 
 const rubik = Rubik({
   weight: ['400', '500', '600'],
@@ -35,11 +37,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className='bg-primary2 -z-30 relative'>
-      <body className={`${rubik.variable} ${krub.variable} bg-white -z-20 relative`}>
+      <body className={`${rubik.variable} ${krub.variable} bg-white -z-20 relative overflow-x-hidden`}>
         <Providers>
-          <Header />
-          {children}
-          <Footer />
+          <Suspense fallback={<Loading />}>
+            <Header />
+            {children}
+            <Footer />
+          </Suspense>
           <Analytics />
         </Providers>
       </body>

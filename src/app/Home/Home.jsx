@@ -5,7 +5,6 @@ import ClubesSection from "./ClubesSection/ClubesSection"
 import InscripcionesSection from "./InscripcionesSection/InscripcionesSection"
 import ResultadosTorneoSection from "./ResultadosTorneoSection/ResultadosTorneoSection"
 import SocialMedia from "./SocialMedia/SocialMedia"
-import Loading from "../loading"
 
 async function getData() {
     const {data} = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/noticia/?limite=5`)
@@ -14,7 +13,6 @@ async function getData() {
 }
 const Home = async() => {
     const data = await getData()
-    if(!data) return <Loading />
     return(
         <main className="pt-[5vh] lg:pt-20 2xl:pt-12">
             <CarouselNews data={data} />
