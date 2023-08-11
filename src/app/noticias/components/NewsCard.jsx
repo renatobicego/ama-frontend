@@ -4,8 +4,8 @@ import Link from "next/link";
 
 const NewsCard = ({noticia}) => {
     return (
-        <Link href={noticia.href} className="w-full">
-            <div className="flex justify-between items-center w-full xl:w-4/5 font-title text-title gap-2 md:gap-5 lg:gap-8 py-3 xl:py-6 border-y-2">
+        <Link href={noticia.href} className="w-full xl:w-4/5">
+            <div className="flex justify-between items-center w-full font-title text-title gap-2 md:gap-5 lg:gap-8 py-3 xl:py-6 border-y-2">
                 <div className="w-3/5 md:w-1/3 h-[10vh] lg:h-32 xl:h-40">
                     <Image src={noticia.imgPortada.url} 
                         alt={`Imagen de noticia con título: ${noticia.titulo}`} 
