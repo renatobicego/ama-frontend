@@ -12,7 +12,7 @@ const MisAtletasList = ({usuario}) => {
         <>
             {data.usuarios.length > 0 ? 
                 <ListAtletas 
-                    data={data.usuarios.filter(usuario => usuario.role === 'USER_ROLE')} 
+                    data={data.usuarios} 
                     placeholder={'Inscribir'} 
                     tableHead={['Atleta', 'Inscribir a Torneo']} 
                     urlBtn={'/inscripciones/torneos'}
