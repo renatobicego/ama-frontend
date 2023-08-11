@@ -50,10 +50,12 @@ const PublicarClubFormInputs = ({data, setLogoImg, logoImg, formErrors, setData,
                         type="file"
                         onChange={handleLogoImgChange}
                         />
-                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
-                        <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                        Agregar un logo solo si quiere cambiar el actual
-                    </Typography>
+                    {!creando && 
+                        <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                            <InformationCircleIcon className="w-4 h-4 -mt-px" />
+                            Agregar un logo solo si quiere cambiar el actual
+                        </Typography>
+                    }
                 </div>
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">

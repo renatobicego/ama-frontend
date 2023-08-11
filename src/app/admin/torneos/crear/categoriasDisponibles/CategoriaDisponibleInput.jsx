@@ -22,6 +22,7 @@ const CategoriaDisponibleInput = ({categorias, categoria, handleCategoriaChange,
             </Select>
 
             <button 
+                type="button"
                 aria-label='delete categoria'
                 className={`absolute -right-6 w-6 top-[30%] md:-right-10 md:top-2 rounded cursor-pointer`}
                 onClick={() => handleEliminarCategoria(categoria)}

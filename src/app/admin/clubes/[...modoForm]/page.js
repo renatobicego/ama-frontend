@@ -29,6 +29,7 @@ const PublicarClub = ({params}) => {
     const router = useRouter()
 
     const [logoImg, setLogoImg] = useState(null)
+    const [hasFetchedData, setHasFetchedData] = useState(false)
 
     useEffect(() => {
         if(status === 'authenticated'){ 
@@ -66,16 +67,18 @@ const PublicarClub = ({params}) => {
                     ]
                 }
                 setData(newData)
+                setHasFetchedData(true)
             } catch (error) {
                 console.log(error)
                 setFormErrors([{msg: 'Error al cargar el formulario'}])
             }
         }
     
-        if (modoForm[0] === 'editar') {
+        if (modoForm[0] === 'editar' && session && !hasFetchedData) {
             fetchData()
         }
-    }, [modoForm])
+    }, [modoForm, session, hasFetchedData])
+
     if(status === 'loading') {
         return (
             <main className="pt-[17vh] lg:pt-44 2xl:pt-52 pb-20">

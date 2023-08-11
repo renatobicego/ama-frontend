@@ -129,6 +129,9 @@ const validatePruebaInscripto = (pruebasInscripto) => {
     })
     return statusPruebas
 }
+function hasDuplicates(array) {
+    return new Set(array).size !== array.length;
+}
 
 export {
     validateEmptyInput, 
@@ -139,5 +142,6 @@ export {
     validateArrayElementosRepetidos,
     validateFormatoMarca,
     validatePruebasInscriptoRepetidas,
-    validatePruebaInscripto
+    validatePruebaInscripto,
+    hasDuplicates
 }

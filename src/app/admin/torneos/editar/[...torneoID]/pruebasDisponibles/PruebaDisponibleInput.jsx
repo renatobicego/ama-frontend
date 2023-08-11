@@ -19,6 +19,7 @@ const PruebaDisponibleInput = ({pruebas, prueba, handlePruebaChange, handleElimi
             </Select>
 
             <button 
+                type="button"
                 aria-label='delete prueba'
                 className={`absolute w-6 -right-6 top-[30%] md:-left-10 md:top-2 rounded cursor-pointer`}
                 onClick={() => handleEliminarPrueba(prueba._id)}

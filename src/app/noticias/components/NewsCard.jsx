@@ -15,7 +15,7 @@ const NewsCard = ({noticia}) => {
                 </div>
                 <div className="flex flex-col items-center justify-center h-[10vh] lg:h-32 xl:h-40 border-r-2 pr-2 md:pr-5 lg:pr-8">
                     <Image src={"/icons/Calendar.svg"} alt={`Calendario icono`} width={50} height={50} className="w-6 md:w-8 lg:w-12 xl:w-auto"/>
-                    <h5 className="font-semibold text-base md:text-xl lg:text-3xl">{noticia.fecha.getDate()}</h5>
+                    <h5 className="font-semibold text-base md:text-xl lg:text-3xl">{noticia.fecha.getDate() + 1}</h5>
                     <h6 className="font-medium text-xs md:text-base">{monthsAbbreviated[noticia.fecha.getMonth()]}</h6>
                 </div>
                 <h4 className="font-semibold text-xs md:text-sm lg:text-lg xl:text-xl w-2/3 md:w-3/5">

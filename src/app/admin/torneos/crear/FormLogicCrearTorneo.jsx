@@ -34,7 +34,7 @@ const FormLogicCrearTorneo = ({
 
     const validateSubmit = (e) => {
         e.preventDefault()
-  
+        console.log(data)
         const {valid, errors} = torneoValidate(data, programaHorario)
 
         if(valid){

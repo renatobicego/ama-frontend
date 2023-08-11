@@ -10,7 +10,7 @@ const NewsTitle = ({noticia}) => {
                 {noticia.titulo}
             </h3>
             <i className="text-right text-xs lg:text-sm">
-                {fecha.getDate()} de {months[fecha.getMonth()]} de {fecha.getFullYear()}
+                {fecha.getDate() + 1} de {months[fecha.getMonth()]} de {fecha.getFullYear()}
             </i>
             <h4 className="font-medium md:text-base lg:text-lg">
                 {noticia.subtitulo}

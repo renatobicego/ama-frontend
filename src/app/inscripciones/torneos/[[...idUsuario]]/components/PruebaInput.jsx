@@ -73,6 +73,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
             }
 
             <button 
+                type="button"
                 aria-label='delete prueba'
                 className={`absolute -right-6 top-[42%] md:-right-10 md:top-2 rounded cursor-pointer`}
                 onClick={deletePrueba}
