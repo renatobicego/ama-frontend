@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 const ResultadosTorneoSection = () => {
+    
     return(
         <section className="size-section flex gap-8 md:gap-14 lg:gap-20 my-20 lg:my-32 items-center h-[200px] lg:h-auto">
             <div className="relative w-1/2 h-full">
