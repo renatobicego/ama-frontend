@@ -1,4 +1,4 @@
-import FormEditPerfil from "./panelComponents/FormEditPerfil";
+
 import PanelPerfil from "./PanelPerfil";
 
 export default function Perfil(){

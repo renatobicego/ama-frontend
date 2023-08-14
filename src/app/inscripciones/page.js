@@ -10,11 +10,11 @@ export default function Inscripciones(){
                 <div className="items-center w-full md:w-[90%] flex justify-center gap-6 md:justify-between flex-wrap mt-10">
                     <Link className="bg-tag-bg/50 relative w-4/5 md:w-[45%]" href={"/inscripciones/federaciones"} role="link" prefetch={false}>
                         <Image 
-                            src={'/imgs/inscripciones1.png'}
+                            src={'/imgs/flora.jpg'}
                             height={400}
                             width={500}
                             alt="Inscripciones"
-                            className="object-cover object-center relative -z-10"
+                            className="object-cover relative -z-10 max-h-[20vh] md:max-h-[15vh] lg:max-h-[15vw]"
                         />
                         <h3 className="text-center font-title font-semibold text-base sm:text-lg md:text-xl lg:text-2xl w-52 md:w-96 text-white z-10 center-absolute">
                             Federación Anual AMA
@@ -22,11 +22,11 @@ export default function Inscripciones(){
                     </Link>
                     <Link className="bg-tag-bg/50 relative w-4/5 md:w-[45%]" href={"/inscripciones/torneos"} role="link" prefetch={false}>
                         <Image 
-                            src={'/imgs/inscripciones2.png'}
+                            src={'/imgs/pinti.jpg'}
                             height={400}
                             width={500}
                             alt="Inscripciones"
-                            className="object-cover object-center relative -z-10"
+                            className="object-cover relative -z-10 max-h-[20vh] md:max-h-[15vh] lg:max-h-[15vw]"
                         />
                         <h3 className="text-center font-title font-semibold text-base sm:text-lg md:text-xl lg:text-2xl w-52 md:w-96 text-white z-10 center-absolute">
                             Inscripción a Torneos

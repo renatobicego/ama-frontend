@@ -16,7 +16,7 @@ const registerValidate = (form, passwordRepeat) => {
         }
     }
 
-    if(!validateNombreApellido(form['nombre_apellido'])){
+    if(form['nombre_apellido'] && !validateNombreApellido(form['nombre_apellido'])){
         valid = false
         errors.push({
             msg: 'El campo no puede estar vacío',
@@ -24,7 +24,7 @@ const registerValidate = (form, passwordRepeat) => {
         }) 
     }
 
-    if(!validateEmail(form['email'])){
+    if(form['email'] && !validateEmail(form['email'])){
         valid = false
         errors.push({
             msg: 'Ingrese un mail correcto',
@@ -40,7 +40,7 @@ const registerValidate = (form, passwordRepeat) => {
             errors.push({
                 msg: passwordValidation.errorPasswordMsg,
                 path: 'password'
-            }) 
+            })
         }
     }
 

@@ -51,11 +51,9 @@ const Footer = () => {
                         <Image src="/icons/logoSinTitulo.png" alt="Logo AMA" width={70} height={70} className='max-w-[15vw] lg:max-w-[5vw]'/>
                         <div className='flex items-center gap-4 lg:hidden'>
                             <Image width={50} height={50} className='max-h-[12vw] lg:max-h-[3vw] w-auto' src='/icons/mail.svg' alt="" />
-                            <div className='font-normal'>
+                            <div className='font-normal w-[45vw]'>
                                 <h4 className='text-sm md:text-base'>Email</h4>
-                                <address className='text-sm md:text-base'>
-                                    <Link href="mailto:mail@gmail.com">ama_mza@yahoo.com.ar</Link>
-                                </address>
+                                <Link href="mailto:mail@gmail.com" className='text-sm md:text-base break-words'>ama_mza@yahoo.com.ar</Link>
                             </div>
                         </div>  
                     </div>

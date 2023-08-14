@@ -83,7 +83,6 @@ const PublicarNoticiaForm = ({user, editando}) => {
 
                 // Guardar el id
                 data.imgPortada = imgPortadaDb.imgNoticia._id
-                console.log(data)
 
                 res = await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/noticia/${data.id}`, data, {
                     headers: {

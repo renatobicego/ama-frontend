@@ -2,7 +2,7 @@
 import Link from "next/link"
 import ClubCard from "./ClubCard"
 import useFetch from "@/app/utils/hooks/useFetch"
-
+const shuffle = arr => [...arr].sort(() => Math.random() - 0.5)
 const ClubesSection = () => {
     const {data} = useFetch('club')
     return(
@@ -15,7 +15,7 @@ const ClubesSection = () => {
 
                 {data &&
                     <div className="md:w-4/5 lg:w-full py-10 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
-                        {data.clubes.map((club, i) => <ClubCard club={club} key={i}/>)}
+                        {shuffle(data.clubes).slice(0, 4).map((club, i) => <ClubCard club={club} key={i}/>)}
                     </div>
                 }
 

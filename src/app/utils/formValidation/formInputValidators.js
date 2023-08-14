@@ -115,7 +115,7 @@ const validateFormatoMarca = (pruebasInscripto) => {
                 statusFormato = false
             }else if(marca.length === 8 && (marca[2] !== formato[2] || marca[5] !== formato[5])){
                 statusFormato = false
-            }else if(marca.length === 4 && (marca[1] !== formato[1] || !numbersString.includes(marca[1]))){
+            }else if(marca.length === 4 && marca[1] !== formato[1] && !numbersString.includes(marca[1])){
                 statusFormato = false
             }
         }

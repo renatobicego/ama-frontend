@@ -7,6 +7,7 @@ import {
     Typography } from "@/app/utils/materialTailwind";
 import { 
     ArrowLeftOnRectangleIcon, 
+    KeyIcon, 
     PresentationChartBarIcon,  
     UserCircleIcon, 
   } from "@heroicons/react/24/outline";
@@ -14,6 +15,7 @@ import { useState } from "react";
 import PanelItem from "../components/panel/PanelItem";
 import { useSession } from "next-auth/react";
 import InscripcionesList from "./panelComponents/InscripcionesList";
+import FormPassword from "./panelComponents/FormPassword";
 
 const listItems = [
   {
@@ -31,6 +33,14 @@ const listItems = [
     },
     open: 2,
     href: '/perfil/editar'
+  },
+  {
+    header: {
+      title: 'Cambiar Contraseña',
+      icon: <KeyIcon className="h-5 w-5" />
+    },
+    open: 3,
+    body: []
   },
   {
     header: {
@@ -68,6 +78,7 @@ const PanelPerfil = () => {
             </List>
           </Card>
           {(open === 1 ) && <InscripcionesList user={session.user}/>}
+          {(open === 3) && <FormPassword user={session.user} />}
       </>
     )
 }
