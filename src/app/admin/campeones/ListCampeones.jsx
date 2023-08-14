@@ -8,7 +8,7 @@ const ListCampeones = () => {
 
     if (loading || error) return <LoadingError loading={loading} error={error} />
 
-    return <ListAtletas tableHead={['Campeón Nacional', 'Editar']} atletas={data.campeones} placeholder={'Editar'} urlBtn={'/admin/campeones/editar'}/>
+    return <ListAtletas tableHead={['Campeón Nacional', 'Editar']} data={data.campeones} placeholder={'Editar'} urlBtn={'/admin/campeones/editar'} tipo={'misatletas'}/>
 }
 
 export default ListCampeones

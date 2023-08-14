@@ -3,6 +3,7 @@ import ListAtletaRow from "./ListAtletaRow"
 
 
 const ListAtletas = ({data, urlBtn, placeholder, tableHead, tipo}) => {
+    console.log(data)
     return (
         <Card className="h-full w-full md:w-2/3">
             <table className="w-full table-auto text-left">
