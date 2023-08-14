@@ -20,6 +20,7 @@ const FormCrearTorneo = () => {
         categoriasDisponibles: [],
         cantidadDias: 1
     })
+    
     const [programaHorario, setProgramaHorario] = useState(null)
     const [formErrors, setFormErrors] = useState([])
 

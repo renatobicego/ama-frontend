@@ -19,6 +19,7 @@ const FormRegistrar = ({mode, session, update}) => {
         dni: '',
         fecha_nacimiento: '',
         telefono: '',
+        pais: '',
         role: 'USER_ROLE',
         email: '',
         asociacion: '',

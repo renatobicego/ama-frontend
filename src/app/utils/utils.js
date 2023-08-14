@@ -17,14 +17,16 @@ const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 
 
 const setFormatoMarca = (prueba) => {
   switch (prueba.tipo) {
-      case 'L':
-          return '00.00'
-      case 'F':
-          return '99.99.99'
-      case 'P':
-          return '99.99'
-      case 'S':
-          return '00.00'
+    case 'L':
+        return '00.00'
+    case 'F':
+        return '99.99.99'
+    case 'P':
+        return '99.99'
+    case 'S':
+        return '0.00'
+    case 'C':
+        return '0000'
   }
 }
 

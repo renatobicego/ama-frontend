@@ -118,16 +118,22 @@ const FormLogicRegistrar = ({
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
 
-                <Input
+                <Select 
                     tabIndex={5}
-                    color="gray" 
-                    label="País*"
-                    error={isError('pais', formErrors)}
+                    onChange={(value) => handleChange('pais', value)} 
                     value={data.pais} 
+                    color="gray"
+                    error={isError('pais', formErrors)}
                     aria-labelledby="pais"
                     labelProps={{id: 'pais'}}
-                    onChange={(e) => handleChange('pais', e.target.value)} 
-                    />
+                    label="Pais*">
+                    <Option value={'ARG'}>
+                        Argentina
+                    </Option>
+                    <Option value={'Otro'}>
+                        Otro
+                    </Option>
+                </Select>
 
                 <Select 
                     tabIndex={6}

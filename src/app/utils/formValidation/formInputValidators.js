@@ -100,6 +100,8 @@ const validatePruebasInscriptoRepetidas = (arr) => {
     return true
 }
 
+const numbersString = ['0', '1', '2', '3', '4','5','6','7','8','9']
+
 const validateFormatoMarca = (pruebasInscripto) => {
     let statusFormato = true
     pruebasInscripto.forEach(prueba => {
@@ -112,6 +114,8 @@ const validateFormatoMarca = (pruebasInscripto) => {
             if(marca.length === 5 && marca[2] !== formato[2]){
                 statusFormato = false
             }else if(marca.length === 8 && (marca[2] !== formato[2] || marca[5] !== formato[5])){
+                statusFormato = false
+            }else if(marca.length === 4 && (marca[1] !== formato[1] || !numbersString.includes(marca[1]))){
                 statusFormato = false
             }
         }
