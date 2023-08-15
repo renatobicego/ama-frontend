@@ -50,7 +50,6 @@ const PublicarNoticiaForm = ({user, editando}) => {
             fetchNoticiaData()
         }
     }, [])
-    console.log(data)
 
     const handleSubmit = async() => {
         try {
@@ -83,7 +82,7 @@ const PublicarNoticiaForm = ({user, editando}) => {
 
                 // Guardar el id
                 data.imgPortada = imgPortadaDb.imgNoticia._id
-
+                data.titulo = data.titulo.trim()
                 res = await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/noticia/${data.id}`, data, {
                     headers: {
                         'x-token': user.token
@@ -107,7 +106,7 @@ const PublicarNoticiaForm = ({user, editando}) => {
                     }
                 )
                 data.imgPortada = imgPortadaDb.imgNoticia._id
-
+                data.titulo = data.titulo.trim()
                 res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/noticia`, data, {
                     headers: {
                         'x-token': user.token

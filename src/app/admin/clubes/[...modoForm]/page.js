@@ -94,6 +94,8 @@ const PublicarClub = ({params}) => {
             let res
             if(modoForm[0] === 'publicar'){
                 data.logoImg = await subirArchivoFirebase(await comprimirArchivos(logoImg), 'images/clubes/')
+                data.nombre = data.nombre.trim()
+                data.siglas = data.siglas.trim()
                 res = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/club`, data, {
                     headers: {
                         'x-token': session.user.token
@@ -110,6 +112,8 @@ const PublicarClub = ({params}) => {
                         })
                     }))
                 }
+                data.nombre = data.nombre.trim()
+                data.siglas = data.siglas.trim()
                 res = await axios.put(`${process.env.NEXT_PUBLIC_URL_API}/club/${data.id}`, data, {
                     headers: {
                         'x-token': session.user.token
