@@ -78,7 +78,7 @@ const FormRegistrar = ({mode, session, update}) => {
             }
             if(res.status === 200) {
                 
-                router.replace('/perfil')
+                router.replace('/')
             }
             
 
