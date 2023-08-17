@@ -1,4 +1,5 @@
 "use client"
+import { validateEmail } from "@/app/utils/formValidation/formInputValidators"
 import isError from "@/app/utils/formValidation/isErrorInput"
 import { Input, Typography } from "@/app/utils/materialTailwind"
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
@@ -22,26 +23,33 @@ const FormLogin = () => {
 
     const handleSubmit = async(e) => {  
         e.preventDefault()
-        // create user
-        
-            const res = await signIn('credentials', {
-                email: data.email,
-                password: data.password,
-                redirect: false
-            })
+        if(!validateEmail(data.email)){
+            setFormErrors([{
+                msg: 'Escriba el correo correctamente',
+                path: 'email'
+            }])
+            return
+        }
 
-            if(res.error){
-                const serverErrors = JSON.parse(res.error)
-                // Si el middleware devuelve errores, lo hace en un array errors
-                if(serverErrors.errors){
-                    setFormErrors(serverErrors.errors)
-                }else{
-                    setFormErrors([serverErrors])
-                }
+        // create user
+        const res = await signIn('credentials', {
+            email: data.email,
+            password: data.password,
+            redirect: false
+        })
+
+        if(res.error){
+            const serverErrors = JSON.parse(res.error)
+            // Si el middleware devuelve errores, lo hace en un array errors
+            if(serverErrors.errors){
+                setFormErrors(serverErrors.errors)
             }else{
-                const callbackUrl = new URL(res.url).searchParams.get('callbackUrl')
-                return router.replace(callbackUrl)
+                setFormErrors([serverErrors])
             }
+        }else{
+            const callbackUrl = new URL(res.url).searchParams.get('callbackUrl')
+            return router.replace(callbackUrl)
+        }
         
             
     }

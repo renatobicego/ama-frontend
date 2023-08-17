@@ -44,7 +44,7 @@ const socialMedia = [
 
 const Footer = () => {
     return (
-        <footer className='w-full bg-primary2 text-white border-t border-title py-14'>
+        <footer className='w-full bg-primary2 text-white border-t border-title pt-14'>
             <div className='size-section flex gap-8 justify-between flex-wrap'>
                 <section className='flex w-full lg:w-1/2 items-center justify-between flex-wrap gap-8'>
                     <div className='flex w-full gap-[8vw] lg:w-auto'>
@@ -74,7 +74,13 @@ const Footer = () => {
                 
                 <NewsletterForm socialMedia={socialMedia}/>
             </div>
-           
+            <div className='py-8'>
+                <hr className='border-hamburguer-menu-bg pb-4'></hr>
+                <p className='font-text text-center'>
+                    Diseñada y Desarrollada por 
+                    <Link target='_blank' className='text-primary1' href={'https://renatobicego.vercel.app/'}> Renato Bicego</Link>
+                </p>
+            </div>
         </footer>
     )
 }
