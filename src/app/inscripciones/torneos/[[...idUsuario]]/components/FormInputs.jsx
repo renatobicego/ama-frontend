@@ -1,14 +1,9 @@
 import isError from "@/app/utils/formValidation/isErrorInput";
-import { Input, Option, Select,  } from "@/app/utils/materialTailwind";
+import { Button, Input, Option, Select,  } from "@/app/utils/materialTailwind";
 import { useEffect, useState } from "react";
 import PruebasLogic from "./PruebasLogic";
 import Link from "next/link";
-
-function encontrarPruebasAtletaComunes(pruebasAtleta, pruebasDisponibles) {
-    const objetosComunes = pruebasAtleta.filter((obj1) => pruebasDisponibles.some((obj2) => obj2._id === obj1.prueba._id));
-    return objetosComunes;
-}
-
+import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
 
 const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected, setPruebasSelected, usuario}) => {
     const [torneoData, setTorneoData] = useState({})
@@ -176,6 +171,38 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                 formErrors={formErrors}
                 usuario={usuario}
             />
+            <div className="flex flex-col gap-4 items-left justify-start">
+                {(torneoData.linkPagoFederados || torneoData.linkPagoNoFederados) &&
+                    <h3 className="text-text font-text font-semibold p-2">
+                            Por favor, guarde el comprobante de pago. En caso de no tener los medios de pagos aceptados, puede
+                            pagar directamente en el torneo. También, puede pagar luego en 
+                            <Link href={'/perfil'} className="text-light-blue-800"> Mi Perfil {'>'} Mis Inscripciones</Link>  
+                    </h3>
+                }
+                {torneoData.linkPagoFederados &&
+                    <Link target="_blank" href={torneoData.linkPagoFederados}>
+                        <Button
+                            className="flex items-center gap-3 text-primary2 bg-secondary1 rounded-3xl"
+                            color="white"
+                            >
+                                <CurrencyDollarIcon strokeWidth={2} className="h-5 w-5" />
+                                Pagar Inscripción Federados
+                        </Button>
+                    </Link>  
+
+                }
+                {torneoData.linkPagoNoFederados &&
+                    <Link target="_blank" href={torneoData.linkPagoNoFederados}>
+                        <Button
+                            className="flex items-center gap-3 text-primary2 bg-secondary1 rounded-3xl"
+                            color="white"
+                            >
+                                <CurrencyDollarIcon strokeWidth={2} className="h-5 w-5" />
+                                Pagar Inscripción No Federados
+                        </Button>
+                    </Link>  
+                }
+            </div>
             </> 
             }
         </>

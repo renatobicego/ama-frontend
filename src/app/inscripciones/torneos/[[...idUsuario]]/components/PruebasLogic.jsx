@@ -2,9 +2,10 @@ import { Button, Typography } from "@/app/utils/materialTailwind"
 import { InformationCircleIcon, PlusIcon } from "@heroicons/react/24/outline"
 import PruebaInput from "./PruebaInput"
 import { v4 as uuidv4 } from 'uuid'
+import { useParams } from "next/navigation"
 
 
-const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas, usuario}) => {
+const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas, usuario, editando=false}) => {
     
     // Create prueba added
     const handleAdd = () => {
@@ -28,6 +29,7 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas,
                     pruebas={pruebas}
                     pruebaAgregada={pruebaAgregada}
                     setPruebasSelected={setPruebasSelected}
+                    editando={editando}
                     />)}
             <div>
                 <Button

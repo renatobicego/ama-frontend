@@ -1,11 +1,13 @@
 import useFetch from "@/app/utils/hooks/useFetch";
-import { Select, Spinner } from "@/app/utils/materialTailwind";
+import { Button, Select, Spinner } from "@/app/utils/materialTailwind";
 import { useEffect, useState } from "react";
 import { setFormatoMarca } from "@/app/utils/utils";
 import inscripcionValidate from "@/app/utils/formValidation/inscripcionValidation";
 import axios, { AxiosError } from "axios";
 import PruebasLogic from "../../[[...idUsuario]]/components/PruebasLogic";
 import LoadingError from "@/app/components/LoadingError";
+import Link from "next/link";
+import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
 
 
 const FormEditarInscripcion = ({formErrors, usuario, setFormErrors, inscripcionData, handleSubmit, setData}) => {
@@ -125,7 +127,39 @@ const FormEditarInscripcion = ({formErrors, usuario, setFormErrors, inscripcionD
                 setPruebasSelected={setPruebasSelected}
                 formErrors={formErrors}
                 usuario={usuario}
+                editando={true}
             /> 
+            <div className="flex flex-col gap-4 items-left justify-start">
+                {(torneoData.linkPagoFederados || torneoData.linkPagoNoFederados) &&
+                    <h3 className="text-text font-text font-semibold p-2">
+                            Por favor, guarde el comprobante de pago. En caso de no tener los medios de pagos aceptados, puede
+                            pagar directamente en el torneo. 
+                    </h3>
+                }
+                {torneoData.linkPagoFederados &&
+                    <Link target="_blank" href={torneoData.linkPagoFederados}>
+                        <Button
+                            className="flex items-center gap-3 text-primary2 bg-secondary1 rounded-3xl"
+                            color="white"
+                            >
+                                <CurrencyDollarIcon strokeWidth={2} className="h-5 w-5" />
+                                Pagar Inscripción Federados
+                        </Button>
+                    </Link>  
+
+                }
+                {torneoData.linkPagoNoFederados &&
+                    <Link target="_blank" href={torneoData.linkPagoNoFederados}>
+                        <Button
+                            className="flex items-center gap-3 text-primary2 bg-secondary1 rounded-3xl"
+                            color="white"
+                            >
+                                <CurrencyDollarIcon strokeWidth={2} className="h-5 w-5" />
+                                Pagar Inscripción No Federados
+                        </Button>
+                    </Link>  
+                }
+            </div>
             <button type="submit" className="btn-primary">Editar Inscripción</button>
         </form>
     )

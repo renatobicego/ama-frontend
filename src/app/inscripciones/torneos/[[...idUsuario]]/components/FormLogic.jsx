@@ -1,6 +1,4 @@
 
-import { Spinner} from "@/app/utils/materialTailwind";
-import PruebasLogic from "./PruebasLogic";
 import { useEffect,  useState } from "react";
 import { useRegistroList } from "@/app/utils/hooks/useRegistroList";
 import FormErrorMsg from "@/app/components/form/FormErrorMsg";
@@ -87,11 +85,12 @@ const FormLogicTorneo = ({data, setData, handleSubmit, formErrors, setFormErrors
                 usuario={entityData[`usuarios/${data.atleta}`].usuario}
                 />
 
+            {(data.categoria !== '' && data.torneo !== '' ) &&
             <div>
                 <button type="submit" className="btn-primary">{entrenador ? 'Inscribir Atleta' : 'Inscribirse'}</button>
                 <FormErrorMsg formErrors={formErrors} />
             </div>
-            
+            }
         </form>
     )
 }

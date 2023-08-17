@@ -116,6 +116,30 @@ const FormLogicCrearTorneo = ({
                 />
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
+                <Input 
+                    tabIndex={6}
+                    color="gray" 
+                    label="Link Pago Federados" 
+                    aria-labelledby="linkPagoFederados"
+                    labelProps={{id: 'linkPagoFederados'}}
+                    error={isError('linkPagoFederados', formErrors)}
+                    
+                    value={data.linkPagoFederados}
+                    onChange={(e => handleChange('linkPagoFederados', e.target.value))}
+                    />
+                <Input 
+                    tabIndex={7}
+                    color="gray" 
+                    label="Link Pago No Federados" 
+                    aria-labelledby="linkPagoNoFederados"
+                    labelProps={{id: 'linkPagoNoFederados'}}
+                    error={isError('linkPagoNoFederados', formErrors)}
+                    
+                    value={data.linkPagoNoFederados}
+                    onChange={(e => handleChange('linkPagoNoFederados', e.target.value))}
+                    />
+            </div>
+            <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
                 <PruebasDisponiblesLogic 
                     setData={setData}
                     formErrors={formErrors} 

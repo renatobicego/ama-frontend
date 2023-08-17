@@ -1,10 +1,12 @@
 import { Input, Option, Select, Typography } from "@/app/utils/materialTailwind"
 import { setFormatoMarca } from "@/app/utils/utils"
 import { InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline"
+import axios from "axios"
+import { validate } from "uuid"
 
 
-const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
-
+const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected, editando}) => {
+    
     const handleSelect = (value) => {
         const pruebaSelected = pruebas.find(p => p._id === value)
         setPruebasSelected(prevState => prevState.map(p => {
@@ -35,8 +37,11 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected}) => {
         }))
     }
 
-    const deletePrueba = () => {
+    const deletePrueba = async() => {
         setPruebasSelected(prevState => prevState.filter(p => p.id !== pruebaAgregada.id))
+        if(editando && !validate(pruebaAgregada.id)){
+            await axios.delete(`${process.env.NEXT_PUBLIC_URL_API}/pruebas_atleta/${pruebaAgregada.id}`)
+        }
     }
 
     return (

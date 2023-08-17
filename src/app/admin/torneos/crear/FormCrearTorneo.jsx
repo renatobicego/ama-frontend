@@ -18,7 +18,9 @@ const FormCrearTorneo = () => {
         lugar: '',
         pruebasDisponibles: [],
         categoriasDisponibles: [],
-        cantidadDias: 1
+        cantidadDias: 1,
+        linkPagoFederados: '',
+        linkPagoNoFederados: ''
     })
     
     const [programaHorario, setProgramaHorario] = useState(null)

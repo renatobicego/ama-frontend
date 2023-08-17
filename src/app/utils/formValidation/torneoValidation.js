@@ -4,26 +4,16 @@ const torneoValidate = (form,  programaHorario=null, resultados=null) => {
     let valid = true
     let errors = []
 
+    const pathsToNotCheck = ['linkPagoFederados', 'linkPagoNoFederados', 'programaHorario', 'resultados']
+
     for(let path in form){
         // If some input is wrong, push error
-        if(!validateEmptyInput(form[path]) && path !== 'programaHorario' && path !== 'resultados'){
+        if(!validateEmptyInput(form[path]) && !pathsToNotCheck.includes(path)){
             valid = false
             errors.push({
                 msg: 'El campo no puede estar vacío',
                 path
             }) 
-        }
-
-        if(Array.isArray(form[path])){
-            form[path].forEach(item => {
-                if(item === 'a'){
-                    valid = false
-                    errors.push({
-                        msg: 'El campo no puede estar vacío',
-                        path
-                    }) 
-                }
-            })
         }
     }
 

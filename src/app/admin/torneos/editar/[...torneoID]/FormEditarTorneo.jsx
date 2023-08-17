@@ -15,7 +15,9 @@ const FormEditarTorneo = ({torneo}) => {
             pruebasDisponibles: torneo.pruebasDisponibles.map(prueba => prueba._id), 
             categoriasDisponibles: torneo.categoriasDisponibles.map(categoria => categoria._id), 
             inscripcionesAbiertas: torneo.inscripcionesAbiertas, 
-            fecha: new Date(torneo.fecha).toISOString().split('T')[0]
+            fecha: new Date(torneo.fecha).toISOString().split('T')[0],
+            linkPagoFederados: torneo.linkPagoFederados ? torneo.linkPagoFederados : '',
+            linkPagoNoFederados: torneo.linkPagoNoFederados ? torneo.linkPagoNoFederados : ''
         })
     const router = useRouter()
 
