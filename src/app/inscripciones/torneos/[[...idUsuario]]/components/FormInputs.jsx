@@ -175,7 +175,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                 {(torneoData.linkPagoFederados || torneoData.linkPagoNoFederados) &&
                     <h3 className="text-text font-text font-semibold p-2">
                             Por favor, guarde el comprobante de pago. En caso de no tener los medios de pagos aceptados, puede
-                            pagar directamente en el torneo. También, puede pagar luego en 
+                            contactar por este mail: master1963@live.com.ar. También, puede pagar luego en 
                             <Link href={'/perfil'} className="text-light-blue-800"> Mi Perfil {'>'} Mis Inscripciones</Link>  
                     </h3>
                 }
