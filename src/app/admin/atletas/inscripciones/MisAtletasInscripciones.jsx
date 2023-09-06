@@ -21,6 +21,7 @@ const MisAtletasInscripcionesList = ({usuario}) => {
                     labelProps={{id: 'torneo'}}
                     color="gray" 
                     label="Torneo"
+                    lockScroll={true}
                     defaultValue={torneo}
                     onChange={(value) => setTorneo(value)} 
                     >

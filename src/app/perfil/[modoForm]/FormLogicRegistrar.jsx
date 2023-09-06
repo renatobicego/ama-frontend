@@ -62,6 +62,7 @@ const FormLogicRegistrar = ({
                         error={isError('club', formErrors)}
                         aria-labelledby="club"
                         labelProps={{id: 'club'}}
+                        lockScroll={true}
                         label="Club*">
 
                         {club.clubes.map((club, i) => 
@@ -125,6 +126,7 @@ const FormLogicRegistrar = ({
                     color="gray"
                     error={isError('pais', formErrors)}
                     aria-labelledby="pais"
+                    lockScroll={true}
                     labelProps={{id: 'pais'}}
                     label="Pais*">
                     <Option value={'ARG'}>
@@ -140,6 +142,7 @@ const FormLogicRegistrar = ({
                     onChange={(value) => handleChange('sexo', value)} 
                     value={data.sexo} 
                     color="gray"
+                    lockScroll={true}
                     error={isError('sexo', formErrors)}
                     aria-labelledby="sexo"
                     labelProps={{id: 'sexo'}}
@@ -186,6 +189,7 @@ const FormLogicRegistrar = ({
                     onChange={(value) => handleChange('federacion', value)} 
                     value={data.federacion} 
                     aria-labelledby="federacion"
+                    lockScroll={true}
                     labelProps={{id: 'federacion'}}
                     color="gray"
                     error={isError('federacion', formErrors)}
@@ -204,6 +208,7 @@ const FormLogicRegistrar = ({
                     onChange={(value) => handleChange('asociacion', value)} 
                     value={data.asociacion} 
                     aria-labelledby="asociacion"
+                    lockScroll={true}
                     labelProps={{id: 'asociacion'}}
                     color="gray"
                     error={isError('asociacion', formErrors)}

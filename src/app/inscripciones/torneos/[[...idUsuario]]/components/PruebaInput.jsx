@@ -50,6 +50,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected, editando}) =>
                 value={pruebaAgregada.prueba} 
                 onChange={handleSelect} 
                 color="gray" 
+                lockScroll={true}
                 label="Seleccionar Prueba*"
                 aria-labelledby="prueba"
                 labelProps={{id: 'prueba'}}
