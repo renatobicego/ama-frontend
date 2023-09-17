@@ -1,11 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Input, Option, Select, Spinner, Typography } from "@/app/utils/materialTailwind";
 import { InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline"
 import registerValidate from "@/app/utils/formValidation/registerValidation";
 import { useRegistroList } from "@/app/utils/hooks/useRegistroList";
 import isError from "@/app/utils/formValidation/isErrorInput";
 import LoadingError from "@/app/components/LoadingError";
-
 
 
 const FormLogicRegistrar = ({
@@ -60,11 +59,13 @@ const FormLogicRegistrar = ({
                         value={data.club} 
                         color="gray"
                         error={isError('club', formErrors)}
+                        // dismiss={{
+                        //     ancestorScroll: true
+                        // }}
                         aria-labelledby="club"
                         labelProps={{id: 'club'}}
-                        lockScroll={true}
                         label="Club*">
-
+            
                         {club.clubes.map((club, i) => 
                             <Option key={i} value={club._id}>
                                 {club.nombre}
@@ -115,7 +116,7 @@ const FormLogicRegistrar = ({
                     error={isError('fecha_nacimiento', formErrors)}
                     value={data.fecha_nacimiento} 
                     onChange={(e) => handleChange('fecha_nacimiento', e.target.value)}
-                    />
+                /> 
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
 
@@ -126,7 +127,7 @@ const FormLogicRegistrar = ({
                     color="gray"
                     error={isError('pais', formErrors)}
                     aria-labelledby="pais"
-                    lockScroll={true}
+                    
                     labelProps={{id: 'pais'}}
                     label="Pais*">
                     <Option value={'ARG'}>
@@ -142,7 +143,7 @@ const FormLogicRegistrar = ({
                     onChange={(value) => handleChange('sexo', value)} 
                     value={data.sexo} 
                     color="gray"
-                    lockScroll={true}
+                    
                     error={isError('sexo', formErrors)}
                     aria-labelledby="sexo"
                     labelProps={{id: 'sexo'}}
@@ -189,7 +190,6 @@ const FormLogicRegistrar = ({
                     onChange={(value) => handleChange('federacion', value)} 
                     value={data.federacion} 
                     aria-labelledby="federacion"
-                    lockScroll={true}
                     labelProps={{id: 'federacion'}}
                     color="gray"
                     error={isError('federacion', formErrors)}
@@ -202,13 +202,12 @@ const FormLogicRegistrar = ({
                         )}
 
                 </Select>
-
                 <Select 
                     tabIndex={10}
                     onChange={(value) => handleChange('asociacion', value)} 
                     value={data.asociacion} 
                     aria-labelledby="asociacion"
-                    lockScroll={true}
+                    
                     labelProps={{id: 'asociacion'}}
                     color="gray"
                     error={isError('asociacion', formErrors)}
@@ -221,7 +220,6 @@ const FormLogicRegistrar = ({
                         )}
 
                 </Select>
-                
             </div>
 
         {mode === 'create' && 

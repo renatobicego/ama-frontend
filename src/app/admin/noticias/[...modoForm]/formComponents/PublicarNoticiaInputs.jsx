@@ -26,7 +26,6 @@ const PublicarNoticiaInputs = ({data, handleChange, formErrors}) => {
                     onChange={(value) => {
                         handleChange('categoria', value)
                     }} 
-                    lockScroll={true}
                     >
                     {categoriasNoticia.categorias.map((categoria, i) => 
                         <Option key={i} value={categoria._id}>

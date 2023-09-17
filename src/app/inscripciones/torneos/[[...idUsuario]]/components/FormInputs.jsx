@@ -34,7 +34,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                     value={data.torneo}
                     aria-labelledby="torneo"
                     tabIndex={1}
-                    lockScroll={true}
+
                     color="gray" 
                     label="Torneo a Inscribirse*"
                     labelProps={{id: 'torneo'}}
@@ -56,7 +56,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                         aria-labelledby="categoria"
                         labelProps={{id: 'categoria'}}
                         color="gray" 
-                        lockScroll={true}
+                        
                         label="Categoría*"
                         error={isError('categoria', formErrors)}
                         defaultValue={data.categoria}
@@ -92,7 +92,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                     aria-labelledby="sexo"
                     value={usuario.sexo} 
                     color="gray" 
-                    lockScroll={true}
+                    
                     label="Sexo*"
                     labelProps={{id: 'sexo'}}
                     disabled
@@ -126,7 +126,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                     aria-labelledby="club"
                     value={usuario.club ? usuario.club.nombre : 'Club No Elegido'}
                     disabled
-                    lockScroll={true}
+                    
                     color="gray" 
                     label="Club*"
                     labelProps={{id: 'club'}}
@@ -137,7 +137,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                     value={usuario.federacion.nombre} 
                     color="gray" 
                     label="Federación*"
-                    lockScroll={true}
+                    
                     labelProps={{id: 'federacion'}}
                     aria-labelledby="federacion"
                     disabled
@@ -152,7 +152,7 @@ const FormInputs = ({data, handleChange, formErrors, entityData, pruebasSelected
                     value={usuario.asociacion.nombre} 
                     color="gray" 
                     label="Asociación*"
-                    lockScroll={true}
+                    
                     labelProps={{id: 'asociacion'}}
                     aria-labelledby="asociacion"
                     disabled

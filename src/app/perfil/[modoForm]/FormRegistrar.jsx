@@ -5,6 +5,7 @@ import axios, { AxiosError } from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import FormErrorMsg from "@/app/components/form/FormErrorMsg";
+import { ThemeProvider, customTheme } from "@/app/utils/materialTailwind";
 
 //TODO
 // ERROR DNI EXISTE
@@ -97,7 +98,7 @@ const FormRegistrar = ({mode, session, update}) => {
     }
 
     return(
-        <>
+        <ThemeProvider value={customTheme}>
             <FormLogicRegistrar 
                 data={data}
                 handleChange={handleChange}
@@ -107,7 +108,7 @@ const FormRegistrar = ({mode, session, update}) => {
                 mode={mode}
                 />
             <FormErrorMsg formErrors={formErrors} />
-        </>
+        </ThemeProvider>
             
     )
 }

@@ -35,14 +35,16 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en" className='bg-primary2 -z-30 relative'>
       <body className={`${rubik.variable} ${krub.variable} bg-white -z-20 relative overflow-x-hidden`}>
         <Providers>
           <Suspense fallback={<Loading />}>
-            <Header />
-            {children}
-            <Footer />
+            
+              <Header />
+              {children}
+              <Footer />
           </Suspense>
           <Analytics />
         </Providers>
