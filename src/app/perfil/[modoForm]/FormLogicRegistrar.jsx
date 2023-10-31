@@ -23,7 +23,7 @@ const FormLogicRegistrar = ({
 
     if (loading || error) return <LoadingError loading={loading} error={error} />
 
-
+    console.log(data)
     const validateSubmit = (e) => {
         e.preventDefault()
         
@@ -53,7 +53,7 @@ const FormLogicRegistrar = ({
                     />
 
                 <div className="w-full relative">
-                    <Select 
+                    {/* <Select 
                         tabIndex={2}
                         onChange={(value) => handleChange('club', value)} 
                         value={data.club} 
@@ -72,7 +72,26 @@ const FormLogicRegistrar = ({
                             </Option>
                             )}
 
-                    </Select>
+                    </Select> */}
+                    <select
+                        tabIndex={2}
+                        onChange={(event) => handleChange('club', event.target.value)} 
+                        value={data.club}
+                        aria-labelledby="club"
+                        labelProps={{id: 'club'}}
+                        placeholder="Club*"
+                        className={`border border-gray-400 py-2.5 px-2 text-sm rounded-md
+                                    ${isError('club', formErrors) ? 'border-red-700' : ''}`}
+                    >
+                        <option value={""}>
+                            Seleccionar Club
+                        </option>
+                        {club.clubes.map((club, i) => 
+                            <option key={i} value={club._id}>
+                                {club.nombre}
+                            </option>
+                            )}
+                    </select>
                     <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
                         <InformationCircleIcon className="w-4 h-4 -mt-px" />
                         Si no tiene club y es atleta libre, no seleccione nada
@@ -185,7 +204,7 @@ const FormLogicRegistrar = ({
                     />
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
-                <Select 
+                {/* <Select 
                     tabIndex={9}
                     onChange={(value) => handleChange('federacion', value)} 
                     value={data.federacion} 
@@ -219,7 +238,45 @@ const FormLogicRegistrar = ({
                         </Option>
                         )}
 
-                </Select>
+                </Select> */}
+                <select
+                    tabIndex={9}
+                    onChange={(event) => handleChange('federacion', event.target.value)} 
+                    value={data.federacion}
+                    aria-labelledby="federacion"
+                    labelProps={{id: 'federacion'}}
+                    placeholder="Federación*"
+                    className={`border border-gray-400 py-2.5 px-2 text-sm rounded-md
+                                ${isError('federacion', formErrors) ? 'border-red-700' : ''}`}
+                >
+                    <option value={""}>
+                        Seleccionar Federación
+                    </option>
+                    {federaciones.federaciones.map((federacion, i) => 
+                        <option key={i} value={federacion._id}>
+                            {federacion.nombre}
+                        </option>
+                        )}
+                </select>
+                <select
+                    tabIndex={10}
+                    onChange={(event) => handleChange('asociacion', event.target.value)} 
+                    value={data.asociacion}
+                    aria-labelledby="asociacion"
+                    labelProps={{id: 'asociacion'}}
+                    placeholder="Asociacion*"
+                    className={`border border-gray-400 py-2.5 px-2 text-sm rounded-md
+                                ${isError('asociacion', formErrors) ? 'border-red-700' : ''}`}
+                >
+                    <option value={""}>
+                        Seleccionar Asociación
+                    </option>
+                    {asociaciones.asociaciones.map((asociacion, i) => 
+                        <option key={i} value={asociacion._id}>
+                            {asociacion.nombre}
+                        </option>
+                        )}
+                </select>
             </div>
 
         {mode === 'create' && 

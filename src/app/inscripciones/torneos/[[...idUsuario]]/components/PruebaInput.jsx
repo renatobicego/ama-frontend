@@ -46,11 +46,10 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected, editando}) =>
 
     return (
         <div className="flex w-full justify-between gap-6 flex-wrap md:flex-nowrap relative">
-            <Select 
+            {/* <Select 
                 value={pruebaAgregada.prueba} 
                 onChange={handleSelect} 
                 color="gray" 
-          
                 label="Seleccionar Prueba*"
                 aria-labelledby="prueba"
                 labelProps={{id: 'prueba'}}
@@ -59,7 +58,20 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected, editando}) =>
                 {pruebas.map(p => 
                     <Option key={p._id} value={p._id}>{p.nombre}</Option>
                 )}
-            </Select>
+            </Select> */}
+            <div>
+                <label>Seleccionar Prueba</label>
+                <select
+                    onChange={(event) => handleSelect(event.target.value)} 
+                    value={pruebaAgregada.prueba}
+                    placeholder="Prueba*"
+                    className={`border border-gray-400 py-2.5 px-2 text-sm rounded-md`}
+                >
+                    {pruebas.map(p => 
+                        <option key={p._id} value={p._id}>{p.nombre}</option>
+                    )}
+                </select>
+            </div>
             {pruebaAgregada.formato && 
                 <div className="w-full">
                     <Input 
