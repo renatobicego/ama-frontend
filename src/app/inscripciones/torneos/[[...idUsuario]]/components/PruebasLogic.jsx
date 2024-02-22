@@ -21,7 +21,12 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas,
 
     return(
         <>
-            <h3 className="text-text font-text">Si no tiene marca en una prueba, deje el casillero vacío</h3>
+            <h3 className="text-text font-text">
+                Si no tiene marca en una prueba, <strong>deje el casillero vacío</strong>.
+                Si una prueba que está en el programa horario no aparece, es porque
+                no está disponible en su categoría seleccionada. Por ejemplo, no podrá seleccionar
+                100 metros en la categoría U14; deberá seleccionar otra categoría.
+            </h3>
             {/* For each prueba added, render Prueba chosen and Marca input */}
             {pruebasSelected.map((pruebaAgregada, i) =>
                 <PruebaInput

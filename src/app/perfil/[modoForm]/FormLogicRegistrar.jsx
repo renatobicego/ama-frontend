@@ -23,7 +23,6 @@ const FormLogicRegistrar = ({
 
     if (loading || error) return <LoadingError loading={loading} error={error} />
 
-    console.log(data)
     const validateSubmit = (e) => {
         e.preventDefault()
         
