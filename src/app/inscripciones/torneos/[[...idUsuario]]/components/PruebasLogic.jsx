@@ -13,7 +13,7 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas,
             ...pruebasSelected, 
             {
                 id: uuidv4(),
-                prueba: '',
+                prueba: 'disabled',
                 formato: '',
                 atleta: usuario._id ? usuario._id : usuario.uid
             }])

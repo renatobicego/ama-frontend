@@ -98,14 +98,14 @@ const FormInputs = ({
                 disabled
               />
 
-              <Select
+              <Input
                 aria-labelledby="sexo"
-                value={usuario.sexo}
+                defaultValue={usuario.sexo}
                 color="gray"
                 label="Sexo*"
                 labelProps={{ id: "sexo" }}
                 disabled
-              ></Select>
+              ></Input>
             </div>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
               <Input
@@ -113,7 +113,7 @@ const FormInputs = ({
                 color="gray"
                 label="DNI*"
                 labelProps={{ id: "dni" }}
-                value={usuario.dni}
+                defaultValue={usuario.dni}
                 disabled
               />
 
@@ -123,41 +123,41 @@ const FormInputs = ({
                 color="gray"
                 label="Fecha de Nacimiento*"
                 labelProps={{ id: "fecha_nacimiento" }}
-                value={
+                defaultValue={
                   new Date(usuario.fecha_nacimiento).toISOString().split("T")[0]
                 }
                 disabled
               />
             </div>
             <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-6">
-              <Select
+              <Input
                 aria-labelledby="club"
-                value={usuario.club ? usuario.club.nombre : "Club No Elegido"}
+                defaultValue={usuario.club ? usuario.club.nombre : "Club No Elegido"}
                 disabled
                 color="gray"
                 label="Club*"
                 labelProps={{ id: "club" }}
-              ></Select>
+              ></Input>
 
-              <Select
-                value={usuario.federacion.nombre}
+              <Input
+                defaultValue={usuario.federacion.nombre}
                 color="gray"
                 label="Federación*"
                 labelProps={{ id: "federacion" }}
                 aria-labelledby="federacion"
                 disabled
-              ></Select>
+              ></Input>
             </div>
 
             <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-6">
-              <Select
-                value={usuario.asociacion.nombre}
+              <Input
+                defaultValue={usuario.asociacion.nombre}
                 color="gray"
                 label="Asociación*"
                 labelProps={{ id: "asociacion" }}
                 aria-labelledby="asociacion"
                 disabled
-              ></Select>
+              ></Input>
 
               <Input
                 disabled

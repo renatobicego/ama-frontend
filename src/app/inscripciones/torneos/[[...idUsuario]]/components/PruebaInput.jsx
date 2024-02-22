@@ -44,6 +44,8 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected, editando}) =>
         }
     }
 
+    console.log(pruebaAgregada)
+
     return (
         <div className="flex w-full justify-between gap-6 flex-wrap md:flex-nowrap relative">
             {/* <Select 
@@ -59,7 +61,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected, editando}) =>
                     <Option key={p._id} value={p._id}>{p.nombre}</Option>
                 )}
             </Select> */}
-            <div>
+            <div className="flex flex-col">
                 <label>Seleccionar Prueba</label>
                 <select
                     onChange={(event) => handleSelect(event.target.value)} 
@@ -67,6 +69,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected, editando}) =>
                     placeholder="Prueba*"
                     className={`border border-gray-400 py-2.5 px-2 text-sm rounded-md`}
                 >
+                    <option key={'disabled'} hidden>Seleccionar Prueba</option>
                     {pruebas.map(p => 
                         <option key={p._id} value={p._id}>{p.nombre}</option>
                     )}

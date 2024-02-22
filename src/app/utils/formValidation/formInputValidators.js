@@ -127,7 +127,7 @@ const validatePruebaInscripto = (pruebasInscripto) => {
     let statusPruebas = true
     pruebasInscripto.forEach(prueba => {
         
-        if(!prueba.prueba || prueba.prueba.length < 5 ){
+        if(!prueba.prueba || prueba.prueba.length < 5 || prueba.prueba === 'disabled'){
             statusPruebas = false
         }
     })
