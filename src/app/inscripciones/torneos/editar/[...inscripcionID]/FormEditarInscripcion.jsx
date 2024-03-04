@@ -1,5 +1,5 @@
 import useFetch from "@/app/utils/hooks/useFetch";
-import { Button, Select, Spinner } from "@/app/utils/materialTailwind";
+import { Button, Input, Select, Spinner } from "@/app/utils/materialTailwind";
 import { useEffect, useState } from "react";
 import { setFormatoMarca } from "@/app/utils/utils";
 import inscripcionValidate from "@/app/utils/formValidation/inscripcionValidation";
@@ -92,7 +92,7 @@ const FormEditarInscripcion = ({formErrors, usuario, setFormErrors, inscripcionD
     return (
         <form className="w-full lg:w-2/3 mt-10 flex flex-col items-start gap-6" onSubmit={saveDataOnSubmit}>
             <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
-                <Select 
+                <Input 
                     value={inscripcionData.inscripcion.torneo.nombre}
                     aria-labelledby="torneo"
                     tabIndex={1}
@@ -101,8 +101,8 @@ const FormEditarInscripcion = ({formErrors, usuario, setFormErrors, inscripcionD
                     labelProps={{id: 'torneo'}}
                     disabled
                     >
-                </Select>
-                <Select 
+                </Input>
+                <Input 
                     tabIndex={2}
                     aria-labelledby="categoria"
                     labelProps={{id: 'categoria'}}
@@ -111,7 +111,7 @@ const FormEditarInscripcion = ({formErrors, usuario, setFormErrors, inscripcionD
                     value={inscripcionData.inscripcion.categoria.nombre}
                     disabled
                     > 
-                </Select>
+                </Input>
             </div>
             <PruebasLogic 
                 // Filter for categoriasDisponibles. If prueba.categorias includes categoria

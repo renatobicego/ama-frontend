@@ -44,7 +44,6 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected, editando}) =>
         }
     }
 
-    console.log(pruebaAgregada)
 
     return (
         <div className="flex w-full justify-between gap-6 flex-wrap md:flex-nowrap relative">
@@ -78,8 +77,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected, editando}) =>
             {pruebaAgregada.formato && 
                 <div className="w-full">
                     <Input 
-                        defaultValue={''}
-                        value={pruebaAgregada.marca} 
+                        value={pruebaAgregada.marca ? pruebaAgregada.marca : ''} 
                         onChange={handleInputMarca} 
                         color="gray" 
                         label="Mejor Marca de Prueba*"

@@ -1,0 +1,13 @@
+diff --git a/node_modules/@material-tailwind/react/types/components/drawer.d.ts b/node_modules/@material-tailwind/react/types/components/drawer.d.ts
+index 09ac208..2a4d3df 100644
+--- a/node_modules/@material-tailwind/react/types/components/drawer.d.ts
++++ b/node_modules/@material-tailwind/react/types/components/drawer.d.ts
+@@ -5,7 +5,7 @@ import type { AnimationOptions } from "framer-motion";
+  * This file contains the types and prop-types for Drawer component.
+  */
+ export type open = boolean;
+-export type size = number;
++export type size = number | string;
+ export type overlay = boolean;
+ export type children = React.ReactNode;
+ export type placement = "top" | "right" | "bottom" | "left";
