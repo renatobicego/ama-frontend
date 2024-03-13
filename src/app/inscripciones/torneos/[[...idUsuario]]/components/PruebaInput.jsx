@@ -86,7 +86,7 @@ const PruebaInput = ({pruebas, pruebaAgregada, setPruebasSelected, editando}) =>
                         />
                     <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
                         <InformationCircleIcon className="w-4 h-4 -mt-px" />
-                        El formato de la marca debe ser {pruebaAgregada.formato}
+                        El formato de la marca debe ser {pruebaAgregada.formato}. CON PUNTO, NO CON COMA.
                     </Typography>
                 </div>
             }
