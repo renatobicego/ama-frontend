@@ -31,7 +31,6 @@ const FormLogicRegistrar = ({
         if(valid){
             handleSubmit()
         }else{
-            console.log(errors)
             setFormErrors(errors)
         }
     }

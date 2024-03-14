@@ -33,7 +33,7 @@ const FormInputs = ({
 
     setPruebasSelected([]);
   }, [data.categoria]);
-
+ 
   return (
     <>
       <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">

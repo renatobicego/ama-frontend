@@ -36,7 +36,6 @@ const PublicarCampeon = ({params}) => {
                     ]
                 })
             } catch (error) {
-                console.log(error)
                 setFormErrors([{msg: 'Error al cargar el formulario'}])
             }
         }

@@ -69,7 +69,6 @@ const PublicarClub = ({params}) => {
                 setData(newData)
                 setHasFetchedData(true)
             } catch (error) {
-                console.log(error)
                 setFormErrors([{msg: 'Error al cargar el formulario'}])
             }
         }
@@ -126,7 +125,6 @@ const PublicarClub = ({params}) => {
             if(res.status === 200) return router.push('/admin')
 
         } catch (error) {
-            console.log(error);
             if(error instanceof AxiosError){
                 const axiosErrors = error.response.data
                 if(axiosErrors.errors){

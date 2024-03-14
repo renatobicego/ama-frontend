@@ -35,7 +35,6 @@ const EditarInscripcion = () => {
                 }
             }
         } catch (error) {
-            console.log(error)
             if(error instanceof AxiosError){
                 const axiosErrors = error.response.data
                 if(axiosErrors.errors){

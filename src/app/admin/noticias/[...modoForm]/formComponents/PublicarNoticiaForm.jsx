@@ -123,7 +123,6 @@ const PublicarNoticiaForm = ({user, editando}) => {
 
         } catch (error) {
             // Errores de api
-            console.log(error)
             if(error instanceof AxiosError){
                 const axiosErrors = error.response.data
                 if(axiosErrors.errors){
