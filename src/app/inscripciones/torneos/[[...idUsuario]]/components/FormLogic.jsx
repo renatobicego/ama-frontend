@@ -16,7 +16,7 @@ const FormLogicTorneo = ({data, setData, handleSubmit, formErrors, setFormErrors
     const [shouldSubmit, setShouldSubmit] = useState(false)
     //Get pruebas favoritas
     const {entityData, loading, error} = useRegistroList(['torneo/activos', `usuarios/${data.atleta}`]) 
-    console.log(entityData)
+
     useEffect(() => {
         if(shouldSubmit){
             handleSubmit()

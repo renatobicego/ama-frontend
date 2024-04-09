@@ -49,7 +49,7 @@ const PruebasLogic = ({pruebasSelected, setPruebasSelected, formErrors, pruebas,
                 {/* If user doesn't add pruebas, show error */}
                 {formErrors.some(error => error.path === 'pruebasInscripto') &&
                     
-                    <Typography variant="small" color="gray" className="flex items-center gap-1 font-normal mt-2">
+                    <Typography variant="small" color="red" className="flex items-center gap-1 font-semibold mt-2">
                         <InformationCircleIcon className="w-4 h-4 -mt-px" />
                         Por favor, corrija las pruebas
                     </Typography>

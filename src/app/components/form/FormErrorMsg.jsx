@@ -9,8 +9,8 @@ const FormErrorMsg = ({formErrors}) => {
                 formErrors.map((error, i) => 
                     <Typography  
                         variant="small" 
-                        color="gray" 
-                        className="flex items-center gap-1 font-normal mt-2"
+                        color="red" 
+                        className="flex items-center gap-1 font-semibold mt-2"
                         key={i}
                         >
                         <InformationCircleIcon className="w-4 h-4 -mt-px" />

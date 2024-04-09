@@ -111,13 +111,13 @@ const validateFormatoMarca = (pruebasInscripto) => {
             if(marca.length !== formato.length){
                 statusFormato = false
             }
-            if(marca.length === 5 && marca[2] !== formato[2]){
-                statusFormato = false
-            }else if(marca.length === 8 && (marca[2] !== formato[2] || marca[5] !== formato[5])){
-                statusFormato = false
-            }else if(marca.length === 4 && marca[1] !== formato[1] && !numbersString.includes(marca[1])){
-                statusFormato = false
-            }
+            // if(marca.length === 5 && marca[2] !== formato[2]){
+            //     statusFormato = false
+            // }else if(marca.length === 8 && (marca[2] !== formato[2] || marca[5] !== formato[5])){
+            //     statusFormato = false
+            // }else if(marca.length === 4 && marca[1] !== formato[1] && !numbersString.includes(marca[1])){
+            //     statusFormato = false
+            // }
         }
     })
     return statusFormato
