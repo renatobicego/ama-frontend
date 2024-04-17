@@ -22,6 +22,7 @@ export default function InscripcionesTorneos({params}){
     })
     // Which input returned error and the message
     const [formErrors, setFormErrors] = useState([])
+    const [submitting, setSubmitting] = useState(false)
 
     useEffect(() => {
         if(params.idUsuario){
@@ -47,6 +48,7 @@ export default function InscripcionesTorneos({params}){
                 }
             })
             if(res.status === 200){
+                setSubmitting(false)
                 if(params.idUsuario){
                     router.replace('/admin/atletas/inscripciones')
                 }else{
@@ -85,6 +87,8 @@ export default function InscripcionesTorneos({params}){
                 <VolverButton />
                 <h2 className="text-title title-section text-left">Inscripciones a Torneos</h2>
                 {data.atleta !== '' && <FormLogicTorneo 
+                    submitting={submitting}
+                    setSubmitting={setSubmitting}
                     data={data} 
                     setData={setData} 
                     handleSubmit={handleSubmit}
