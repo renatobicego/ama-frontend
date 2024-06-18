@@ -11,6 +11,7 @@ export default function Login(){
                 <h5 className="mt-4">¿No tenés una cuenta? 
                     <Link className="text-light-blue-800" href={'/perfil/registrar'}> Creala acá</Link> 
                 </h5>
+                <p className="text-sm">Si olvidaste tu contraseña, hablar al número 2612179610</p>
              </section>
         </main>
     )
