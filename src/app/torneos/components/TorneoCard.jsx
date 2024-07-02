@@ -15,7 +15,7 @@ const TorneoCard = ({torneo, months, calendar}) => {
                         className="w-6 md:w-8 lg:w-12 xl:w-auto"/>
                     <div className="flex flex-col items-center justify-evenly">
                         <h5 className="font-semibold text-base md:text-xl lg:text-3xl">
-                            {fecha.getDate()}
+                            {fecha.getDate() + 1}
                         </h5>
                         <h6 className="font-medium text-xs md:text-base">
                             {months[fecha.getMonth()]}
