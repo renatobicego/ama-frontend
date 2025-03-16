@@ -2,14 +2,13 @@
 import isError from "@/app/utils/formValidation/isErrorInput";
 import { Input, Typography } from "@/app/utils/materialTailwind";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import { signIn } from "next-auth/react";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const FormLogin = () => {
   // Create form data
   const [data, setData] = useState({
-    password: "",
     dni: "",
   });
 
@@ -21,25 +20,30 @@ const FormLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // create user
-    const res = await signIn("credentials", {
-      dni: data.dni,
-      password: data.password,
-      redirect: false,
-    });
-
-    if (res.error) {
-      const serverErrors = JSON.parse(res.error);
+    try {
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_URL_API}/usuarios/password/${data.dni}`
+      );
+      if (res.error) {
+        const serverErrors = JSON.parse(res.error);
+        // Si el middleware devuelve errores, lo hace en un array errors
+        if (serverErrors.errors) {
+          setFormErrors(serverErrors.errors);
+        } else {
+          setFormErrors([serverErrors]);
+        }
+      } else {
+        alert("Contraseña restablecida. Ahora es su DNI");
+        return router.replace("/perfil");
+      }
+    } catch (error) {
+      const serverErrors = error.response.data;
       // Si el middleware devuelve errores, lo hace en un array errors
       if (serverErrors.errors) {
         setFormErrors(serverErrors.errors);
       } else {
         setFormErrors([serverErrors]);
       }
-    } else {
-      const callbackUrl = new URL(res.url).searchParams.get("callbackUrl");
-      return router.replace(callbackUrl);
     }
   };
 
@@ -54,27 +58,17 @@ const FormLogin = () => {
             tabIndex={1}
             type="dni"
             color="gray"
-            label="DNI*"
+            label="Ingrese su DNI*"
             aria-labelledby="dni"
             labelProps={{ id: "dni" }}
             error={isError("dni", formErrors)}
             value={data.dni}
             onChange={(e) => handleChange("dni", e.target.value)}
           />
-          <Input
-            tabIndex={2}
-            color="gray"
-            label="Contraseña*"
-            type="password"
-            aria-labelledby="password"
-            labelProps={{ id: "password" }}
-            error={isError("password", formErrors)}
-            value={data.password}
-            onChange={(e) => handleChange("password", e.target.value)}
-          />
         </div>
+        <p>SU CONTRASEÑA NUEVA SERÁ SU DNI</p>
         <button type="submit" className="btn-primary">
-          Iniciar Sesión
+          Restablecer
         </button>
       </form>
       <div>
