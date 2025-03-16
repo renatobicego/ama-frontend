@@ -21,7 +21,6 @@ const FormRegistrar = ({ mode, session, update }) => {
     telefono: "",
     pais: "",
     role: "USER_ROLE",
-    email: "",
     asociacion: "",
     federacion: "",
   });
@@ -62,7 +61,7 @@ const FormRegistrar = ({ mode, session, update }) => {
     try {
       let res;
       if (mode === "create") {
-        data.email = data.email.trim();
+        data.dni = data.dni.trim();
         await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/usuarios`, data);
         res = await signIn("credentials", {
           dni: data.dni.trim(),
@@ -70,7 +69,7 @@ const FormRegistrar = ({ mode, session, update }) => {
           redirect: false,
         });
       } else if (mode === "edit") {
-        data.email = data.email.trim();
+        data.dni = data.dni.trim();
         res = await axios.put(
           `${process.env.NEXT_PUBLIC_URL_API}/usuarios/${session.user.usuario.uid}`,
           data,
