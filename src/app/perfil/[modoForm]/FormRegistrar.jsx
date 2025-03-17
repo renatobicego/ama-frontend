@@ -86,8 +86,10 @@ const FormRegistrar = ({ mode, session, update }) => {
         router.replace("/");
       }
     } catch (error) {
+      console.log(error);
       if (error instanceof AxiosError) {
-        const axiosErrors = error.response.data.errors;
+        const axiosErrors =
+          error.response.data.errors || error.response.data.msg;
         setFormErrors(axiosErrors);
       } else {
         setFormErrors([
