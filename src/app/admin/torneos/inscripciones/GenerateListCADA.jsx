@@ -1,7 +1,7 @@
 "use client";
 
 import * as XLSX from "xlsx/xlsx.mjs";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const extractDataFromFile = async (file) => {
@@ -24,7 +24,9 @@ const extractDataFromFile = async (file) => {
     // Convert to JSON starting from row 2 (index 1)
     const jsonFile = XLSX.utils.sheet_to_json(worksheet, {
       range: 1,
+      defval: "",
     });
+
     return jsonFile;
   } catch (error) {
     console.error("Error processing file:", error);
@@ -32,24 +34,59 @@ const extractDataFromFile = async (file) => {
   }
 };
 
+// New function to extract headers from the original file
+const extractHeadersFromFile = async (file) => {
+  try {
+    const data = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result);
+      reader.onerror = (error) => reject(error);
+      reader.readAsBinaryString(file);
+    });
+
+    const workbook = XLSX.read(data, { type: "binary" });
+    const worksheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[worksheetName];
+
+    // Get headers from the first row
+    const headers = XLSX.utils.sheet_to_json(worksheet, {
+      range: 0, // Start from row 1 (headers)
+      header: 1, // Use first row as headers
+    });
+
+    // Extract the keys from the second row to get column order
+    if (headers.length > 0) {
+      return headers[1];
+    }
+    return [];
+  } catch (error) {
+    console.error("Error extracting headers:", error);
+    return [];
+  }
+};
+
 const generateList = async (data) => {
   try {
     // Make array of arrays just one array
     data = data.flat(1);
+
     const uniqueAthletes = new Map();
 
     data.forEach((athlete) => {
       const key = `${athlete["DOCUMENTO"]}`;
+
       if (!uniqueAthletes.has(key)) {
         const pruebas = data.filter(
           (item) => item["DOCUMENTO"] === athlete["DOCUMENTO"]
         );
+
         if (pruebas.length > 1) {
           const pruebasList = pruebas.map((item) => item["PRUEBA"]).join(", ");
           athlete["PRUEBA"] = pruebasList;
         } else {
           athlete["PRUEBA"] = athlete["PRUEBA"] || "";
         }
+
         uniqueAthletes.set(key, {
           atleta: athlete["APELLIDO_Y_NOMBRE"],
           categoria: athlete["CATEGORIA"],
@@ -101,12 +138,29 @@ const listPdf = async (files) => {
 
 const listInscriptions = async (files) => {
   const arrayFiles = Array.from(files);
+
+  // Extract headers from the first file to preserve column order
+  const headers = await extractHeadersFromFile(arrayFiles[0]);
+
   const filesData = await Promise.all(
     arrayFiles.map(async (file) => await extractDataFromFile(file))
   );
 
+  // Create an empty row object with all headers as empty strings
+  const emptyRow = {};
+  headers.forEach((header) => {
+    emptyRow[header] = "";
+  });
+
+  // Add empty row at the beginning of the data
+  const dataWithEmptyRow = [emptyRow, ...filesData.flat(1)];
+
   const workbook = XLSX.utils.book_new();
-  const worksheet = XLSX.utils.json_to_sheet(filesData.flat(1));
+
+  // Use the extracted headers to maintain column order
+  const worksheet = XLSX.utils.json_to_sheet(dataWithEmptyRow, {
+    header: headers,
+  });
 
   const columnWidths = [
     { wch: 15 },
@@ -127,6 +181,7 @@ const listInscriptions = async (files) => {
   ];
 
   worksheet["!cols"] = columnWidths;
+
   XLSX.utils.book_append_sheet(workbook, worksheet, "Inscripciones CADA");
 
   const xlsBuffer = XLSX.write(workbook, {
@@ -177,6 +232,7 @@ const GenerateListCADA = () => {
         default:
           break;
       }
+
       // Reset files after successful processing
       setFiles([]);
       setAction(null);
