@@ -11,7 +11,6 @@ import { useState } from "react";
 import PanelItem from "../components/panel/PanelItem";
 import { useSession } from "next-auth/react";
 import InscripcionesList from "./panelComponents/InscripcionesList";
-import FormPassword from "./panelComponents/FormPassword";
 
 const listItems = [
   {

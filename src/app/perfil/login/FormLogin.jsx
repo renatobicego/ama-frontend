@@ -9,7 +9,6 @@ import { useState } from "react";
 const FormLogin = () => {
   // Create form data
   const [data, setData] = useState({
-    password: "",
     dni: "",
   });
 
@@ -25,7 +24,6 @@ const FormLogin = () => {
     // create user
     const res = await signIn("credentials", {
       dni: data.dni,
-      password: data.password,
       redirect: false,
     });
 
@@ -60,17 +58,6 @@ const FormLogin = () => {
             error={isError("dni", formErrors)}
             value={data.dni}
             onChange={(e) => handleChange("dni", e.target.value)}
-          />
-          <Input
-            tabIndex={2}
-            color="gray"
-            label="Contraseña*"
-            type="password"
-            aria-labelledby="password"
-            labelProps={{ id: "password" }}
-            error={isError("password", formErrors)}
-            value={data.password}
-            onChange={(e) => handleChange("password", e.target.value)}
           />
         </div>
         <button type="submit" className="btn-primary">

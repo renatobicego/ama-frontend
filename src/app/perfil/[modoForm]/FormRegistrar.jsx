@@ -65,7 +65,6 @@ const FormRegistrar = ({ mode, session, update }) => {
         await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/usuarios`, data);
         res = await signIn("credentials", {
           dni: data.dni.trim(),
-          password: data.password,
           redirect: false,
         });
       } else if (mode === "edit") {

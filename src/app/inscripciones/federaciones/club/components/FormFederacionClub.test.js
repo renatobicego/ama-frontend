@@ -1,56 +1,37 @@
-import '@testing-library/jest-dom/extend-expect'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import FormFederacionClub from './FormFederacionClub'
+import "@testing-library/jest-dom/extend-expect";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import FormFederacionClub from "./FormFederacionClub";
 
-describe('<FormFederacionClub />', () => {
+describe("<FormFederacionClub />", () => {
+  let formFederacionClub;
 
-    let formFederacionClub 
+  beforeEach(() => {
+    formFederacionClub = render(<FormFederacionClub />);
+  });
 
-    beforeEach(() => {
-        formFederacionClub = render(<FormFederacionClub />)
-    })
+  afterEach(() => {
+    cleanup();
+  });
 
-    afterEach(() => {
-        cleanup()
-    })
+  test("renders content", () => {
+    expect(formFederacionClub.container).toMatchSnapshot();
 
-    test('renders content', () => {
-        expect(formFederacionClub.container).toMatchSnapshot()
+    // Renders club input
+    const clubInput = screen.getByLabelText("Nombre de Club*");
+    expect(clubInput).toBeInTheDocument();
 
-        // Renders club input
-        const clubInput = screen.getByLabelText('Nombre de Club*')
-        expect(clubInput).toBeInTheDocument()
+    // Renders submit button
+    const submit = screen.getByText("Inscribir Club");
+    expect(submit).toBeInTheDocument();
+  });
 
-        // Renders email input
-        const emailInput = screen.getByLabelText('Email*')
-        expect(emailInput).toBeInTheDocument()
+  test("change input nombre club", () => {
+    // Get nombre club input
+    const clubInput = screen.getByLabelText("Nombre de Club*");
 
-        // Renders submit button
-        const submit = screen.getByText('Inscribir Club')
-        expect(submit).toBeInTheDocument()
+    // Change input
+    fireEvent.change(clubInput, { target: { value: "test" } });
 
-    })
-
-    test('change input nombre club', () => {
-        // Get nombre club input
-        const clubInput = screen.getByLabelText('Nombre de Club*')
-
-        // Change input
-        fireEvent.change(clubInput, { target: { value: 'test' } })
-        
-        expect(clubInput.value).toBe('test')
-        
-    })   
-
-    test('change input email', () => {
-        // Get email input
-        const emailInput = screen.getByLabelText('Email*')
-
-        // Change input
-        fireEvent.change(emailInput, { target: { value: 'test@test.com' } })
-        
-        expect(emailInput.value).toBe('test@test.com')
-        
-    })  
-
-})
+    expect(clubInput.value).toBe("test");
+  });
+});

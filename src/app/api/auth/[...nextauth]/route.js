@@ -13,7 +13,6 @@ const authOptions = {
             `${process.env.NEXT_PUBLIC_URL_API}/auth/login`,
             {
               dni: req.body.dni,
-              password: req.body.password,
             }
           );
           return response.data;

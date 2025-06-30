@@ -14,9 +14,6 @@ export default function Login() {
             Creala acá
           </Link>
         </h5>
-        <Link className="text-light-blue-800" href={"/restablecerContrasena"}>
-          RESTABLECER CONTRASEÑA
-        </Link>
       </section>
     </main>
   );

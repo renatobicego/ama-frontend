@@ -20,7 +20,6 @@ const FormLogicRegistrar = ({
   formErrors,
   mode,
 }) => {
-  const [passwordRepeat, setPasswordRepeat] = useState("");
   // Get form input for select dropdowns
   const { entityData, loading, error } = useRegistroList([
     "club",
@@ -34,10 +33,7 @@ const FormLogicRegistrar = ({
   const validateSubmit = (e) => {
     e.preventDefault();
 
-    const { valid, errors } = registerValidate(
-      data,
-      mode === "create" && passwordRepeat
-    );
+    const { valid, errors } = registerValidate(data);
 
     if (valid) {
       handleSubmit();
@@ -199,7 +195,7 @@ const FormLogicRegistrar = ({
         <Input
           tabIndex={7}
           color="gray"
-          label="Teléfono*"
+          label="Teléfono"
           type="tel"
           aria-labelledby="telefono"
           labelProps={{ id: "telefono" }}
@@ -288,43 +284,6 @@ const FormLogicRegistrar = ({
         </select>
       </div>
 
-      {mode === "create" && (
-        <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
-          <div className="w-full">
-            <Input
-              tabIndex={10}
-              color="gray"
-              label="Contraseña*"
-              aria-labelledby="password"
-              labelProps={{ id: "password" }}
-              type="password"
-              error={isError("password", formErrors)}
-              value={data.password}
-              onChange={(e) => handleChange("password", e.target.value)}
-            />
-            <Typography
-              variant="small"
-              color="gray"
-              className="flex items-center gap-1 font-normal mt-2"
-            >
-              <InformationCircleIcon className="w-4 h-4 -mt-px" />
-              La contraseña debe tener 8 o más caracteres
-            </Typography>
-          </div>
-
-          <Input
-            tabIndex={11}
-            type="password"
-            color="gray"
-            label="Repetir Contraseña*"
-            aria-labelledby="password-check"
-            labelProps={{ id: "password-check" }}
-            error={isError("password", formErrors)}
-            value={passwordRepeat}
-            onChange={(e) => setPasswordRepeat(e.target.value)}
-          />
-        </div>
-      )}
       <button type="submit" className="btn-primary">
         {mode === "create" ? "Crear Usuario" : "Editar Perfil"}
       </button>
