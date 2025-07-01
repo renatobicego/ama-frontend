@@ -13,8 +13,9 @@ const FormInputs = ({
   pruebasSelected,
   setPruebasSelected,
   usuario,
+  setTorneoData,
+  torneoData,
 }) => {
-  const [torneoData, setTorneoData] = useState({});
   const { torneos } = entityData["torneo/activos"];
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const FormInputs = ({
 
     setPruebasSelected([]);
   }, [data.categoria]);
- 
+
   return (
     <>
       <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-6">
@@ -132,7 +133,9 @@ const FormInputs = ({
             <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-6">
               <Input
                 aria-labelledby="club"
-                defaultValue={usuario.club ? usuario.club.nombre : "Club No Elegido"}
+                defaultValue={
+                  usuario.club ? usuario.club.nombre : "Club No Elegido"
+                }
                 disabled
                 color="gray"
                 label="Club*"
@@ -213,6 +216,45 @@ const FormInputs = ({
                 </Link>
               )}
             </div>
+
+            {torneoData.requerirComprobante && (
+              <div className="flex flex-col gap-4 items-left justify-start">
+                <div className="flex items-center gap-2">
+                  <p>
+                    Precio Federados CADA:{" "}
+                    <b>${torneoData.precioInscripcion.cada}</b>
+                  </p>
+                  <p>
+                    Precio No Federados:{" "}
+                    <b>${torneoData.precioInscripcion.ama}</b>
+                  </p>
+                </div>
+                <p>
+                  Es necesario pagar la inscripción previamente para participar.
+                  Por favor, transfiera el dinero al alias:{" "}
+                  <span className="text-primary2 font-semibold">
+                    pajaromurgo
+                  </span>{" "}
+                  (Ruben Marcelo Murgo)
+                </p>
+                <h3 className="text-text font-text font-semibold">
+                  Por favor, suba el comprobante de pago.
+                </h3>
+                <Input
+                  type="file"
+                  color="gray"
+                  label="Comprobante de Pago*"
+                  id="comprobante"
+                  error={isError("comprobante", formErrors)}
+                  labelProps={{ id: "comprobante" }}
+                  aria-labelledby="comprobante_pago"
+                  accept="image/*, application/pdf"
+                  onChange={(e) =>
+                    handleChange("comprobante", e.target.files[0])
+                  }
+                />
+              </div>
+            )}
           </>
         )}
     </>

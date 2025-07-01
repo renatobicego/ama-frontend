@@ -5,6 +5,8 @@ import FormInputs from "./FormInputs";
 import axios, { AxiosError } from "axios";
 import inscripcionValidate from "@/app/utils/formValidation/inscripcionValidation";
 import LoadingError from "@/app/components/LoadingError";
+import { subirArchivoFirebase } from "@/app/utils/files/archivosFirebase";
+import comprimirArchivos from "@/app/utils/files/comprimirArchivos";
 
 // The prop error in each input is to make borders red in case that input returns error
 
@@ -21,6 +23,8 @@ const FormLogicTorneo = ({
   // Which pruebas user added
   const [pruebasSelected, setPruebasSelected] = useState([]);
   const [shouldSubmit, setShouldSubmit] = useState(false);
+  const [torneoData, setTorneoData] = useState({});
+
   //Get pruebas favoritas
   const { entityData, loading, error } = useRegistroList([
     "torneo/activos",
@@ -40,11 +44,17 @@ const FormLogicTorneo = ({
     setData({ ...data, [property]: value });
   };
 
+  const usuario = entityData[`usuarios/${data.atleta}`].usuario;
+
   // Save pruebasSelecte to data before submiting
   const saveDataOnSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    const { valid, errors } = inscripcionValidate(data, pruebasSelected);
+    const { valid, errors } = inscripcionValidate(
+      data,
+      pruebasSelected,
+      torneoData.requerirComprobante
+    );
 
     if (valid) {
       try {
@@ -56,6 +66,13 @@ const FormLogicTorneo = ({
           return data.pruebaAtleta._id;
         });
         const pruebasInscripto = await Promise.all(requests);
+        if (torneoData.requerirComprobante) {
+          data.comprobante = await subirArchivoFirebase(
+            data.comprobante,
+            `comprobantes//${torneoData.nombre}/`,
+            `${usuario.nombre_apellido}-${usuario.dni}`
+          );
+        }
         setData((data) => {
           return {
             ...data,
@@ -98,7 +115,9 @@ const FormLogicTorneo = ({
         handleChange={handleChange}
         pruebasSelected={pruebasSelected}
         setPruebasSelected={setPruebasSelected}
-        usuario={entityData[`usuarios/${data.atleta}`].usuario}
+        usuario={usuario}
+        torneoData={torneoData}
+        setTorneoData={setTorneoData}
       />
 
       {data.categoria !== "" && data.torneo !== "" && (

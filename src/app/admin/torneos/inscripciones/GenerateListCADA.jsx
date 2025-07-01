@@ -6,16 +6,14 @@ import axios from "axios";
 
 const extractDataFromFile = async (file) => {
   try {
-    // Convert FileReader to Promise
     const data = await new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = (e) => resolve(e.target.result);
       reader.onerror = (error) => reject(error);
-      reader.readAsBinaryString(file);
+      reader.readAsArrayBuffer(file);
     });
 
-    // Read the workbook from binary data
-    const workbook = XLSX.read(data, { type: "binary" });
+    const workbook = XLSX.read(data, { type: "array", codepage: 28591 });
 
     // Get the first worksheet
     const worksheetName = workbook.SheetNames[0];
