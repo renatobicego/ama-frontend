@@ -221,21 +221,24 @@ const FormInputs = ({
               <div className="flex flex-col gap-4 items-left justify-start">
                 <div className="flex items-center gap-2">
                   <p>
-                    Precio Federados CADA:{" "}
+                    Precio Pago Online:{" "}
                     <b>${torneoData.precioInscripcion.cada}</b>
                   </p>
                   <p>
-                    Precio No Federados:{" "}
+                    Precio Pago en Pista{" "}
                     <b>${torneoData.precioInscripcion.ama}</b>
                   </p>
                 </div>
                 <p>
-                  Es necesario pagar la inscripción previamente para participar.
-                  Por favor, transfiera el dinero al alias:{" "}
+                  La inscripcion al torneo puede abonarse con un descuento
+                  pagando con transferencia bancaria. Por favor, transfiera el
+                  dinero al alias:{" "}
                   <span className="text-primary2 font-semibold">
                     pajaromurgo
                   </span>{" "}
-                  (Ruben Marcelo Murgo)
+                  (Ruben Marcelo Murgo) el monto de{" "}
+                  <b>${torneoData.precioInscripcion.cada}</b> y adjunte el
+                  comprobante.
                 </p>
                 <h3 className="text-text font-text font-semibold">
                   Por favor, suba el comprobante de pago.

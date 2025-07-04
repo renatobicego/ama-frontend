@@ -66,7 +66,7 @@ const FormLogicTorneo = ({
           return data.pruebaAtleta._id;
         });
         const pruebasInscripto = await Promise.all(requests);
-        if (torneoData.requerirComprobante) {
+        if (torneoData.requerirComprobante && data.comprobante) {
           data.comprobante = await subirArchivoFirebase(
             data.comprobante,
             `comprobantes//${torneoData.nombre}/`,

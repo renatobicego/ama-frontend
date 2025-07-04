@@ -24,14 +24,6 @@ const inscripcionValidate = (
     }
   }
 
-  if (shouldSubmitComprobante && !form.comprobante) {
-    valid = false;
-    errors.push({
-      msg: "Debe subir un comprobante",
-      path: "comprobante",
-    });
-  }
-
   if (pruebasInscripto.length === 0) {
     valid = false;
     errors.push({
