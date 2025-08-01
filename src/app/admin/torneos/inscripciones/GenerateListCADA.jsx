@@ -133,8 +133,55 @@ const listPdf = async (files) => {
 
   return await generateList(filesData);
 };
+const generateUniqueAthletesWithNumber = (
+  filesData,
+  startNumber,
+  nameHeader
+) => {
+  const uniqueAthletes = new Map();
+  let index = startNumber;
 
-const listInscriptions = async (files) => {
+  filesData.flat(1).forEach((athlete) => {
+    const key = athlete["DOCUMENTO"] || athlete["documento"];
+    if (!uniqueAthletes.has(key)) {
+      const name = athlete[nameHeader] || athlete["APELLIDO_Y_NOMBRE"] || "";
+      if (!name) {
+        console.warn(
+          "Athlete name is missing for document:",
+          athlete["DOCUMENTO"]
+        );
+        return; // Skip if name is missing
+      }
+      uniqueAthletes.set(key, {
+        number: index,
+        name: name.trim(),
+      });
+      index++;
+    }
+  });
+
+  return uniqueAthletes;
+};
+const generateNumbers = async (files, startNumber) => {
+  // Extract headers from the first file to preserve column order
+  const arrayFiles = Array.from(files);
+  const headers = await extractHeadersFromFile(arrayFiles[0]);
+  const nameHeader = headers.find((header) =>
+    header.toUpperCase().includes("APELLIDO_Y_NOMBRE")
+  );
+  const filesData = await Promise.all(
+    arrayFiles.map(async (file) => await extractDataFromFile(file))
+  );
+
+  const uniqueAthletes = generateUniqueAthletesWithNumber(
+    filesData,
+    startNumber,
+    nameHeader
+  );
+  return uniqueAthletes;
+};
+
+const listInscriptions = async (files, addNumber, startNumber) => {
   const arrayFiles = Array.from(files);
 
   // Extract headers from the first file to preserve column order
@@ -152,11 +199,28 @@ const listInscriptions = async (files) => {
 
   // Add empty row at the beginning of the data
   const dataWithEmptyRow = [emptyRow, ...filesData.flat(1)];
+  let dataWithNumbers = dataWithEmptyRow;
+  if (addNumber) {
+    const uniqueAthletes = await generateNumbers(files, startNumber);
+    dataWithNumbers = dataWithEmptyRow.map((athlete) => {
+      const key = athlete["DOCUMENTO"] || athlete["documento"];
+      const numberHeader = headers.find((header) =>
+        header.toUpperCase().includes("NUMERO")
+      );
+      if (uniqueAthletes.has(key)) {
+        return {
+          ...athlete,
+          [numberHeader]: uniqueAthletes.get(key).number,
+        };
+      }
+      return athlete;
+    });
+  }
 
   const workbook = XLSX.utils.book_new();
 
   // Use the extracted headers to maintain column order
-  const worksheet = XLSX.utils.json_to_sheet(dataWithEmptyRow, {
+  const worksheet = XLSX.utils.json_to_sheet(dataWithNumbers, {
     header: headers,
   });
 
@@ -208,6 +272,7 @@ const GenerateListCADA = () => {
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(null);
   const [action, setAction] = useState(null);
+  const [startNumber, setStartNumber] = useState(1);
 
   useEffect(() => {
     if (files.length > 0) {
@@ -215,6 +280,48 @@ const GenerateListCADA = () => {
     }
   }, [files]);
 
+  const generateNumbersPdf = async (files) => {
+    const uniqueAthletes = await generateNumbers(files, startNumber);
+    // Dynamic import for client-side only
+    const { jsPDF } = await import("jspdf");
+
+    const pdf = new jsPDF("landscape");
+    const athletes = Array.from(uniqueAthletes.entries());
+
+    athletes.forEach(([dni, athlete], index) => {
+      if (index > 0) {
+        pdf.addPage();
+      }
+
+      // Set up the page
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      // Draw number (very large)
+      pdf.setFontSize(300);
+      pdf.setFont("helvetica", "bold");
+      const numberText = athlete.number.toString();
+      const numberWidth = pdf.getTextWidth(numberText);
+      pdf.text(numberText, (pageWidth - numberWidth) / 2, pageHeight / 2 + 20);
+
+      // Draw name (medium size)
+      pdf.setFontSize(28);
+      pdf.setFont("helvetica", "normal");
+      const upperCaseName = athlete.name.toUpperCase();
+      const nameLines = pdf.splitTextToSize(upperCaseName, pageWidth - 40);
+      pdf.text(
+        nameLines,
+        (pageWidth - pdf.getTextWidth(upperCaseName)) / 2,
+        pageHeight / 2 + 60
+      );
+
+      // Draw a border
+      pdf.setLineWidth(2);
+      pdf.rect(10, 10, pageWidth - 20, pageHeight - 20);
+    });
+
+    pdf.save("numeros-atletas.pdf");
+  };
   const handleFileProcessing = async () => {
     setIsLoading(true);
     setError(null);
@@ -226,6 +333,10 @@ const GenerateListCADA = () => {
           break;
         case "inscripcion":
           await listInscriptions(files);
+          break;
+        case "numeros":
+          await generateNumbersPdf(files); // Assuming start number is 1 for simplicity
+          await listInscriptions(files, true, startNumber);
           break;
         default:
           break;
@@ -292,6 +403,34 @@ const GenerateListCADA = () => {
             setAction("inscripcion");
             setFiles(e.target.files);
           }}
+        />
+      </div>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="inscripciones-input" className="">
+          Generar Números de Atletas
+        </label>
+        <input
+          id="inscripciones-input"
+          type="file"
+          accept=".xls"
+          disabled={isLoading}
+          onChange={(e) => {
+            setAction("numeros");
+            setFiles(e.target.files);
+          }}
+        />
+        <label htmlFor="start-number" className="">
+          Número de inicio
+        </label>
+        <input
+          type="number"
+          id="start-number"
+          min="1"
+          value={startNumber}
+          onChange={(e) => setStartNumber(Number(e.target.value))}
+          placeholder="Número de inicio"
+          className="mt-2 p-2 border rounded"
+          disabled={isLoading}
         />
       </div>
     </div>
