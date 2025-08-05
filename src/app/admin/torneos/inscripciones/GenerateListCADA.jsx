@@ -162,6 +162,7 @@ const generateUniqueAthletesWithNumber = (
 
   return uniqueAthletes;
 };
+
 const generateNumbers = async (files, startNumber) => {
   // Extract headers from the first file to preserve column order
   const arrayFiles = Array.from(files);
@@ -180,7 +181,6 @@ const generateNumbers = async (files, startNumber) => {
   );
   return uniqueAthletes;
 };
-
 const listInscriptions = async (files, addNumber, startNumber) => {
   const arrayFiles = Array.from(files);
 
@@ -191,22 +191,17 @@ const listInscriptions = async (files, addNumber, startNumber) => {
     arrayFiles.map(async (file) => await extractDataFromFile(file))
   );
 
-  // Create an empty row object with all headers as empty strings
-  const emptyRow = {};
-  headers.forEach((header) => {
-    emptyRow[header] = "";
-  });
+  // Flatten all data into one array of objects
+  let flatData = filesData.flat(1);
 
-  // Add empty row at the beginning of the data
-  const dataWithEmptyRow = [emptyRow, ...filesData.flat(1)];
-  let dataWithNumbers = dataWithEmptyRow;
   if (addNumber) {
     const uniqueAthletes = await generateNumbers(files, startNumber);
-    dataWithNumbers = dataWithEmptyRow.map((athlete) => {
+    const numberHeader = headers.find((header) =>
+      header.toUpperCase().includes("NUMERO")
+    );
+
+    flatData = flatData.map((athlete) => {
       const key = athlete["DOCUMENTO"] || athlete["documento"];
-      const numberHeader = headers.find((header) =>
-        header.toUpperCase().includes("NUMERO")
-      );
       if (uniqueAthletes.has(key)) {
         return {
           ...athlete,
@@ -217,35 +212,41 @@ const listInscriptions = async (files, addNumber, startNumber) => {
     });
   }
 
-  const workbook = XLSX.utils.book_new();
-
-  // Use the extracted headers to maintain column order
-  const worksheet = XLSX.utils.json_to_sheet(dataWithNumbers, {
-    header: headers,
-  });
-
-  const columnWidths = [
-    { wch: 15 },
-    { wch: 8 },
-    { wch: 20 },
-    { wch: 25 },
-    { wch: 12 },
-    { wch: 12 },
-    { wch: 5 },
-    { wch: 5 },
-    { wch: 6 },
-    { wch: 12 },
-    { wch: 3 },
-    { wch: 15 },
-    { wch: 15 },
-    { wch: 15 },
-    { wch: 15 },
+  // Convert to AOA: Array of Arrays
+  const aoa = [
+    headers.map(() => ""), // empty row
+    headers, // header row
+    ...flatData.map((row) => headers.map((key) => row[key] ?? "")), // data rows
   ];
 
+  // Build worksheet from AOA
+  const worksheet = XLSX.utils.aoa_to_sheet(aoa);
+
+  // Column widths
+  const columnWidths = [
+    { wch: 15 }, // CATEGORIA
+    { wch: 8 }, // SEXO
+    { wch: 20 }, // PRUEBA
+    { wch: 25 }, // APELLIDO_Y_NOMBRE
+    { wch: 12 }, // PAIS
+    { wch: 12 }, // DOCUMENTO
+    { wch: 5 }, // DIA
+    { wch: 5 }, // MES
+    { wch: 6 }, // ANIO
+    { wch: 12 }, // MEJOR_MARCA
+    { wch: 3 }, // NUMERO
+    { wch: 15 }, // CLUB
+    { wch: 15 }, // ASOCIACION
+    { wch: 15 }, // FED.PROVINCIAL
+    { wch: 15 }, // FED.NACIONAL
+  ];
   worksheet["!cols"] = columnWidths;
 
+  // Create workbook and add sheet
+  const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, "Inscripciones CADA");
 
+  // Export
   const xlsBuffer = XLSX.write(workbook, {
     type: "array",
     bookType: "xls",
