@@ -282,43 +282,56 @@ const GenerateListCADA = () => {
 
   const generateNumbersPdf = async (files) => {
     const uniqueAthletes = await generateNumbers(files, startNumber);
-    // Dynamic import for client-side only
     const { jsPDF } = await import("jspdf");
 
-    const pdf = new jsPDF("landscape");
+    const pdf = new jsPDF("portrait"); // Change to portrait
+
     const athletes = Array.from(uniqueAthletes.entries());
 
-    athletes.forEach(([dni, athlete], index) => {
-      if (index > 0) {
-        pdf.addPage();
-      }
+    for (let i = 0; i < athletes.length; i += 2) {
+      if (i > 0) pdf.addPage();
 
-      // Set up the page
+      const [dni1, athlete1] = athletes[i];
+      const [dni2, athlete2] = athletes[i + 1] || []; // May be undefined if odd number
+
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
+      const halfHeight = pageHeight / 2;
 
-      // Draw number (very large)
-      pdf.setFontSize(300);
-      pdf.setFont("helvetica", "bold");
-      const numberText = athlete.number.toString();
-      const numberWidth = pdf.getTextWidth(numberText);
-      pdf.text(numberText, (pageWidth - numberWidth) / 2, pageHeight / 2 + 20);
+      const renderAthlete = (athlete, offsetY) => {
+        if (!athlete) return;
 
-      // Draw name (medium size)
-      pdf.setFontSize(28);
-      pdf.setFont("helvetica", "normal");
-      const upperCaseName = athlete.name.toUpperCase();
-      const nameLines = pdf.splitTextToSize(upperCaseName, pageWidth - 40);
-      pdf.text(
-        nameLines,
-        (pageWidth - pdf.getTextWidth(upperCaseName)) / 2,
-        pageHeight / 2 + 60
-      );
+        // Number
+        pdf.setFontSize(120);
+        pdf.setFont("helvetica", "bold");
+        const numberText = athlete.number.toString();
+        const numberWidth = pdf.getTextWidth(numberText);
+        pdf.text(numberText, (pageWidth - numberWidth) / 2, offsetY + 80);
 
-      // Draw a border
-      pdf.setLineWidth(2);
-      pdf.rect(10, 10, pageWidth - 20, pageHeight - 20);
-    });
+        // Name
+        pdf.setFontSize(16);
+        pdf.setFont("helvetica", "normal");
+        const upperCaseName = athlete.name.toUpperCase();
+        const nameLines = pdf.splitTextToSize(upperCaseName, pageWidth - 40);
+        pdf.text(
+          nameLines,
+          (pageWidth - pdf.getTextWidth(upperCaseName)) / 2,
+          offsetY + 110
+        );
+
+        // Border
+        pdf.setLineWidth(1.5);
+        pdf.rect(10, offsetY + 10, pageWidth - 20, halfHeight - 20);
+      };
+
+      // Top half
+      renderAthlete(athlete1, 0);
+
+      // Bottom half (only if second athlete exists)
+      if (athlete2) {
+        renderAthlete(athlete2, halfHeight);
+      }
+    }
 
     pdf.save("numeros-atletas.pdf");
   };
