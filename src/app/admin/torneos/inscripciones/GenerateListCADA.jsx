@@ -145,7 +145,8 @@ const generateUniqueAthletesWithNumber = (
   filesData.flat(1).forEach((athlete) => {
     const key = athlete["DOCUMENTO"] || athlete["documento"];
     if (!uniqueAthletes.has(key)) {
-      const name = athlete[nameHeader] || athlete["APELLIDO_Y_NOMBRE"] || "";
+      const name =
+        athlete["apellido_y_nombre"] || athlete["APELLIDO_Y_NOMBRE"] || "";
       if (!name) {
         console.warn(
           "Athlete name is missing for document:",
@@ -308,7 +309,7 @@ const GenerateListCADA = () => {
         if (!athlete) return;
 
         // Number
-        pdf.setFontSize(120);
+        pdf.setFontSize(240);
         pdf.setFont("helvetica", "bold");
         const numberText = athlete.number.toString();
         const numberWidth = pdf.getTextWidth(numberText);
