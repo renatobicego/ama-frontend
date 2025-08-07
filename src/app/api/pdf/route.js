@@ -60,9 +60,11 @@ export async function POST(request) {
         y = 20;
         y = drawHeaders(y);
       }
-
       // Convert all values to strings and handle long text
-      const numero = (index + 1).toString();
+      const numero =
+        inscripcion.numero !== undefined
+          ? inscripcion.numero.toString()
+          : (index + 1).toString();
       const atleta = (inscripcion.atleta || "—").toString();
       const categoria = (inscripcion.categoria || "—").toString();
       const pruebas = (inscripcion.pruebas || "—").toString();

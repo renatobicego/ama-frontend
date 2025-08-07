@@ -54,7 +54,7 @@ const extractHeadersFromFile = async (file) => {
 
     // Extract the keys from the second row to get column order
     if (headers.length > 0) {
-      return headers[1];
+      return headers[1].map((header) => header.trim().toUpperCase());
     }
     return [];
   } catch (error) {
@@ -89,6 +89,7 @@ const generateList = async (data) => {
           atleta: athlete["APELLIDO_Y_NOMBRE"],
           categoria: athlete["CATEGORIA"],
           pruebas: athlete["PRUEBA"],
+          numero: athlete["NUMERO"] || "",
         });
       }
     });
@@ -216,7 +217,11 @@ const listInscriptions = async (files, addNumber, startNumber) => {
   const aoa = [
     headers.map(() => ""), // empty row
     headers, // header row
-    ...flatData.map((row) => headers.map((key) => row[key] ?? "")), // data rows
+    ...flatData.map((row) =>
+      headers.map(
+        (key) => row[key.toUpperCase()] ?? row[key.toLowerCase()] ?? ""
+      )
+    ), // data rows
   ];
 
   // Build worksheet from AOA
