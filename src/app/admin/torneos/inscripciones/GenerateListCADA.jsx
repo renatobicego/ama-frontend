@@ -3,7 +3,8 @@
 import * as XLSX from "xlsx/xlsx.mjs";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import myFontBase64 from "./MyFont.base64.js"; // Import the base64 string of your font
+import RubikBold from "./RubikBold.js";
 const extractDataFromFile = async (file) => {
   try {
     const data = await new Promise((resolve, reject) => {
@@ -280,6 +281,7 @@ const GenerateListCADA = () => {
   const [error, setError] = useState(null);
   const [action, setAction] = useState(null);
   const [startNumber, setStartNumber] = useState(1);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     if (files.length > 0) {
@@ -308,22 +310,54 @@ const GenerateListCADA = () => {
       const renderAthlete = (athlete, offsetY) => {
         if (!athlete) return;
 
+        pdf.addFileToVFS("MyFont.ttf", myFontBase64);
+        pdf.addFileToVFS("MyFont2.ttf", RubikBold);
+        pdf.addFont("MyFont.ttf", "MyCustomFont", "normal");
+        pdf.addFont("MyFont2.ttf", "MyCustomFont2", "bold");
+
+        // add image at the top left
+        const imgData = "/icons/logoSinTitulo.png";
+        pdf.addImage(imgData, "PNG", 15, offsetY + 15, 11.55, 15);
+        const imgData2 = "/clubes/uncuyo.jpg";
+        pdf.addImage(imgData2, "JPG", 30, offsetY + 15, 11.55, 15);
+        const imgData3 = "/clubes/amam.png";
+        pdf.addImage(imgData3, "PNG", 45, offsetY + 15, 15, 15);
+
+        pdf.setFont("MyCustomFont2", "bold");
+        // Tournament name centered
+        pdf.setFontSize(18);
+        const tournamentName = name.toUpperCase();
+        const tournamentLines = pdf.splitTextToSize(
+          tournamentName,
+          pageWidth - 40
+        );
+        if (tournamentName) {
+          pdf.text(
+            tournamentLines,
+            (pageWidth - pdf.getTextWidth(tournamentName)) / 2,
+            offsetY + 25
+          );
+          // add line below
+          pdf.setLineWidth(0.5);
+          pdf.line(10, offsetY + 35, pageWidth - 10, offsetY + 35);
+        }
+
         // Number
         pdf.setFontSize(240);
-        pdf.setFont("helvetica", "bold");
         const numberText = athlete.number.toString();
         const numberWidth = pdf.getTextWidth(numberText);
-        pdf.text(numberText, (pageWidth - numberWidth) / 2, offsetY + 80);
+        pdf.text(numberText, (pageWidth - numberWidth) / 2, offsetY + 105);
 
         // Name
         pdf.setFontSize(16);
-        pdf.setFont("helvetica", "normal");
+        pdf.setFont("MyCustomFont", "normal");
+
         const upperCaseName = athlete.name.toUpperCase();
         const nameLines = pdf.splitTextToSize(upperCaseName, pageWidth - 40);
         pdf.text(
           nameLines,
           (pageWidth - pdf.getTextWidth(upperCaseName)) / 2,
-          offsetY + 110
+          offsetY + 120
         );
 
         // Border
@@ -438,6 +472,17 @@ const GenerateListCADA = () => {
             setAction("numeros");
             setFiles(e.target.files);
           }}
+        />
+        <label htmlFor="name" className="">
+          Nombre de Torneo
+        </label>
+        <input
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Nombre de Torneo"
+          className="mt-2 p-2 border rounded"
+          disabled={isLoading}
         />
         <label htmlFor="start-number" className="">
           Número de inicio
