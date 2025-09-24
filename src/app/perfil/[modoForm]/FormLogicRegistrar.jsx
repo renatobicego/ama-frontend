@@ -169,6 +169,7 @@ const FormLogicRegistrar = ({
           label="Pais*"
         >
           <Option value={"ARG"}>Argentina</Option>
+          <Option value={"CHL"}>Chile</Option>
           <Option value={"Otro"}>Otro</Option>
         </Select>
 
@@ -292,3 +293,4 @@ const FormLogicRegistrar = ({
 };
 
 export default FormLogicRegistrar;
+
